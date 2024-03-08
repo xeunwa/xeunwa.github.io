@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/xeunwa.github.io\/pingctf-2023\/"
-        },"image": ["https:\/\/xeunwa.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Header Injection, Path Traversal, XSS, OCR, Code Review, JavaScript, express","wordcount":  567 ,
+        },"image": ["https:\/\/xeunwa.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Header Injection, Path Traversal, XSS, OCR, Code Review, JavaScript, express","wordcount":  599 ,
         "url": "https:\/\/xeunwa.github.io\/pingctf-2023\/","datePublished": "2023-12-11T02:46:00+08:00","dateModified": "2023-12-11T02:46:00+08:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -168,7 +168,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='https://xeunwa.github.io/authors/xeunwa'>xeunwa</a></span>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>Web</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-12-11">2023-12-11</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-11">2023-12-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;567 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-12-11">2023-12-11</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-11">2023-12-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;599 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -195,6 +195,7 @@
 <p>I participated in pingCTF 2023 and placed 132 out of 517 teams.</p>
 <h1 id="webinternet-explorer" class="headerLink">
     <a href="#webinternet-explorer" class="header-mark"></a>web/internet-explorer</h1><p>Challenge: Manipulate the User agent so that the looks like a linux running internet explorer.</p>
+<p>Solution</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -207,9 +208,11 @@
 </span></span><span class="line"><span class="cl"><span class="n">User-Agent</span><span class="o">:</span> <span class="l">Mozilla/1.22 (compatible; MSIE 2.0; Linux x86_64)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><hr>
+</div><p>Useful site: <a href="https://www.useragentstring.com/pages/Internet%20Explorer/" target="_blank" rel="noopener noreferrer">https://www.useragentstring.com/pages/Internet%20Explorer/</a></p>
+<hr>
 <h1 id="webyoutube-trailer" class="headerLink">
     <a href="#webyoutube-trailer" class="header-mark"></a>web/youtube-trailer</h1><p>Challenge: The only provided information was the youtube link.</p>
+<p>Solution: Simply find the flag in the source</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -459,6 +462,8 @@
 </div><hr>
 <h1 id="webi-see-no-vulnerability" class="headerLink">
     <a href="#webi-see-no-vulnerability" class="header-mark"></a>web/i-see-no-vulnerability</h1><p>Challenge: Perform Blind XSS and retrieve admin cookie</p>
+<h2 id="solution" class="headerLink">
+    <a href="#solution" class="header-mark"></a>Solution</h2><p>I found out that I can inject JavaScript in the script tag because it is not sanitized by the DOMPurify.</p>
 <p>Vulnerable Code
 <figure><a class="lightgallery" href="/pingctf-2023/vulnerability.png" title="vulnerability" data-thumbnail="/pingctf-2023/vulnerability.png">
         <img
@@ -469,8 +474,7 @@
             sizes="auto"
             alt="vulnerability" height="724"  width="1138" >
     </a></figure></p>
-<h2 id="solution" class="headerLink">
-    <a href="#solution" class="header-mark"></a>Solution</h2><p>Blind-XSS payload</p>
+<p>Blind-XSS payload</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1

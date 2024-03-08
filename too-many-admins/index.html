@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/xeunwa.github.io\/too-many-admins\/"
-        },"image": ["https:\/\/xeunwa.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Cryptographic Failures, Hash Cracking, Brute Force, Code Review, PHP","wordcount":  422 ,
+        },"image": ["https:\/\/xeunwa.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Cryptographic Failures, Hash Cracking, Brute Force, Code Review, PHP","wordcount":  432 ,
         "url": "https:\/\/xeunwa.github.io\/too-many-admins\/","datePublished": "2023-12-20T02:46:00+08:00","dateModified": "2023-12-20T02:46:00+08:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -157,7 +157,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='https://xeunwa.github.io/authors/xeunwa'>xeunwa</a></span>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/script/"><i class="far fa-folder fa-fw"></i>Script</a>&nbsp;<a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>Web</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-12-20">2023-12-20</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-20">2023-12-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;422 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-12-20">2023-12-20</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-20">2023-12-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;432 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -171,8 +171,10 @@
             </div><div class="content" id="content"><p>Write-up for BackdoorCTF2023 Web challenge - Too Many Admins</p>
 <hr>
 <h1 id="webtoo-many-admins" class="headerLink">
-    <a href="#webtoo-many-admins" class="header-mark"></a>web/too-many-admins</h1><p>A challenge where you enter the corerct username and password to get the flag.</p>
-<p>Looking at the code below, the password hash is exposed. All we need to do is brute-force it. That way we can get the password.</p>
+    <a href="#webtoo-many-admins" class="header-mark"></a>web/too-many-admins</h1><p>A challenge where you enter the correct username and password to get the flag.</p>
+<p>The source code is provided.
+We can see from the code below that it uses a special algorithm and stores the password in MD5.
+The value for mysupersecurehash is also revealed!</p>
 <p><strong>Vulnerable Code</strong> (for password)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -220,7 +222,7 @@
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>PHP Script to find password</p>
+</div><p>Because the password is an integer we can bruteforce it and perform the same formula to calculate the hash</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -239,20 +241,16 @@
 </span><span class="lnt">14
 </span><span class="lnt">15
 </span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nv">$iterations</span> <span class="o">=</span> <span class="mi">10000000000000</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$file</span> <span class="o">=</span> <span class="nx">fopen</span><span class="p">(</span><span class="s1">&#39;wordlist.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;=</span> <span class="nv">$iterations</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nv">$hash</span> <span class="o">=</span> <span class="nx">md5</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="mi">13</span><span class="o">*</span><span class="mi">13</span><span class="o">*</span><span class="p">((</span><span class="nx">int</span><span class="p">)</span><span class="nv">$i</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">fwrite</span><span class="p">(</span><span class="nv">$file</span><span class="p">,</span> <span class="nv">$hash</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nv">$hash</span> <span class="o">==</span> <span class="mf">0e0776470569150041331763470558650263116470594705</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">echo</span> <span class="nv">$i</span> <span class="o">.</span> <span class="s2">&#34;: overload&#34;</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">echo</span> <span class="nv">$i</span> <span class="o">.</span> <span class="s2">&#34;: found&#34;</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">echo</span> <span class="nv">$hash</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
