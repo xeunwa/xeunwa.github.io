@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/xeunwa.github.io\/time-traveler\/"
-        },"image": ["https:\/\/xeunwa.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "IDOR","wordcount":  665 ,
+        },"image": ["https:\/\/xeunwa.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "IDOR","wordcount":  685 ,
         "url": "https:\/\/xeunwa.github.io\/time-traveler\/","datePublished": "2024-03-08T02:46:00+08:00","dateModified": "2024-03-08T02:46:00+08:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -163,7 +163,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='https://xeunwa.github.io/authors/xeunwa'>xeunwa</a></span>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>Web</a>&nbsp;<a href="/categories/osint/"><i class="far fa-folder fa-fw"></i>OSINT</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-03-08">2024-03-08</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-03-08">2024-03-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;665 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-03-08">2024-03-08</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-03-08">2024-03-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;685 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         
         loading="eager"
@@ -202,9 +202,9 @@
             sizes="auto"
             alt="chall" height="288"  width="604" >
     </a></figure></p>
-<p>I was initially solving web/when-you-dont-see-it challenge when I solved this, I even complained in discord saying their flag doesn&rsquo;t work. Not knowing it is for this challenge lol</p>
+<p>I was initially solving web/when-you-dont-see-it challenge when I solved this, I even complained in discord saying their flag doesn&rsquo;t work, not knowing it is for this challenge lol.</p>
 <h1 id="osint-part" class="headerLink">
-    <a href="#osint-part" class="header-mark"></a>OSINT Part</h1><p>We were given <a href="https://osu.ppy.sh/users/11118671" target="_blank" rel="noopener noreferrer">https://osu.ppy.sh/users/11118671</a>. Which is a profile page for a user Strellic in osu!</p>
+    <a href="#osint-part" class="header-mark"></a>OSINT Part</h1><p>We were given <a href="https://osu.ppy.sh/users/11118671" target="_blank" rel="noopener noreferrer">https://osu.ppy.sh/users/11118671</a> which is a profile page for a user Strellic in osu!</p>
 <p><figure><a class="lightgallery" href="/time-traveler/strellic.png" title="Alt text" data-thumbnail="/time-traveler/strellic.png">
         <img
             
@@ -215,7 +215,7 @@
             alt="Alt text" height="678"  width="1038" >
     </a></figure></p>
 <p>I tried looking around but ultimately was not able to find anything that will help progress.</p>
-<p>I go back to focusing in the profile page message. I tried looking at Strellic&rsquo;s profile in Wayback machine (a website where we can enter a URL and view the previous versions of a webpage).</p>
+<p>I went back to focus on the profile page message. I tried looking at Strellic&rsquo;s profile in Wayback machine (a website where we can enter a URL and view the previous versions of a webpage).</p>
 <p>There was a snapshot in February 29 in Strellic&rsquo;s profile.</p>
 <p><figure><a class="lightgallery" href="/time-traveler/image-1.png" title="Alt text" data-thumbnail="/time-traveler/image-1.png">
         <img
@@ -226,7 +226,7 @@
             sizes="auto"
             alt="Alt text" height="862"  width="1183" >
     </a></figure></p>
-<p>This leads to another clue that there is a post in the introductory page. <a href="https://osu.ppy.sh/community/forums/8" target="_blank" rel="noopener noreferrer">https://osu.ppy.sh/community/forums/8</a></p>
+<p>This leads to another clue that there is a post in the introductions forum page. <a href="https://osu.ppy.sh/community/forums/8" target="_blank" rel="noopener noreferrer">https://osu.ppy.sh/community/forums/8</a></p>
 <p>Looking around in the live website, I wasn&rsquo;t able to find Strellic&rsquo;s post. I thought of again utilizing the wayback machine again and found something interesting.</p>
 <p><figure><a class="lightgallery" href="/time-traveler/image-3.png" title="Alt text" data-thumbnail="/time-traveler/image-3.png">
         <img
@@ -237,13 +237,11 @@
             sizes="auto"
             alt="Alt text" height="988"  width="1638" >
     </a></figure></p>
-<p>At this point
-Strellic also posted in February 29. When we hover this we find crucial information like the date of the post (2024-02-09T07:45:27+00:00) and forum ID.</p>
-<p>When I try directly accessing the forum page <a href="https://osu.ppy.sh/community/forums/topics/1890614" target="_blank" rel="noopener noreferrer">https://osu.ppy.sh/community/forums/topics/1890614</a>
-I was not able to view it.</p>
+<p>Strellic&rsquo;s post was also captured in February 29 in wayback machine. when we hover this post we find crucial information like the date of the post (2024-02-09T07:45:27+00:00) and forum ID.</p>
+<p>I tried directly accessing the forum page from its forum ID <a href="https://osu.ppy.sh/community/forums/topics/1890614" target="_blank" rel="noopener noreferrer">https://osu.ppy.sh/community/forums/topics/1890614</a> but I was not able to view it.</p>
 <h1 id="web-part" class="headerLink">
-    <a href="#web-part" class="header-mark"></a>Web Part</h1><p>After knowing that the flag might be in the deleted post in the introductory. The challenge now is there a way to access a previously post in a forum.</p>
-<p>As it turns out there is. After looking around existing post and links in a forum. I was able to find some helpful things that helped me solved the challenge.</p>
+    <a href="#web-part" class="header-mark"></a>Web Part</h1><p>After knowing that the flag might be in the deleted post in the introductions forum. The challenge now is to find a way to access a previously post in a forum.</p>
+<p>As it turns out there is. After looking around existing post and links in a forum. I was able to find information that helped me solved the challenge.</p>
 <ol>
 <li>
 <p>When you create a topic in a forum - like Strellic did. It will generate a topic that looks like this in the URL <a href="https://osu.ppy.sh/community/forums/topics/1888734" target="_blank" rel="noopener noreferrer">https://osu.ppy.sh/community/forums/topics/1888734</a> (post in the screenshots just used as an example)
@@ -286,7 +284,7 @@ I was not able to view it.</p>
     </a></figure></p>
 </li>
 </ol>
-<p>This is helpful because if we find out the ID of Strellic&rsquo;s post we would be able to view his message</p>
+<p>This is helpful because if we find out the ID of Strellic&rsquo;s post we would be able to view his message.</p>
 <h2 id="idor--binary-search" class="headerLink">
     <a href="#idor--binary-search" class="header-mark"></a>IDOR + Binary Search</h2><p>The POST ID is incremental, which means we can view the post. However simply decrementing the POST ID will take a long time and too many request.</p>
 <p>I found out a faster way by just accessing the URL without adding the endpoint. Using this scheme will redirect to the POST which will reveal the date and time<br>
@@ -300,7 +298,7 @@ I was not able to view it.</p>
             sizes="auto"
             alt="Alt text" height="701"  width="1071" >
     </a></figure></p>
-<p>Since we know that Strellic&rsquo;s deleted post was from February 29. I just needed to find a Post posted in February 29. Which will narrow down the search:</p>
+<p>Since we know that Strellic&rsquo;s deleted post was from February 29. I just needed to find a post posted in February 29 to narrow down the search. I did this in the browser and just looked at the post date.</p>
 <p>For example.</p>
 <p><a href="https://osu.ppy.sh/community/forums/posts/9448728" target="_blank" rel="noopener noreferrer">https://osu.ppy.sh/community/forums/posts/9448728</a> - February 25 <br>
 <a href="https://osu.ppy.sh/community/forums/posts/9450728" target="_blank" rel="noopener noreferrer">https://osu.ppy.sh/community/forums/posts/9450728</a> - February 26 <br>
