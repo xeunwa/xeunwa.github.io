@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/xeunwa.github.io\/time-traveler\/"
-        },"image": ["https:\/\/xeunwa.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "IDOR","wordcount":  659 ,
+        },"image": ["https:\/\/xeunwa.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "IDOR","wordcount":  665 ,
         "url": "https:\/\/xeunwa.github.io\/time-traveler\/","datePublished": "2024-03-08T02:46:00+08:00","dateModified": "2024-03-08T02:46:00+08:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -163,7 +163,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='https://xeunwa.github.io/authors/xeunwa'>xeunwa</a></span>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>Web</a>&nbsp;<a href="/categories/osint/"><i class="far fa-folder fa-fw"></i>OSINT</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-03-08">2024-03-08</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-03-08">2024-03-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;659 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-03-08">2024-03-08</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-03-08">2024-03-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;665 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         
         loading="eager"
@@ -302,12 +302,12 @@ I was not able to view it.</p>
     </a></figure></p>
 <p>Since we know that Strellic&rsquo;s deleted post was from February 29. I just needed to find a Post posted in February 29. Which will narrow down the search:</p>
 <p>For example.</p>
-<p><a href="https://osu.ppy.sh/community/forums/posts/9448728" target="_blank" rel="noopener noreferrer">https://osu.ppy.sh/community/forums/posts/9448728</a> - February 25
-<a href="https://osu.ppy.sh/community/forums/posts/9450728" target="_blank" rel="noopener noreferrer">https://osu.ppy.sh/community/forums/posts/9450728</a> - February 26
-<a href="https://osu.ppy.sh/community/forums/posts/9455728" target="_blank" rel="noopener noreferrer">https://osu.ppy.sh/community/forums/posts/9455728</a> - March 1
-&hellip;
-<a href="https://osu.ppy.sh/community/forums/posts/9454300" target="_blank" rel="noopener noreferrer">https://osu.ppy.sh/community/forums/posts/9454300</a> - February 29</p>
-<p>Then starting from this ID we can increment it to find Strellic post using the /raw endpoint</p>
+<p><a href="https://osu.ppy.sh/community/forums/posts/9448728" target="_blank" rel="noopener noreferrer">https://osu.ppy.sh/community/forums/posts/9448728</a> - February 25 <br>
+<a href="https://osu.ppy.sh/community/forums/posts/9450728" target="_blank" rel="noopener noreferrer">https://osu.ppy.sh/community/forums/posts/9450728</a> - February 26 <br>
+<a href="https://osu.ppy.sh/community/forums/posts/9455728" target="_blank" rel="noopener noreferrer">https://osu.ppy.sh/community/forums/posts/9455728</a> - March 1 <br>
+&hellip; <br>
+<a href="https://osu.ppy.sh/community/forums/posts/9454300" target="_blank" rel="noopener noreferrer">https://osu.ppy.sh/community/forums/posts/9454300</a> - February 29 <br></p>
+<p>Then starting from this ID we can increment it to find Strellic post using the /raw endpoint. Here is the script i used:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
