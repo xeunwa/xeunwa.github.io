@@ -8,6 +8,8 @@
     <link>https://xeunwa.github.io/time-traveller/</link>
     <pubDate>Fri, 08 Mar 2024 02:46:00 &#43;0800</pubDate><author>
                         <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/time-traveller/</guid>
-    <description><![CDATA[<p>Write-up for osu!gaming CTF OSINT challenge - time-traveler</p>]]></description>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/time-traveller/bg.jpg" referrerpolicy="no-referrer">
+            </div><p>Write-up for osu!gaming CTF OSINT challenge - time-traveler</p>]]></description>
 </item></channel>
 </rss>
