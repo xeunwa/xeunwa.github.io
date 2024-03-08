@@ -5,11 +5,11 @@
         <description>IDOR - Tag - xeunwa</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 08 Mar 2024 02:46:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/tags/idor/" rel="self" type="application/rss+xml" /><item>
     <title>[osu!gaming CTF] - osint/time-traveler</title>
-    <link>https://xeunwa.github.io/time-traveller/</link>
+    <link>https://xeunwa.github.io/time-traveler/</link>
     <pubDate>Fri, 08 Mar 2024 02:46:00 &#43;0800</pubDate><author>
-                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/time-traveller/</guid>
+                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/time-traveler/</guid>
     <description><![CDATA[<div class="featured-image">
-                <img src="/time-traveller/bg.jpg" referrerpolicy="no-referrer">
+                <img src="/time-traveler/bg.jpg" referrerpolicy="no-referrer">
             </div><p>Write-up for osu!gaming CTF OSINT challenge - time-traveler</p>]]></description>
 </item></channel>
 </rss>
