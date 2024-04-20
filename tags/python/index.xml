@@ -34,11 +34,5 @@
     <pubDate>Sun, 11 Jun 2023 09:00:00 &#43;0800</pubDate><author>
                         <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/very-secure/</guid>
     <description><![CDATA[<p>Write-up for HSCTF10 web challenge - Very Secure</p>]]></description>
-</item><item>
-    <title>[picoCTF] - crypto/New Caesar</title>
-    <link>https://xeunwa.github.io/new-caesar/</link>
-    <pubDate>Sat, 01 Oct 2022 03:27:00 &#43;0800</pubDate><author>
-                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/new-caesar/</guid>
-    <description><![CDATA[<p>Write-up for picocTF Crypto challenge - New Caesar</p>]]></description>
 </item></channel>
 </rss>
