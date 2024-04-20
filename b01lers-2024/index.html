@@ -222,12 +222,12 @@
     <a href="#miscwabash" class="header-mark"></a>misc/wabash</h2><blockquote>
 <p>wabash, its a river, but also a new shell! Flag is in /flag.txt</p>
 </blockquote>
-<p>Shell challenge - it adds <code>wa</code> on start of each command and arguments seperated with spaces so commands and args will not work Example input:
+<p>Shell challenge - it adds <code>wa</code> on start of each command and arguments seperated with spaces so commands and args will not work. Example input:
 <code>cat /flag.txt</code> &gt; <code>wacat wa/flag.txt</code></p>
 <p><strong>Solution</strong>: <code>|cat&lt;/flag.txt</code></p>
 <p><strong>flag</strong>: bctf{wabash:_command_not_found521065b339eb59a71c06a0dec824cd55}</p>
 <h2 id="miscbash-cat-with-pipe" class="headerLink">
-    <a href="#miscbash-cat-with-pipe" class="header-mark"></a>misc/bash cat with pipe</h2><p>It allows commands. but certain characters and words are getting filtered out like <code>()&quot;&quot;$</code> among others. Also, the word <code>flag</code> is not allowed as input.</p>
+    <a href="#miscbash-cat-with-pipe" class="header-mark"></a>misc/bash cat with pipe</h2><p>It allows commands. but certain characters and words are getting filtered out like <code>()&quot;&quot;$*?</code> among others. Also, the word <code>flag</code> is not allowed as input.</p>
 <p><strong>Solution</strong>:
 <code>cat {f,}lag.txt</code></p>
 <p><strong>flag</strong>: bctf{owwwww_th4t_hurt}</p>
