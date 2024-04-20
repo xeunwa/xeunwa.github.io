@@ -3,7 +3,14 @@
         <title>Code Injection - Tag - xeunwa</title>
         <link>https://xeunwa.github.io/tags/code-injection/</link>
         <description>Code Injection - Tag - xeunwa</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 10 Sep 2023 11:00:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/tags/code-injection/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/tags/code-injection/" rel="self" type="application/rss+xml" /><item>
+    <title>b01lersCTF 2024 writeups</title>
+    <link>https://xeunwa.github.io/b01lers-2024/</link>
+    <pubDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</pubDate><author>
+                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/b01lers-2024/</guid>
+    <description><![CDATA[<p>Writeups for solved b01lers 2024 challenges</p>
+<p><strong>points</strong>: 2366 <strong>rank</strong>: 61/393</p>]]></description>
+</item><item>
     <title>TryHackMe - Tokyo Ghoul</title>
     <link>https://xeunwa.github.io/tokyo-ghoul/</link>
     <pubDate>Sun, 10 Sep 2023 11:00:00 &#43;0800</pubDate><author>
