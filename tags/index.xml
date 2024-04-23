@@ -3,7 +3,35 @@
         <title>Tags - Tag - xeunwa</title>
         <link>https://xeunwa.github.io/tags/</link>
         <description>Tags - Tag - xeunwa</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 22 Apr 2024 02:46:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>Code Review</title>
+    <link>https://xeunwa.github.io/tags/code-review/</link>
+    <pubDate>Mon, 22 Apr 2024 02:46:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://xeunwa.github.io/tags/code-review/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Command Injection</title>
+    <link>https://xeunwa.github.io/tags/command-injection/</link>
+    <pubDate>Mon, 22 Apr 2024 02:46:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://xeunwa.github.io/tags/command-injection/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Go</title>
+    <link>https://xeunwa.github.io/tags/go/</link>
+    <pubDate>Mon, 22 Apr 2024 02:46:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://xeunwa.github.io/tags/go/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Header Injection</title>
+    <link>https://xeunwa.github.io/tags/header-injection/</link>
+    <pubDate>Mon, 22 Apr 2024 02:46:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://xeunwa.github.io/tags/header-injection/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>bash</title>
     <link>https://xeunwa.github.io/tags/bash/</link>
     <pubDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</pubDate><author>
@@ -16,20 +44,6 @@
     <pubDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</pubDate><author>
         <name>Author</name>
     </author><guid>https://xeunwa.github.io/tags/buffer-overflow/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Code Injection</title>
-    <link>https://xeunwa.github.io/tags/code-injection/</link>
-    <pubDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/code-injection/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Code Review</title>
-    <link>https://xeunwa.github.io/tags/code-review/</link>
-    <pubDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/code-review/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>Deobfuscation</title>
@@ -58,20 +72,6 @@
     <pubDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</pubDate><author>
         <name>Author</name>
     </author><guid>https://xeunwa.github.io/tags/minecraft/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Python</title>
-    <link>https://xeunwa.github.io/tags/python/</link>
-    <pubDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/python/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>XSS</title>
-    <link>https://xeunwa.github.io/tags/xss/</link>
-    <pubDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/xss/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>

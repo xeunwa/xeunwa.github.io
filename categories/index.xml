@@ -3,12 +3,19 @@
         <title>Categories - Category - xeunwa</title>
         <link>https://xeunwa.github.io/categories/</link>
         <description>Categories - Category - xeunwa</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 22 Apr 2024 02:46:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/categories/" rel="self" type="application/rss+xml" /><item>
     <title>CTF</title>
     <link>https://xeunwa.github.io/categories/ctf/</link>
-    <pubDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</pubDate><author>
+    <pubDate>Mon, 22 Apr 2024 02:46:00 &#43;0800</pubDate><author>
         <name>Author</name>
     </author><guid>https://xeunwa.github.io/categories/ctf/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Web</title>
+    <link>https://xeunwa.github.io/categories/web/</link>
+    <pubDate>Mon, 22 Apr 2024 02:46:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://xeunwa.github.io/categories/web/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>Misc</title>
@@ -30,13 +37,6 @@
     <pubDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</pubDate><author>
         <name>Author</name>
     </author><guid>https://xeunwa.github.io/categories/rev/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Web</title>
-    <link>https://xeunwa.github.io/categories/web/</link>
-    <pubDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://xeunwa.github.io/categories/web/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>OSINT</title>
