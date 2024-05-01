@@ -17,13 +17,13 @@
     <description><![CDATA[<p>Writeups for solved <a href="https://ctftime.org/event/2250" target="_blank" rel="noopener noreferrer">b01lers CTF 2024</a> challenges</p>
 <p><strong>points</strong>: 2366 <strong>rank</strong>: 61/393</p>]]></description>
 </item><item>
-    <title>[pingCTF 2023] - web(4x) solutions</title>
+    <title>pingCTF 2023 - web(4x) writeups</title>
     <link>https://xeunwa.github.io/pingctf-2023/</link>
     <pubDate>Mon, 11 Dec 2023 02:46:00 &#43;0800</pubDate><author>
                         <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/pingctf-2023/</guid>
     <description><![CDATA[<p>Raw solutions for solved pingCTF 2023 Web challenges</p>]]></description>
 </item><item>
-    <title>[Hack the Boo 2023] - web(2x) writeups </title>
+    <title>Hack the Boo 2023 - web(2x) writeups </title>
     <link>https://xeunwa.github.io/hacktheboo-2023/</link>
     <pubDate>Sat, 28 Oct 2023 07:12:00 &#43;0800</pubDate><author>
                         <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/hacktheboo-2023/</guid>
@@ -35,13 +35,13 @@
                         <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/tokyo-ghoul/</guid>
     <description><![CDATA[<p>My attack chain for Tokyo Ghoul. Nice web room that also contains File Analysis and Python jail for PrivEsc.</p>]]></description>
 </item><item>
-    <title>[BackdoorCTF] - web/Too Many Admins</title>
+    <title>BackdoorCTF - web/Too Many Admins</title>
     <link>https://xeunwa.github.io/too-many-admins/</link>
     <pubDate>Wed, 20 Dec 2023 02:46:00 &#43;0800</pubDate><author>
                         <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/too-many-admins/</guid>
     <description><![CDATA[<p>Write-up for BackdoorCTF2023 Web challenge - Too Many Admins</p>]]></description>
 </item><item>
-    <title>[cakeCTF 2023] - web/CountryDB</title>
+    <title>cakeCTF 2023 - web/CountryDB</title>
     <link>https://xeunwa.github.io/country-db/</link>
     <pubDate>Sat, 11 Nov 2023 11:57:00 &#43;0800</pubDate><author>
                         <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/country-db/</guid>
@@ -53,7 +53,7 @@
                         <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/glitch/</guid>
     <description><![CDATA[<p>My attack chain for <a href="https://tryhackme.com/room/glitch" target="_blank" rel="noopener noreferrer">Glitch</a>. API Fuzzing to NodeJS RCE. Decrypting Firefox passwords</p>]]></description>
 </item><item>
-    <title>[picoCTF 2023] - web(2x) writeups</title>
+    <title>picoCTF 2023 - web(2x) writeups</title>
     <link>https://xeunwa.github.io/picoctf-2023/</link>
     <pubDate>Wed, 29 Mar 2023 00:45:00 &#43;0800</pubDate><author>
                         <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/picoctf-2023/</guid>
