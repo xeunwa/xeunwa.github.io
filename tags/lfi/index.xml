@@ -9,11 +9,5 @@
     <pubDate>Sat, 28 Oct 2023 07:12:00 &#43;0800</pubDate><author>
                         <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/hacktheboo-2023/</guid>
     <description><![CDATA[<p>Write-up for Hack the Boo 2023 web challenges</p>]]></description>
-</item><item>
-    <title>TryHackMe - Tokyo Ghoul</title>
-    <link>https://xeunwa.github.io/tokyo-ghoul/</link>
-    <pubDate>Sun, 10 Sep 2023 11:00:00 &#43;0800</pubDate><author>
-                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/tokyo-ghoul/</guid>
-    <description><![CDATA[<p>My attack chain for Tokyo Ghoul. Nice web room that also contains File Analysis and Python Code Injection.</p>]]></description>
 </item></channel>
 </rss>

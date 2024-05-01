@@ -3,7 +3,7 @@
         <title>xeunwa</title>
         <link>https://xeunwa.github.io/</link>
         <description>Welcome to my Blog/Portfolio Site</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 22 Apr 2024 02:46:00 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 30 Apr 2024 02:46:00 &#43;0800</lastBuildDate>
             <atom:link href="https://xeunwa.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
     <title>osu!gaming CTF 2024 - osint/time-traveler</title>
@@ -14,6 +14,12 @@
 <blockquote>
 <p>I was initially solving web/when-you-dont-see-it challenge when I solved this, I even complained in discord saying their flag doesn&rsquo;t work, not knowing it is for this challenge lol.</p>
 </blockquote>]]></description>
+</item><item>
+    <title>UMDCTF 2024 - web(2x) writeups</title>
+    <link>https://xeunwa.github.io/umdctf-2024/</link>
+    <pubDate>Tue, 30 Apr 2024 02:46:00 &#43;0800</pubDate><author>
+                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/umdctf-2024/</guid>
+    <description><![CDATA[<p>Writeups for solved <a href="https://ctftime.org/event/2323" target="_blank" rel="noopener noreferrer">UMDCTF 2024</a> web challenges (2/4)</p>]]></description>
 </item><item>
     <title>UMassCTF 2024 - web(3x) writeups</title>
     <link>https://xeunwa.github.io/umass-ctf-2024/</link>
@@ -63,11 +69,5 @@
     <pubDate>Mon, 23 Oct 2023 11:00:00 &#43;0800</pubDate><author>
                         <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/glitch/</guid>
     <description><![CDATA[<p>My attack chain for <a href="https://tryhackme.com/room/glitch" target="_blank" rel="noopener noreferrer">Glitch</a>. API Fuzzing to NodeJS RCE. Decrypting Firefox passwords</p>]]></description>
-</item><item>
-    <title>[picoCTF 2023] - web(2x) writeups</title>
-    <link>https://xeunwa.github.io/picoctf-2023/</link>
-    <pubDate>Wed, 29 Mar 2023 00:45:00 &#43;0800</pubDate><author>
-                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/picoctf-2023/</guid>
-    <description><![CDATA[<p>Writeups for solved Web challenges @picoCTF2023</p>]]></description>
 </item></channel>
 </rss>

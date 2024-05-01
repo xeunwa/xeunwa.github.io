@@ -3,15 +3,29 @@
         <title>Tags - Tag - xeunwa</title>
         <link>https://xeunwa.github.io/tags/</link>
         <description>Tags - Tag - xeunwa</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 22 Apr 2024 02:46:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/tags/" rel="self" type="application/rss+xml" /><item>
-    <title>Code Review</title>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 30 Apr 2024 02:46:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>API</title>
+    <link>https://xeunwa.github.io/tags/api/</link>
+    <pubDate>Tue, 30 Apr 2024 02:46:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://xeunwa.github.io/tags/api/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Business-Logic</title>
+    <link>https://xeunwa.github.io/tags/business-logic/</link>
+    <pubDate>Tue, 30 Apr 2024 02:46:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://xeunwa.github.io/tags/business-logic/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Code-Review</title>
     <link>https://xeunwa.github.io/tags/code-review/</link>
     <pubDate>Mon, 22 Apr 2024 02:46:00 &#43;0800</pubDate><author>
         <name>Author</name>
     </author><guid>https://xeunwa.github.io/tags/code-review/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>Command Injection</title>
+    <title>Command-Injection</title>
     <link>https://xeunwa.github.io/tags/command-injection/</link>
     <pubDate>Mon, 22 Apr 2024 02:46:00 &#43;0800</pubDate><author>
         <name>Author</name>
@@ -58,20 +72,6 @@
     <pubDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</pubDate><author>
         <name>Author</name>
     </author><guid>https://xeunwa.github.io/tags/filter-bypass/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Javascript</title>
-    <link>https://xeunwa.github.io/tags/javascript/</link>
-    <pubDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/javascript/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Minecraft</title>
-    <link>https://xeunwa.github.io/tags/minecraft/</link>
-    <pubDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/minecraft/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>
