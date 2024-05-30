@@ -3,75 +3,75 @@
         <title>Tags - Tag - xeunwa</title>
         <link>https://xeunwa.github.io/tags/</link>
         <description>Tags - Tag - xeunwa</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 30 Apr 2024 02:46:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/tags/" rel="self" type="application/rss+xml" /><item>
-    <title>API</title>
-    <link>https://xeunwa.github.io/tags/api/</link>
-    <pubDate>Tue, 30 Apr 2024 02:46:00 &#43;0800</pubDate><author>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 29 May 2024 02:46:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>Brute-Force</title>
+    <link>https://xeunwa.github.io/tags/brute-force/</link>
+    <pubDate>Wed, 29 May 2024 02:46:00 &#43;0800</pubDate><author>
         <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/api/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Business-Logic</title>
-    <link>https://xeunwa.github.io/tags/business-logic/</link>
-    <pubDate>Tue, 30 Apr 2024 02:46:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/business-logic/</guid>
+    </author><guid>https://xeunwa.github.io/tags/brute-force/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>Code-Review</title>
     <link>https://xeunwa.github.io/tags/code-review/</link>
-    <pubDate>Mon, 22 Apr 2024 02:46:00 &#43;0800</pubDate><author>
+    <pubDate>Wed, 29 May 2024 02:46:00 &#43;0800</pubDate><author>
         <name>Author</name>
     </author><guid>https://xeunwa.github.io/tags/code-review/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>Command-Injection</title>
-    <link>https://xeunwa.github.io/tags/command-injection/</link>
-    <pubDate>Mon, 22 Apr 2024 02:46:00 &#43;0800</pubDate><author>
+    <title>flask</title>
+    <link>https://xeunwa.github.io/tags/flask/</link>
+    <pubDate>Wed, 29 May 2024 02:46:00 &#43;0800</pubDate><author>
         <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/command-injection/</guid>
+    </author><guid>https://xeunwa.github.io/tags/flask/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>Go</title>
-    <link>https://xeunwa.github.io/tags/go/</link>
-    <pubDate>Mon, 22 Apr 2024 02:46:00 &#43;0800</pubDate><author>
+    <title>flask Session</title>
+    <link>https://xeunwa.github.io/tags/flask-session/</link>
+    <pubDate>Wed, 29 May 2024 02:46:00 &#43;0800</pubDate><author>
         <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/go/</guid>
+    </author><guid>https://xeunwa.github.io/tags/flask-session/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>Header Injection</title>
-    <link>https://xeunwa.github.io/tags/header-injection/</link>
-    <pubDate>Mon, 22 Apr 2024 02:46:00 &#43;0800</pubDate><author>
+    <title>WebDav</title>
+    <link>https://xeunwa.github.io/tags/webdav/</link>
+    <pubDate>Wed, 29 May 2024 02:46:00 &#43;0800</pubDate><author>
         <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/header-injection/</guid>
+    </author><guid>https://xeunwa.github.io/tags/webdav/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>bash</title>
-    <link>https://xeunwa.github.io/tags/bash/</link>
-    <pubDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</pubDate><author>
+    <title>WordPress</title>
+    <link>https://xeunwa.github.io/tags/wordpress/</link>
+    <pubDate>Wed, 29 May 2024 02:46:00 &#43;0800</pubDate><author>
         <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/bash/</guid>
+    </author><guid>https://xeunwa.github.io/tags/wordpress/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>Buffer Overflow</title>
-    <link>https://xeunwa.github.io/tags/buffer-overflow/</link>
-    <pubDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</pubDate><author>
+    <title>GraphQL</title>
+    <link>https://xeunwa.github.io/tags/graphql/</link>
+    <pubDate>Sun, 12 May 2024 02:46:00 &#43;0800</pubDate><author>
         <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/buffer-overflow/</guid>
+    </author><guid>https://xeunwa.github.io/tags/graphql/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>Deobfuscation</title>
-    <link>https://xeunwa.github.io/tags/deobfuscation/</link>
-    <pubDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</pubDate><author>
+    <title>indexedDB</title>
+    <link>https://xeunwa.github.io/tags/indexeddb/</link>
+    <pubDate>Sun, 12 May 2024 02:46:00 &#43;0800</pubDate><author>
         <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/deobfuscation/</guid>
+    </author><guid>https://xeunwa.github.io/tags/indexeddb/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>Filter-bypass</title>
-    <link>https://xeunwa.github.io/tags/filter-bypass/</link>
-    <pubDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</pubDate><author>
+    <title>LFI</title>
+    <link>https://xeunwa.github.io/tags/lfi/</link>
+    <pubDate>Sun, 12 May 2024 02:46:00 &#43;0800</pubDate><author>
         <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/filter-bypass/</guid>
+    </author><guid>https://xeunwa.github.io/tags/lfi/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Neo4J</title>
+    <link>https://xeunwa.github.io/tags/neo4j/</link>
+    <pubDate>Sun, 12 May 2024 02:46:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://xeunwa.github.io/tags/neo4j/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>
