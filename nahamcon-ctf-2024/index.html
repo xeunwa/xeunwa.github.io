@@ -10,12 +10,11 @@
     <title>NahamCon CTF 2024 - writeups - xeunwa</title><meta name="Description" content="WebDav, A lot of Brute-forcing &#43; Wordpress whitebox"><meta property="og:title" content="NahamCon CTF 2024 - writeups" />
 <meta property="og:description" content="WebDav, A lot of Brute-forcing &#43; Wordpress whitebox" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://xeunwa.github.io/nahamcon-ctf-2024/" /><meta property="og:image" content="https://xeunwa.github.io/images/avatar.png" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://xeunwa.github.io/nahamcon-ctf-2024/" /><meta property="og:image" content="https://avatars.githubusercontent.com/u/72879902?v=4" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2024-05-29T02:46:00+08:00" />
 <meta property="article:modified_time" content="2024-05-29T02:46:00+08:00" /><meta property="og:site_name" content="xeunwa" />
-
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://xeunwa.github.io/images/avatar.png" /><meta name="twitter:title" content="NahamCon CTF 2024 - writeups"/>
+<meta name="twitter:image" content="https://avatars.githubusercontent.com/u/72879902?v=4" /><meta name="twitter:title" content="NahamCon CTF 2024 - writeups"/>
 <meta name="twitter:description" content="WebDav, A lot of Brute-forcing &#43; Wordpress whitebox"/>
 <meta name="application-name" content="DoIt">
 <meta name="apple-mobile-web-app-title" content="DoIt">
@@ -34,15 +33,10 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/xeunwa.github.io\/nahamcon-ctf-2024\/"
-        },"image": ["https:\/\/xeunwa.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "WebDav, flask, flask Session, Brute-Force, Code Review, WordPress, Brute-Force","wordcount":  1876 ,
+        },"image": ["https:\/\/xeunwa.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "WebDav, flask, flask Session, Brute-Force, Code Review, WordPress, Brute-Force","wordcount":  1882 ,
         "url": "https:\/\/xeunwa.github.io\/nahamcon-ctf-2024\/","datePublished": "2024-05-29T02:46:00+08:00","dateModified": "2024-05-29T02:46:00+08:00","publisher": {
             "@type": "Organization",
-            "name": "xxxx","logo": {
-                    "@type": "ImageObject",
-                    "url": "https:\/\/xeunwa.github.io\/images\/avatar.png",
-                    "width":  356 ,
-                    "height":  356 
-                }},"authors": [{
+            "name": "xxxx","logo": "https:\/\/avatars.githubusercontent.com\/u\/72879902?v=4"},"authors": [{
                         "@type": "Person",
                         "name": "xeunwa"                    
                     }],"description": "WebDav, A lot of Brute-forcing + Wordpress whitebox"
@@ -179,7 +173,7 @@
         <li><a href="#base3200-50-points">Base3200 (50 points)</a></li>
         <li><a href="#hashes-on-hashes-on-hashes-310-points">Hashes on Hashes on Hashes (310 points)</a>
           <ul>
-            <li><a href="#message-encryption">Message encryption</a></li>
+            <li><a href="#message-decryption">Message decryption</a></li>
             <li><a href="#decryptpy">decrypt.py</a></li>
           </ul>
         </li>
@@ -191,7 +185,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='https://xeunwa.github.io/authors/xeunwa'>xeunwa</a></span>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>Web</a>&nbsp;<a href="/categories/scripting/"><i class="far fa-folder fa-fw"></i>Scripting</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-05-29">2024-05-29</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-05-29">2024-05-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1876 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;9 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-05-29">2024-05-29</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-05-29">2024-05-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1882 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;9 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -228,7 +222,7 @@
         <li><a href="#base3200-50-points">Base3200 (50 points)</a></li>
         <li><a href="#hashes-on-hashes-on-hashes-310-points">Hashes on Hashes on Hashes (310 points)</a>
           <ul>
-            <li><a href="#message-encryption">Message encryption</a></li>
+            <li><a href="#message-decryption">Message decryption</a></li>
             <li><a href="#decryptpy">decrypt.py</a></li>
           </ul>
         </li>
@@ -450,7 +444,7 @@
 <!-- ![Alt text](image-11.png) -->
 <h2 id="secret-info-460-pts" class="headerLink">
     <a href="#secret-info-460-pts" class="header-mark"></a>Secret Info (460 pts)</h2><p><code>#wordpress</code> <code>#code-review</code></p>
-<p>Under Sponshorship category. This is a Whitebox web challenge involving wordpress.</p>
+<p>Under Sponsorship category. This is a Whitebox web challenge involving wordpress.</p>
 <blockquote>
 <p>Our admin accidentally published some secret images on our site. Unfortunately, somehow we are not able to unpublish the secret image, however, we tried to apply some protection to our site. This should be enough, right?
 This is a fully white box challenge, almost no heavy brute force is needed.</p>
@@ -818,16 +812,8 @@ The <code>add_action(&quot;wp_ajax_nopriv_register_user&quot;, &quot;register_us
 </span></span><span class="line"><span class="cl">    <span class="n">main_loop</span><span class="p">()</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="message-encryption" class="headerLink">
-    <a href="#message-encryption" class="header-mark"></a>Message encryption</h3><p>The message encryption is pretty straight forward. If we read the decrypt function.</p>
-<ol>
-<li>The decrypt function works by accepting a ciphertext (<code>base64 encoded</code>) message.</li>
-<li>Expand the key by repeating it enough times to match the length of the ciphertext.</li>
-<li>Decode the ciphertext <code>from base64</code> and iterate.</li>
-<li>For each iteration it performs <code>XOR</code> operation between the <code>base64 decoded ciphertext</code> and the <code>key</code>. Both are in bytes.</li>
-<li>Then converts it to <code>MD5</code> that we see in the server logs.</li>
-</ol>
-<div class="highlight"><div class="chroma">
+</div><h3 id="message-decryption" class="headerLink">
+    <a href="#message-decryption" class="header-mark"></a>Message decryption</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -877,9 +863,17 @@ The <code>add_action(&quot;wp_ajax_nopriv_register_user&quot;, &quot;register_us
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">decrypted</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="decryptpy" class="headerLink">
+</div><p>The message is decrypted with this steps</p>
+<ol>
+<li>The decrypt function works by accepting a ciphertext (<code>base64 encoded</code>) message.</li>
+<li>Expand the key by repeating it enough times to match the length of the ciphertext.</li>
+<li>Decode the ciphertext <code>from base64</code> and iterate.</li>
+<li>For each iteration it performs <code>XOR</code> operation between the <code>base64 decoded ciphertext</code> and the <code>key</code>. Both are in bytes.</li>
+<li>Then converts it to <code>MD5</code> that we see in the server logs.</li>
+</ol>
+<h3 id="decryptpy" class="headerLink">
     <a href="#decryptpy" class="header-mark"></a>decrypt.py</h3><p>For my solution. I just tried iterating all printable ascii characters for the key until it matched the MD5 when XORed into the ciphertext.
-and then add that character to the known value of the key.</p>
+and then add that character to the known value of the key. This decrypts the captured MD5 and b64 in the log file.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1039,7 +1033,7 @@ and then add that character to the known value of the key.</p>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/webdav/">WebDav</a>,&nbsp;<a href="/tags/flask/">flask</a>,&nbsp;<a href="/tags/flask-session/">flask Session</a>,&nbsp;<a href="/tags/brute-force/">Brute-Force</a>,&nbsp;<a href="/tags/code-review/">Code-Review</a>,&nbsp;<a href="/tags/wordpress/">WordPress</a>,&nbsp;<a href="/tags/brute-force/">Brute-Force</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/webdav/">WebDav</a>,&nbsp;<a href="/tags/flask/">Flask</a>,&nbsp;<a href="/tags/flask-session/">Flask Session</a>,&nbsp;<a href="/tags/brute-force/">Brute-Force</a>,&nbsp;<a href="/tags/code-review/">Code Review</a>,&nbsp;<a href="/tags/wordpress/">WordPress</a>,&nbsp;<a href="/tags/brute-force/">Brute-Force</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
@@ -1050,7 +1044,7 @@ and then add that character to the known value of the key.</p>
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.121.2">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.124.1">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">

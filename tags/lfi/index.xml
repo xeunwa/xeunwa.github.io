@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>LFI - Tag - xeunwa</title>
+        <title>Lfi - Tag - xeunwa</title>
         <link>https://xeunwa.github.io/tags/lfi/</link>
-        <description>LFI - Tag - xeunwa</description>
+        <description>Lfi - Tag - xeunwa</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 12 May 2024 02:46:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/tags/lfi/" rel="self" type="application/rss+xml" /><item>
     <title>TBTL CTF 2024 - web(4x) writeups</title>
     <link>https://xeunwa.github.io/tbtlctf-2024/</link>
