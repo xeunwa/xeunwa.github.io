@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Pcap - Tag - xeunwa</title>
+        <link>http://localhost:1313/tags/pcap/</link>
+        <description>Pcap - Tag - xeunwa</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/pcap/" rel="self" type="application/rss+xml" /><item>
+    <title>HuntressCTF CTF 2024 - writeups</title>
+    <link>http://localhost:1313/huntress-ctf-2024/</link>
+    <pubDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</pubDate><author>
+                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>http://localhost:1313/huntress-ctf-2024/</guid>
+    <description><![CDATA[Web y2j (50 pts, 326 solves)A web application where we can convert Yaml to JSON. I learned the server uses python and by checking headers and looked for vulnerabilities regarding Yaml especially in Python YAML.
+Searched and found CVE-2020-14343 https://nvd.nist.gov/vuln/detail/CVE-2020-14343 that allowed code execution in PyYAML library.
+This writeup explains and builds upon the payload. I used this payload to get the flag.
+1 !!python/object/new:tuple [!!python/object/new:map [!!python/name:eval , [ &#34;open(&#39;/flag.]]></description>
+</item></channel>
+</rss>

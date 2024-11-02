@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Python Pillow - Tag - xeunwa</title>
+        <link>http://localhost:1313/tags/python-pillow/</link>
+        <description>Python Pillow - Tag - xeunwa</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/python-pillow/" rel="self" type="application/rss+xml" /><item>
+    <title>Huntress CTF 2024 - writeups</title>
+    <link>http://localhost:1313/huntress-ctf-2024/</link>
+    <pubDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</pubDate><author>
+                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>http://localhost:1313/huntress-ctf-2024/</guid>
+    <description><![CDATA[<p>Writeups for all <strong>web(6/6)</strong> and <strong>scripting(2/2)</strong> challenges. + <strong>misc/time-will-tell</strong></p>]]></description>
+</item></channel>
+</rss>

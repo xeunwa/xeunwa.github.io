@@ -3,13 +3,27 @@
         <title>CTF - Category - xeunwa</title>
         <link>https://xeunwa.github.io/categories/ctf/</link>
         <description>CTF - Category - xeunwa</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 29 May 2024 02:46:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/categories/ctf/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/categories/ctf/" rel="self" type="application/rss+xml" /><item>
+    <title>Huntress CTF 2024 - writeups</title>
+    <link>https://xeunwa.github.io/huntress-ctf-2024/</link>
+    <pubDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</pubDate><author>
+                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/huntress-ctf-2024/</guid>
+    <description><![CDATA[<p><figure><a class="lightgallery" href="/huntress-ctf-2024/image.png" title="alt text" data-thumbnail="/huntress-ctf-2024/image.png">
+        <img
+            
+            loading="lazy"
+            src="/huntress-ctf-2024/image.png"
+            srcset="/huntress-ctf-2024/image.png, /huntress-ctf-2024/image.png 1.5x, /huntress-ctf-2024/image.png 2x"
+            sizes="auto"
+            alt="alt text" height="741"  width="1320" >
+    </a></figure>
+Writeups for all <strong>web(6/6)</strong> and <strong>scripting(2/2)</strong> challenges. + <strong>misc/time-will-tell</strong></p>]]></description>
+</item><item>
     <title>NahamCon CTF 2024 - writeups</title>
     <link>https://xeunwa.github.io/nahamcon-ctf-2024/</link>
     <pubDate>Wed, 29 May 2024 02:46:00 &#43;0800</pubDate><author>
                         <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/nahamcon-ctf-2024/</guid>
-    <description><![CDATA[<p>Writeups for some web and scripting challenges including the wordpress whitebox challenges</p>
-<p><strong>team</strong>: Cipher Layer <strong>points</strong>: 2294 <strong>rank</strong>: 250/2632</p>]]></description>
+    <description><![CDATA[<p>Writeups for some web and scripting challenges including the wordpress whitebox challenges</p>]]></description>
 </item><item>
     <title>osu!gaming CTF 2024 - osint/time-traveler</title>
     <link>https://xeunwa.github.io/time-traveler/</link>
@@ -23,8 +37,7 @@
     <pubDate>Sun, 12 May 2024 02:46:00 &#43;0800</pubDate><author>
                         <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/tbtlctf-2024/</guid>
     <description><![CDATA[<p>Writeups for solved <a href="https://ctftime.org/event/2324" target="_blank" rel="noopener noreferrer">TBTL CTF 2024</a> challenges</p>
-<p>Solved 4/4 web challenges which is nice</p>
-<p><strong>points</strong>: 600  <strong>rank</strong>: 96/791</p>]]></description>
+<p>Solved 4/4 web challenges which is nice</p>]]></description>
 </item><item>
     <title>UMDCTF 2024 - web(2x) writeups</title>
     <link>https://xeunwa.github.io/umdctf-2024/</link>
@@ -62,11 +75,5 @@
     <pubDate>Sat, 11 Nov 2023 11:57:00 &#43;0800</pubDate><author>
                         <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/country-db/</guid>
     <description><![CDATA[<p>Write-up for CakeCTF Web challenge - CountryDB</p>]]></description>
-</item><item>
-    <title>picoCTF 2023 - web(2x) writeups</title>
-    <link>https://xeunwa.github.io/picoctf-2023/</link>
-    <pubDate>Wed, 29 Mar 2023 00:45:00 &#43;0800</pubDate><author>
-                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/picoctf-2023/</guid>
-    <description><![CDATA[<p>Writeups for solved Web challenges @picoCTF2023</p>]]></description>
 </item></channel>
 </rss>

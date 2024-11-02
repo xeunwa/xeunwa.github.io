@@ -3,75 +3,75 @@
         <title>Tags - Tag - xeunwa</title>
         <link>https://xeunwa.github.io/tags/</link>
         <description>Tags - Tag - xeunwa</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 29 May 2024 02:46:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/tags/" rel="self" type="application/rss+xml" /><item>
-    <title>Brute-Force</title>
-    <link>https://xeunwa.github.io/tags/brute-force/</link>
-    <pubDate>Wed, 29 May 2024 02:46:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/brute-force/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/tags/" rel="self" type="application/rss+xml" /><item>
     <title>Code Review</title>
     <link>https://xeunwa.github.io/tags/code-review/</link>
-    <pubDate>Wed, 29 May 2024 02:46:00 &#43;0800</pubDate><author>
+    <pubDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</pubDate><author>
         <name>Author</name>
     </author><guid>https://xeunwa.github.io/tags/code-review/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>Flask</title>
-    <link>https://xeunwa.github.io/tags/flask/</link>
-    <pubDate>Wed, 29 May 2024 02:46:00 &#43;0800</pubDate><author>
+    <title>Command Injection</title>
+    <link>https://xeunwa.github.io/tags/command-injection/</link>
+    <pubDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</pubDate><author>
         <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/flask/</guid>
+    </author><guid>https://xeunwa.github.io/tags/command-injection/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>Flask Session</title>
-    <link>https://xeunwa.github.io/tags/flask-session/</link>
-    <pubDate>Wed, 29 May 2024 02:46:00 &#43;0800</pubDate><author>
+    <title>CVE-2020-14343</title>
+    <link>https://xeunwa.github.io/tags/cve-2020-14343/</link>
+    <pubDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</pubDate><author>
         <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/flask-session/</guid>
+    </author><guid>https://xeunwa.github.io/tags/cve-2020-14343/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>WebDav</title>
-    <link>https://xeunwa.github.io/tags/webdav/</link>
-    <pubDate>Wed, 29 May 2024 02:46:00 &#43;0800</pubDate><author>
+    <title>CVE-2022-22817</title>
+    <link>https://xeunwa.github.io/tags/cve-2022-22817/</link>
+    <pubDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</pubDate><author>
         <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/webdav/</guid>
+    </author><guid>https://xeunwa.github.io/tags/cve-2022-22817/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>WordPress</title>
-    <link>https://xeunwa.github.io/tags/wordpress/</link>
-    <pubDate>Wed, 29 May 2024 02:46:00 &#43;0800</pubDate><author>
+    <title>File-Upload</title>
+    <link>https://xeunwa.github.io/tags/file-upload/</link>
+    <pubDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</pubDate><author>
         <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/wordpress/</guid>
+    </author><guid>https://xeunwa.github.io/tags/file-upload/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>GraphQL</title>
-    <link>https://xeunwa.github.io/tags/graphql/</link>
-    <pubDate>Sun, 12 May 2024 02:46:00 &#43;0800</pubDate><author>
+    <title>Filter-Bypass</title>
+    <link>https://xeunwa.github.io/tags/filter-bypass/</link>
+    <pubDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</pubDate><author>
         <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/graphql/</guid>
+    </author><guid>https://xeunwa.github.io/tags/filter-bypass/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>IndexedDB</title>
-    <link>https://xeunwa.github.io/tags/indexeddb/</link>
-    <pubDate>Sun, 12 May 2024 02:46:00 &#43;0800</pubDate><author>
+    <title>Insecure-Deserialization</title>
+    <link>https://xeunwa.github.io/tags/insecure-deserialization/</link>
+    <pubDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</pubDate><author>
         <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/indexeddb/</guid>
+    </author><guid>https://xeunwa.github.io/tags/insecure-deserialization/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>Lfi</title>
-    <link>https://xeunwa.github.io/tags/lfi/</link>
-    <pubDate>Sun, 12 May 2024 02:46:00 &#43;0800</pubDate><author>
+    <title>Python</title>
+    <link>https://xeunwa.github.io/tags/python/</link>
+    <pubDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</pubDate><author>
         <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/lfi/</guid>
+    </author><guid>https://xeunwa.github.io/tags/python/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>Neo4J</title>
-    <link>https://xeunwa.github.io/tags/neo4j/</link>
-    <pubDate>Sun, 12 May 2024 02:46:00 &#43;0800</pubDate><author>
+    <title>SQLi</title>
+    <link>https://xeunwa.github.io/tags/sqli/</link>
+    <pubDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</pubDate><author>
         <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/neo4j/</guid>
+    </author><guid>https://xeunwa.github.io/tags/sqli/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Timing-Attack</title>
+    <link>https://xeunwa.github.io/tags/timing-attack/</link>
+    <pubDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://xeunwa.github.io/tags/timing-attack/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>
