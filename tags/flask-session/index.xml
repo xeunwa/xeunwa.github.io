@@ -1,0 +1,20 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Flask Session - Tag - xeunwa</title>
+        <link>https://xeunwa.github.io/tags/flask-session/</link>
+        <description>Flask Session - Tag - xeunwa</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 29 May 2024 02:46:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/tags/flask-session/" rel="self" type="application/rss+xml" /><item>
+    <title>NahamCon CTF 2024 - writeups</title>
+    <link>https://xeunwa.github.io/nahamcon-ctf-2024/</link>
+    <pubDate>Wed, 29 May 2024 02:46:00 &#43;0800</pubDate><author>
+                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/nahamcon-ctf-2024/</guid>
+    <description><![CDATA[<p>Writeups for some web and scripting challenges including the wordpress whitebox challenges</p>
+<p><strong>team</strong>: Cipher Layer <strong>points</strong>: 2294 <strong>rank</strong>: 250/2632</p>]]></description>
+</item><item>
+    <title>HSCTF10 - web/Very Secure</title>
+    <link>https://xeunwa.github.io/very-secure/</link>
+    <pubDate>Sun, 11 Jun 2023 09:00:00 &#43;0800</pubDate><author>
+                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/very-secure/</guid>
+    <description><![CDATA[<p>Write-up for HSCTF10 web challenge - Very Secure</p>]]></description>
+</item></channel>
+</rss>

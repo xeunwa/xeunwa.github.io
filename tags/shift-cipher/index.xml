@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Shift Cipher - Tag - xeunwa</title>
+        <link>https://xeunwa.github.io/tags/shift-cipher/</link>
+        <description>Shift Cipher - Tag - xeunwa</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 01 Oct 2022 03:27:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/tags/shift-cipher/" rel="self" type="application/rss+xml" /><item>
+    <title>[picoCTF] - crypto/New Caesar</title>
+    <link>https://xeunwa.github.io/new-caesar/</link>
+    <pubDate>Sat, 01 Oct 2022 03:27:00 &#43;0800</pubDate><author>
+                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/new-caesar/</guid>
+    <description><![CDATA[<p>Write-up for picocTF Crypto challenge - New Caesar</p>]]></description>
+</item></channel>
+</rss>

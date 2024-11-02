@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Go - Tag - xeunwa</title>
+        <link>https://xeunwa.github.io/tags/go/</link>
+        <description>Go - Tag - xeunwa</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 22 Apr 2024 02:46:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/tags/go/" rel="self" type="application/rss+xml" /><item>
+    <title>UMassCTF 2024 - web(3x) writeups</title>
+    <link>https://xeunwa.github.io/umass-ctf-2024/</link>
+    <pubDate>Mon, 22 Apr 2024 02:46:00 &#43;0800</pubDate><author>
+                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/umass-ctf-2024/</guid>
+    <description><![CDATA[<p>Writeups for solved <a href="https://ctftime.org/event/2287" target="_blank" rel="noopener noreferrer">UMassCTF 2024</a> web challenges (3/5)</p>]]></description>
+</item><item>
+    <title>Hack the Boo 2023 - web(2x) writeups </title>
+    <link>https://xeunwa.github.io/hacktheboo-2023/</link>
+    <pubDate>Sat, 28 Oct 2023 07:12:00 &#43;0800</pubDate><author>
+                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/hacktheboo-2023/</guid>
+    <description><![CDATA[<p>Write-up for Hack the Boo 2023 web challenges</p>]]></description>
+</item></channel>
+</rss>

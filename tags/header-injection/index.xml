@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Header Injection - Tag - xeunwa</title>
+        <link>https://xeunwa.github.io/tags/header-injection/</link>
+        <description>Header Injection - Tag - xeunwa</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 22 Apr 2024 02:46:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/tags/header-injection/" rel="self" type="application/rss+xml" /><item>
+    <title>UMassCTF 2024 - web(3x) writeups</title>
+    <link>https://xeunwa.github.io/umass-ctf-2024/</link>
+    <pubDate>Mon, 22 Apr 2024 02:46:00 &#43;0800</pubDate><author>
+                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/umass-ctf-2024/</guid>
+    <description><![CDATA[<p>Writeups for solved <a href="https://ctftime.org/event/2287" target="_blank" rel="noopener noreferrer">UMassCTF 2024</a> web challenges (3/5)</p>]]></description>
+</item><item>
+    <title>pingCTF 2023 - web(4x) writeups</title>
+    <link>https://xeunwa.github.io/pingctf-2023/</link>
+    <pubDate>Mon, 11 Dec 2023 02:46:00 &#43;0800</pubDate><author>
+                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/pingctf-2023/</guid>
+    <description><![CDATA[<p>Raw solutions for solved pingCTF 2023 Web challenges</p>]]></description>
+</item></channel>
+</rss>

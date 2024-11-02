@@ -1,0 +1,25 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>PrivEsc - Category - xeunwa</title>
+        <link>https://xeunwa.github.io/categories/privesc/</link>
+        <description>PrivEsc - Category - xeunwa</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 23 Oct 2023 11:00:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/categories/privesc/" rel="self" type="application/rss+xml" /><item>
+    <title>TryHackMe - Tokyo Ghoul</title>
+    <link>https://xeunwa.github.io/tokyo-ghoul/</link>
+    <pubDate>Sun, 10 Sep 2023 11:00:00 &#43;0800</pubDate><author>
+                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/tokyo-ghoul/</guid>
+    <description><![CDATA[<p>My attack chain for Tokyo Ghoul. Nice web room that also contains File Analysis and Python jail for PrivEsc.</p>]]></description>
+</item><item>
+    <title>TryHackMe - Glitch</title>
+    <link>https://xeunwa.github.io/glitch/</link>
+    <pubDate>Mon, 23 Oct 2023 11:00:00 &#43;0800</pubDate><author>
+                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/glitch/</guid>
+    <description><![CDATA[<p>My attack chain for <a href="https://tryhackme.com/room/glitch" target="_blank" rel="noopener noreferrer">Glitch</a>. API Fuzzing to NodeJS RCE. Decrypting Firefox passwords</p>]]></description>
+</item><item>
+    <title>TryHackMe - Cyborg</title>
+    <link>https://xeunwa.github.io/cyborg/</link>
+    <pubDate>Mon, 16 Oct 2023 11:00:00 &#43;0800</pubDate><author>
+                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/cyborg/</guid>
+    <description><![CDATA[<p>My attack chain for Cyborg. Web content enumeration, Cracking a borg backup and some bash code reivew.</p>]]></description>
+</item></channel>
+</rss>
