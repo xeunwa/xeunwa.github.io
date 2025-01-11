@@ -3,7 +3,49 @@
         <title>Tags - Tag - xeunwa</title>
         <link>https://xeunwa.github.io/tags/</link>
         <description>Tags - Tag - xeunwa</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 09 Dec 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>AES</title>
+    <link>https://xeunwa.github.io/tags/aes/</link>
+    <pubDate>Mon, 09 Dec 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://xeunwa.github.io/tags/aes/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Geo-OSINT</title>
+    <link>https://xeunwa.github.io/tags/geo-osint/</link>
+    <pubDate>Mon, 09 Dec 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://xeunwa.github.io/tags/geo-osint/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>LSB-Steganography</title>
+    <link>https://xeunwa.github.io/tags/lsb-steganography/</link>
+    <pubDate>Mon, 09 Dec 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://xeunwa.github.io/tags/lsb-steganography/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>OSINT-Leaks</title>
+    <link>https://xeunwa.github.io/tags/osint-leaks/</link>
+    <pubDate>Mon, 09 Dec 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://xeunwa.github.io/tags/osint-leaks/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Php</title>
+    <link>https://xeunwa.github.io/tags/php/</link>
+    <pubDate>Mon, 09 Dec 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://xeunwa.github.io/tags/php/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Php/8-1-0-Dev</title>
+    <link>https://xeunwa.github.io/tags/php/8-1-0-dev/</link>
+    <pubDate>Mon, 09 Dec 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://xeunwa.github.io/tags/php/8-1-0-dev/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>Code Review</title>
     <link>https://xeunwa.github.io/tags/code-review/</link>
     <pubDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</pubDate><author>
@@ -30,48 +72,6 @@
     <pubDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</pubDate><author>
         <name>Author</name>
     </author><guid>https://xeunwa.github.io/tags/cve-2022-22817/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>File-Upload</title>
-    <link>https://xeunwa.github.io/tags/file-upload/</link>
-    <pubDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/file-upload/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Filter-Bypass</title>
-    <link>https://xeunwa.github.io/tags/filter-bypass/</link>
-    <pubDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/filter-bypass/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Insecure-Deserialization</title>
-    <link>https://xeunwa.github.io/tags/insecure-deserialization/</link>
-    <pubDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/insecure-deserialization/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Python</title>
-    <link>https://xeunwa.github.io/tags/python/</link>
-    <pubDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/python/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>SQLi</title>
-    <link>https://xeunwa.github.io/tags/sqli/</link>
-    <pubDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/sqli/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Timing-Attack</title>
-    <link>https://xeunwa.github.io/tags/timing-attack/</link>
-    <pubDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://xeunwa.github.io/tags/timing-attack/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>

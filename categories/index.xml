@@ -3,12 +3,33 @@
         <title>Categories - Category - xeunwa</title>
         <link>https://xeunwa.github.io/categories/</link>
         <description>Categories - Category - xeunwa</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 09 Dec 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/categories/" rel="self" type="application/rss+xml" /><item>
     <title>CTF</title>
     <link>https://xeunwa.github.io/categories/ctf/</link>
-    <pubDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</pubDate><author>
+    <pubDate>Mon, 09 Dec 2024 00:00:00 &#43;0800</pubDate><author>
         <name>Author</name>
     </author><guid>https://xeunwa.github.io/categories/ctf/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Misc</title>
+    <link>https://xeunwa.github.io/categories/misc/</link>
+    <pubDate>Mon, 09 Dec 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://xeunwa.github.io/categories/misc/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>OSINT</title>
+    <link>https://xeunwa.github.io/categories/osint/</link>
+    <pubDate>Mon, 09 Dec 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://xeunwa.github.io/categories/osint/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Web</title>
+    <link>https://xeunwa.github.io/categories/web/</link>
+    <pubDate>Mon, 09 Dec 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://xeunwa.github.io/categories/web/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>Scripting</title>
@@ -18,32 +39,11 @@
     </author><guid>https://xeunwa.github.io/categories/scripting/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>Web</title>
-    <link>https://xeunwa.github.io/categories/web/</link>
-    <pubDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://xeunwa.github.io/categories/web/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Misc</title>
-    <link>https://xeunwa.github.io/categories/misc/</link>
-    <pubDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://xeunwa.github.io/categories/misc/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
     <title>Rev</title>
     <link>https://xeunwa.github.io/categories/rev/</link>
     <pubDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</pubDate><author>
         <name>Author</name>
     </author><guid>https://xeunwa.github.io/categories/rev/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>OSINT</title>
-    <link>https://xeunwa.github.io/categories/osint/</link>
-    <pubDate>Fri, 08 Mar 2024 02:46:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://xeunwa.github.io/categories/osint/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>

@@ -3,8 +3,17 @@
         <title>Misc - Category - xeunwa</title>
         <link>https://xeunwa.github.io/categories/misc/</link>
         <description>Misc - Category - xeunwa</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/categories/misc/" rel="self" type="application/rss+xml" /><item>
-    <title>b01lers CTF 2024 - writeups</title>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 09 Dec 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/categories/misc/" rel="self" type="application/rss+xml" /><item>
+    <title>HacktheNorth.ph / TCon7CTF experience</title>
+    <link>https://xeunwa.github.io/hackthenorth-2024/</link>
+    <pubDate>Mon, 09 Dec 2024 00:00:00 &#43;0800</pubDate><author>
+                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/hackthenorth-2024/</guid>
+    <description><![CDATA[<blockquote>
+<p>We won the CTF at the largest ICT and Hacker Conference in Northern Philippines!</p>
+</blockquote>
+<p>First time participating in a live CTF competition, I had fun playing with my team. The event was also nice, cool swags and talks were informative.</p>]]></description>
+</item><item>
+    <title>b01lers CTF 2024</title>
     <link>https://xeunwa.github.io/b01lers-2024/</link>
     <pubDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</pubDate><author>
                         <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/b01lers-2024/</guid>

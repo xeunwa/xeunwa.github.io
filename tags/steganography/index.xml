@@ -1,0 +1,25 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Steganography - Tag - xeunwa</title>
+        <link>http://localhost:1313/tags/steganography/</link>
+        <description>Steganography - Tag - xeunwa</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 09 Dec 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/steganography/" rel="self" type="application/rss+xml" /><item>
+    <title>HacktheNorth.ph/TCON7 CTF writeups</title>
+    <link>http://localhost:1313/hackthenorth-2024/</link>
+    <pubDate>Mon, 09 Dec 2024 00:00:00 &#43;0800</pubDate><author>
+                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>http://localhost:1313/hackthenorth-2024/</guid>
+    <description><![CDATA[<blockquote>
+<p>We won TCON7! a contest in the Philippines held in tugegarao
+The largest ICT and Hacker Conference in Northern Philippines, first time
+<figure><a class="lightgallery" href="/hackthenorth-2024/image.png" title="alt text" data-thumbnail="/hackthenorth-2024/image.png">
+        <img
+            
+            loading="lazy"
+            src="/hackthenorth-2024/image.png"
+            srcset="/hackthenorth-2024/image.png, /hackthenorth-2024/image.png 1.5x, /hackthenorth-2024/image.png 2x"
+            sizes="auto"
+            alt="alt text" height="586"  width="869" >
+    </a></figure></p>
+</blockquote>]]></description>
+</item></channel>
+</rss>

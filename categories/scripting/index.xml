@@ -4,22 +4,13 @@
         <link>https://xeunwa.github.io/categories/scripting/</link>
         <description>Scripting - Category - xeunwa</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/categories/scripting/" rel="self" type="application/rss+xml" /><item>
-    <title>Huntress CTF 2024 - writeups</title>
+    <title>Huntress CTF 2024</title>
     <link>https://xeunwa.github.io/huntress-ctf-2024/</link>
     <pubDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</pubDate><author>
                         <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/huntress-ctf-2024/</guid>
-    <description><![CDATA[<p><figure><a class="lightgallery" href="/huntress-ctf-2024/image.png" title="alt text" data-thumbnail="/huntress-ctf-2024/image.png">
-        <img
-            
-            loading="lazy"
-            src="/huntress-ctf-2024/image.png"
-            srcset="/huntress-ctf-2024/image.png, /huntress-ctf-2024/image.png 1.5x, /huntress-ctf-2024/image.png 2x"
-            sizes="auto"
-            alt="alt text" height="741"  width="1320" >
-    </a></figure>
-Writeups for all <strong>web(6/6)</strong> and <strong>scripting(2/2)</strong> challenges. + <strong>misc/time-will-tell</strong></p>]]></description>
+    <description><![CDATA[<p>Writeups for all <strong>web(6/6)</strong> and <strong>scripting(2/2)</strong> challenges. + <strong>misc/time-will-tell</strong></p>]]></description>
 </item><item>
-    <title>NahamCon CTF 2024 - writeups</title>
+    <title>NahamCon CTF 2024</title>
     <link>https://xeunwa.github.io/nahamcon-ctf-2024/</link>
     <pubDate>Wed, 29 May 2024 02:46:00 &#43;0800</pubDate><author>
                         <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/nahamcon-ctf-2024/</guid>

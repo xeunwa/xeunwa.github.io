@@ -3,25 +3,25 @@
         <title>xeunwa</title>
         <link>https://xeunwa.github.io/</link>
         <description>Welcome to my Blog/Portfolio Site</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 09 Dec 2024 00:00:00 &#43;0800</lastBuildDate>
             <atom:link href="https://xeunwa.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>Huntress CTF 2024 - writeups</title>
+    <title>HacktheNorth.ph / TCon7CTF experience</title>
+    <link>https://xeunwa.github.io/hackthenorth-2024/</link>
+    <pubDate>Mon, 09 Dec 2024 00:00:00 &#43;0800</pubDate><author>
+                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/hackthenorth-2024/</guid>
+    <description><![CDATA[<blockquote>
+<p>We won the CTF at the largest ICT and Hacker Conference in Northern Philippines!</p>
+</blockquote>
+<p>First time participating in a live CTF competition, I had fun playing with my team. The event was also nice, cool swags and talks were informative.</p>]]></description>
+</item><item>
+    <title>Huntress CTF 2024</title>
     <link>https://xeunwa.github.io/huntress-ctf-2024/</link>
     <pubDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</pubDate><author>
                         <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/huntress-ctf-2024/</guid>
-    <description><![CDATA[<p><figure><a class="lightgallery" href="/huntress-ctf-2024/image.png" title="alt text" data-thumbnail="/huntress-ctf-2024/image.png">
-        <img
-            
-            loading="lazy"
-            src="/huntress-ctf-2024/image.png"
-            srcset="/huntress-ctf-2024/image.png, /huntress-ctf-2024/image.png 1.5x, /huntress-ctf-2024/image.png 2x"
-            sizes="auto"
-            alt="alt text" height="741"  width="1320" >
-    </a></figure>
-Writeups for all <strong>web(6/6)</strong> and <strong>scripting(2/2)</strong> challenges. + <strong>misc/time-will-tell</strong></p>]]></description>
+    <description><![CDATA[<p>Writeups for all <strong>web(6/6)</strong> and <strong>scripting(2/2)</strong> challenges. + <strong>misc/time-will-tell</strong></p>]]></description>
 </item><item>
-    <title>NahamCon CTF 2024 - writeups</title>
+    <title>NahamCon CTF 2024</title>
     <link>https://xeunwa.github.io/nahamcon-ctf-2024/</link>
     <pubDate>Wed, 29 May 2024 02:46:00 &#43;0800</pubDate><author>
                         <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/nahamcon-ctf-2024/</guid>
@@ -31,51 +31,44 @@ Writeups for all <strong>web(6/6)</strong> and <strong>scripting(2/2)</strong> c
     <link>https://xeunwa.github.io/time-traveler/</link>
     <pubDate>Fri, 08 Mar 2024 02:46:00 &#43;0800</pubDate><author>
                         <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/time-traveler/</guid>
-    <description><![CDATA[<p>Write-up for <a href="https://ctftime.org/event/2165" target="_blank" rel="noopener noreferrer">osu!gaming CTF</a> OSINT challenge - time-traveler (334 points)</p>
-<p>I was initially solving web/when-you-dont-see-it challenge when I solved this, I even complained in discord saying their flag doesn&rsquo;t work, not knowing it is for this challenge lol.</p>]]></description>
+    <description><![CDATA[<p><strong>Accidental solve</strong>, I was initially solving web/when-you-dont-see-it challenge when I solved this, I even complained in discord saying their flag doesn&rsquo;t work, not knowing it is for this challenge lol.</p>]]></description>
 </item><item>
-    <title>TBTL CTF 2024 - web(4x) writeups</title>
+    <title>TBTL CTF 2024</title>
     <link>https://xeunwa.github.io/tbtlctf-2024/</link>
     <pubDate>Sun, 12 May 2024 02:46:00 &#43;0800</pubDate><author>
                         <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/tbtlctf-2024/</guid>
     <description><![CDATA[<p>Writeups for solved <a href="https://ctftime.org/event/2324" target="_blank" rel="noopener noreferrer">TBTL CTF 2024</a> challenges</p>
 <p>Solved 4/4 web challenges which is nice</p>]]></description>
 </item><item>
-    <title>UMDCTF 2024 - web(2x) writeups</title>
+    <title>UMDCTF 2024</title>
     <link>https://xeunwa.github.io/umdctf-2024/</link>
     <pubDate>Tue, 30 Apr 2024 02:46:00 &#43;0800</pubDate><author>
                         <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/umdctf-2024/</guid>
     <description><![CDATA[<p>Writeups for solved <a href="https://ctftime.org/event/2323" target="_blank" rel="noopener noreferrer">UMDCTF 2024</a> web challenges (2/4)</p>]]></description>
 </item><item>
-    <title>UMassCTF 2024 - web(3x) writeups</title>
+    <title>UMassCTF 2024</title>
     <link>https://xeunwa.github.io/umass-ctf-2024/</link>
     <pubDate>Mon, 22 Apr 2024 02:46:00 &#43;0800</pubDate><author>
                         <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/umass-ctf-2024/</guid>
     <description><![CDATA[<p>Writeups for solved <a href="https://ctftime.org/event/2287" target="_blank" rel="noopener noreferrer">UMassCTF 2024</a> web challenges (3/5)</p>]]></description>
 </item><item>
-    <title>b01lers CTF 2024 - writeups</title>
+    <title>b01lers CTF 2024</title>
     <link>https://xeunwa.github.io/b01lers-2024/</link>
     <pubDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</pubDate><author>
                         <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/b01lers-2024/</guid>
     <description><![CDATA[<p>Writeups for solved <a href="https://ctftime.org/event/2250" target="_blank" rel="noopener noreferrer">b01lers CTF 2024</a> challenges</p>
 <p><strong>points</strong>: 2366 <strong>rank</strong>: 61/393</p>]]></description>
 </item><item>
-    <title>pingCTF 2023 - web(4x) writeups</title>
+    <title>pingCTF 2023</title>
     <link>https://xeunwa.github.io/pingctf-2023/</link>
     <pubDate>Mon, 11 Dec 2023 02:46:00 &#43;0800</pubDate><author>
                         <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/pingctf-2023/</guid>
     <description><![CDATA[<p>Raw solutions for solved pingCTF 2023 Web challenges</p>]]></description>
 </item><item>
-    <title>Hack the Boo 2023 - web(2x) writeups </title>
+    <title>Hack the Boo 2023</title>
     <link>https://xeunwa.github.io/hacktheboo-2023/</link>
     <pubDate>Sat, 28 Oct 2023 07:12:00 &#43;0800</pubDate><author>
                         <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/hacktheboo-2023/</guid>
     <description><![CDATA[<p>Write-up for Hack the Boo 2023 web challenges</p>]]></description>
-</item><item>
-    <title>cakeCTF 2023 - web/CountryDB</title>
-    <link>https://xeunwa.github.io/country-db/</link>
-    <pubDate>Sat, 11 Nov 2023 11:57:00 &#43;0800</pubDate><author>
-                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/country-db/</guid>
-    <description><![CDATA[<p>Write-up for CakeCTF Web challenge - CountryDB</p>]]></description>
 </item></channel>
 </rss>

@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Socmed-Osint - Tag - xeunwa</title>
+        <link>http://localhost:1313/tags/socmed-osint/</link>
+        <description>Socmed-Osint - Tag - xeunwa</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 09 Dec 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/socmed-osint/" rel="self" type="application/rss+xml" /><item>
+    <title>HacktheNorth.ph/TCON7 CTF - writeups</title>
+    <link>http://localhost:1313/hackthenorth-2024/</link>
+    <pubDate>Mon, 09 Dec 2024 00:00:00 &#43;0800</pubDate><author>
+                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>http://localhost:1313/hackthenorth-2024/</guid>
+    <description><![CDATA[<blockquote>
+<p>We won the CTF at the largest ICT and Hacker Conference in Northern Philippines -HackTheNorth/TCON</p>
+</blockquote>
+<p>First time participating in a live CTF competition, it was fun playing with team GCS! the event was also nice and talks were informative. Malware dev talk was my favorite..</p>]]></description>
+</item></channel>
+</rss>

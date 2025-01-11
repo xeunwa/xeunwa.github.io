@@ -1,0 +1,281 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>HacktheNorth.ph/TCON7 CTF writeups - xeunwa</title><meta name="Description" content="indexedDB, LFI, CSV, Boolean-based Neo4j Injection"><meta property="og:url" content="http://localhost:1313/hackthenorth-ctf-writeups/">
+  <meta property="og:site_name" content="xeunwa">
+  <meta property="og:title" content="HacktheNorth.ph/TCON7 CTF writeups">
+  <meta property="og:description" content="indexedDB, LFI, CSV, Boolean-based Neo4j Injection">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-12-09T00:00:00+08:00">
+    <meta property="article:modified_time" content="2024-12-09T00:00:00+08:00">
+    <meta property="article:tag" content="Steganography">
+    <meta property="article:tag" content="Php/8-1-0-Dev">
+    <meta property="article:tag" content="AES">
+    <meta property="og:image" content="https://avatars.githubusercontent.com/u/72879902?v=4">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/72879902?v=4">
+  <meta name="twitter:title" content="HacktheNorth.ph/TCON7 CTF writeups">
+  <meta name="twitter:description" content="indexedDB, LFI, CSV, Boolean-based Neo4j Injection">
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://localhost:1313/hackthenorth-ctf-writeups/" /><link rel="prev" href="http://localhost:1313/huntress-ctf-2024/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "HacktheNorth.ph/TCON7 CTF writeups",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/hackthenorth-ctf-writeups\/"
+        },"image": ["http:\/\/localhost:1313\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "steganography, php\/8-1-0-dev, AES","wordcount":  379 ,
+        "url": "http:\/\/localhost:1313\/hackthenorth-ctf-writeups\/","datePublished": "2024-12-09T00:00:00+08:00","dateModified": "2024-12-09T00:00:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/avatars.githubusercontent.com\/u\/72879902?v=4"},"authors": [{
+                        "@type": "Person",
+                        "name": "xeunwa"                    
+                    }],"description": "indexedDB, LFI, CSV, Boolean-based Neo4j Injection"
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="auto" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('black' === 'light' || 'black' === 'dark' || 'black' === 'black') setTheme('black'), saveTheme('black'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="xeunwa"><span class="header-title-pre">$</span><span id="desktop-header-typeit" class="typeit"></span><span class="header-title-post"> >?</span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/ctf/"> Writeups </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/whoami/"> whoami </a><a class="menu-item" href="https://github.com/xeunwa" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="xeunwa"><span class="header-title-pre">$</span><span id="mobile-header-typeit" class="typeit"></span><span class="header-title-post"> >?</span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/categories/ctf/" title="">Writeups</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/whoami/" title="">whoami</a><a class="menu-item" href="https://github.com/xeunwa" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents"></nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">HacktheNorth.ph/TCON7 CTF writeups</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='http://localhost:1313/authors/xeunwa'>xeunwa</a></span>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>Web</a>&nbsp;<a href="/categories/osint/"><i class="far fa-folder fa-fw"></i>OSINT</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-12-09">2024-12-09</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-12-09">2024-12-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;379 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>We won TCON7! a contest in the Philippines held in tugegarao
+The largest ICT and Hacker Conference in Northern Philippines</p>
+</blockquote>
+<p>Here are my writeups for solved challenges. Team writeups <a href="https://github.com/0000rei/TCON7-CTF-Writeups" target="_blank" rel="noopener noreferrer"></a></p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Challenge</th>
+<th>Solution                                                                                                                                                               a</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Web</td>
+<td>Computer Page (50)</td>
+<td><a href="https://github.com/0000rei/TCON7-CTF-Writeups/blob/main/Web/03%20-%20Computer%20Page.md" target="_blank" rel="noopener noreferrer">https://github.com/0000rei/TCON7-CTF-Writeups/blob/main/Web/03%20-%20Computer%20Page.md</a></td>
+</tr>
+<tr>
+<td>Web</td>
+<td>Hack me Bhe (200)</td>
+<td><a href="https://github.com/0000rei/TCON7-CTF-Writeups/blob/main/Web/06%20-%20Hack%20Me%20Bhe.md" target="_blank" rel="noopener noreferrer">https://github.com/0000rei/TCON7-CTF-Writeups/blob/main/Web/06%20-%20Hack%20Me%20Bhe.md</a></td>
+</tr>
+<tr>
+<td>OSINT</td>
+<td>Digital Enigma (50)</td>
+<td>Search provided string in virustotal. Flag found here <a href="https://www.virustotal.com/gui/file/66c9bf00640ca37abb8335101f38f383e58c17c41c0475f9c459d99753bccbb0" target="_blank" rel="noopener noreferrer">https://www.virustotal.com/gui/file/66c9bf00640ca37abb8335101f38f383e58c17c41c0475f9c459d99753bccbb0</a></td>
+</tr>
+<tr>
+<td>OSINT</td>
+<td>Hidden Verse (150)</td>
+<td>Search <code>tcon{</code> in pastebin <a href="https://pastebin.com/" target="_blank" rel="noopener noreferrer">https://pastebin.com/</a></td>
+</tr>
+<tr>
+<td>OSINT</td>
+<td>Hidden in Plain Site (300)</td>
+<td>Search <code>laet4x</code> twitter account and find similar image to the challenge <a href="https://x.com/laet4x/status/1862206770690605422" target="_blank" rel="noopener noreferrer">https://x.com/laet4x/status/1862206770690605422</a>. Use <code>steghide extract -sf file</code> to extract data and get flag</td>
+</tr>
+<tr>
+<td>OSINT</td>
+<td>The Event Code (350)</td>
+<td>Search <code>techkey2021@gmail.com</code> in Epieos <a href="https://epieos.com/?q=techkey2021%40gmail.com&amp;t=email" target="_blank" rel="noopener noreferrer">https://epieos.com/?q=techkey2021%40gmail.com&t=email</a>. The output will include a public calendar <a href="https://calendar.google.com/calendar/u/0/embed?src=techkey2021@gmail.com" target="_blank" rel="noopener noreferrer">https://calendar.google.com/calendar/u/0/embed?src=techkey2021@gmail.com</a> and the flag is found in event in <strong>Jan 1, 2025</strong></td>
+</tr>
+<tr>
+<td>OSINT</td>
+<td>Im here! Im here! (400)</td>
+<td>Search <code>Don Domingo Public Market</code> in Google Maps. We are unable to find the flag in the reviews/photos in the place but if you look around, a similar image is found at TGP <a href="https://maps.app.goo.gl/AnPVc3E3oaCZTuJQ6" target="_blank" rel="noopener noreferrer">https://maps.app.goo.gl/AnPVc3E3oaCZTuJQ6</a></td>
+</tr>
+<tr>
+<td>OSINT</td>
+<td>The Hidden Archive (450)</td>
+<td>Search <code>tcon</code> in Wikipedia and find theres a dedicated page for tcon. We can see Revision history here <a href="https://en.wikipedia.org/w/index.php?title=Tcon&amp;action=history" target="_blank" rel="noopener noreferrer">https://en.wikipedia.org/w/index.php?title=Tcon&action=history</a>. Flag can be found at <a href="https://en.wikipedia.org/w/index.php?title=Tcon&amp;diff=prev&amp;oldid=1248813049" target="_blank" rel="noopener noreferrer">https://en.wikipedia.org/w/index.php?title=Tcon&diff=prev&oldid=1248813049</a></td>
+</tr>
+<tr>
+<td>OSINT</td>
+<td>Battle of Youtubers (450)</td>
+<td>Search <code>tcon{</code> in the youtube video/channel is enough to get the flag. But we can use online tools to extract youtube metadata e.g <a href="https://mattw.io/youtube-metadata/" target="_blank" rel="noopener noreferrer">https://mattw.io/youtube-metadata/</a></td>
+</tr>
+<tr>
+<td>MISC</td>
+<td>Hexed Reality (100)</td>
+<td>Download image and extract data using steghide <code>steghide extract -sf file </code> Observe the output is in hex. We can use this one liner to get the flag <code>cat steganopayload23203.txt | xxd -r -p | grep tcon{</code></td>
+</tr>
+<tr>
+<td>MISC</td>
+<td>Dante&rsquo;s (150)</td>
+<td>Searching online about the provided string leads us that its a Malbodge esteric language. String can be decoded here <a href="https://malbolge.doleczek.pl/" target="_blank" rel="noopener noreferrer">https://malbolge.doleczek.pl/</a>. There is an error for 1 character(258) so I had to brute-force it</td>
+</tr>
+<tr>
+<td>MISC</td>
+<td>Decryption - Symmetric (200)</td>
+<td>Crypto chall, can be solved using Cyberchef AES Decrypt just pad the key with spaces. Recipe - <a href="https://tinyurl.com/2ef5f7xz" target="_blank" rel="noopener noreferrer">https://tinyurl.com/2ef5f7xz</a></td>
+</tr>
+<tr>
+<td>MISC</td>
+<td>Paws of Hidden Byte (350)</td>
+<td>Forensics/LSB Steganography problem. I used zsteg to solve and bruteforce LSB params out of the box <code>zsteg -a tconXlsb.png -l 500 | grep tcon</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Apologies for the short writeups, i didn&rsquo;t have time to collect the artifacts, message me if u want extra details on how i solve a particular challenge.</p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-12-09</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/hackthenorth-ctf-writeups/" data-title="HacktheNorth.ph/TCON7 CTF writeups" data-hashtags="steganography,php/8-1-0-dev,AES"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Instapaper" data-sharer="instapaper" data-url="http://localhost:1313/hackthenorth-ctf-writeups/" data-title="HacktheNorth.ph/TCON7 CTF writeups" data-description="indexedDB, LFI, CSV, Boolean-based Neo4j Injection"><span data-svg-src="/lib/simple-icons/icons/instapaper.min.svg"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/steganography/">Steganography</a>,&nbsp;<a href="/tags/php/8-1-0-dev/">Php/8-1-0-Dev</a>,&nbsp;<a href="/tags/aes/">AES</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/huntress-ctf-2024/" class="prev" rel="prev" title="Huntress CTF 2024 - writeups"><i class="fas fa-angle-left fa-fw"></i>Huntress CTF 2024 - writeups</a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.131.0">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{},"data":{"desktop-header-typeit":"xeunwa","mobile-header-typeit":"xeunwa"},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"No results found","snippetLength":300,"threshold":0.1,"type":"fuse","useExtendedSearch":false},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+</body>
+
+</html>

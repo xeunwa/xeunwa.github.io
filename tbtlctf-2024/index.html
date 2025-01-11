@@ -7,9 +7,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title>TBTL CTF 2024 - web(4x) writeups - xeunwa</title><meta name="Description" content="indexedDB, LFI, CSV, Boolean-based Neo4j Injection"><meta property="og:url" content="https://xeunwa.github.io/tbtlctf-2024/">
+    <title>TBTL CTF 2024 - xeunwa</title><meta name="Description" content="indexedDB, LFI, CSV, Boolean-based Neo4j Injection"><meta property="og:url" content="https://xeunwa.github.io/tbtlctf-2024/">
   <meta property="og:site_name" content="xeunwa">
-  <meta property="og:title" content="TBTL CTF 2024 - web(4x) writeups">
+  <meta property="og:title" content="TBTL CTF 2024">
   <meta property="og:description" content="indexedDB, LFI, CSV, Boolean-based Neo4j Injection">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
@@ -19,14 +19,14 @@
     <meta property="article:tag" content="IndexedDB">
     <meta property="article:tag" content="GraphQL">
     <meta property="article:tag" content="Neo4J">
-    <meta property="article:tag" content="Pandas">
+    <meta property="article:tag" content="Csv-Injection">
     <meta property="article:tag" content="Python">
     <meta property="article:tag" content="Code Review">
     <meta property="og:image" content="https://avatars.githubusercontent.com/u/72879902?v=4">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/72879902?v=4">
-  <meta name="twitter:title" content="TBTL CTF 2024 - web(4x) writeups">
+  <meta name="twitter:title" content="TBTL CTF 2024">
   <meta name="twitter:description" content="indexedDB, LFI, CSV, Boolean-based Neo4j Injection">
 <meta name="application-name" content="DoIt">
 <meta name="apple-mobile-web-app-title" content="DoIt">
@@ -40,12 +40,12 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "TBTL CTF 2024 - web(4x) writeups",
+        "headline": "TBTL CTF 2024",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/xeunwa.github.io\/tbtlctf-2024\/"
-        },"image": ["https:\/\/xeunwa.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "indexedDB, GraphQL, Neo4J, pandas, python, code-review, lfi, php","wordcount":  903 ,
+        },"image": ["https:\/\/xeunwa.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "indexedDB, GraphQL, Neo4J, csv-injection, python, code-review, lfi, php","wordcount":  903 ,
         "url": "https:\/\/xeunwa.github.io\/tbtlctf-2024\/","datePublished": "2024-05-12T02:46:00+08:00","dateModified": "2024-05-12T02:46:00+08:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/avatars.githubusercontent.com\/u\/72879902?v=4"},"authors": [{
@@ -56,7 +56,7 @@
     </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
 </head>
 
-<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+<body header-desktop="auto" header-mobile="auto"><script type="text/javascript">
         function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
@@ -69,14 +69,7 @@
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="xeunwa"><img
-        class="logo"
-        loading="lazy"
-        src="https://avatars.githubusercontent.com/u/72879902?v=4"
-        srcset="https://avatars.githubusercontent.com/u/72879902?v=4, https://avatars.githubusercontent.com/u/72879902?v=4 1.5x, https://avatars.githubusercontent.com/u/72879902?v=4 2x"
-        sizes="auto"
-        alt="https://avatars.githubusercontent.com/u/72879902?v=4"
-        title="https://avatars.githubusercontent.com/u/72879902?v=4" ><span id="desktop-header-typeit" class="typeit"></span></a>
+            <a href="/" title="xeunwa"><span class="header-title-pre">$</span><span id="desktop-header-typeit" class="typeit"></span><span class="header-title-post"> >?</span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/categories/ctf/"> Writeups </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/whoami/"> whoami </a><a class="menu-item" href="https://github.com/xeunwa" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -105,14 +98,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="xeunwa"><img
-        class="logo"
-        loading="lazy"
-        src="https://avatars.githubusercontent.com/u/72879902?v=4"
-        srcset="https://avatars.githubusercontent.com/u/72879902?v=4, https://avatars.githubusercontent.com/u/72879902?v=4 1.5x, https://avatars.githubusercontent.com/u/72879902?v=4 2x"
-        sizes="auto"
-        alt="https://avatars.githubusercontent.com/u/72879902?v=4"
-        title="https://avatars.githubusercontent.com/u/72879902?v=4" ><span id="mobile-header-typeit" class="typeit"></span></a>
+                <a href="/" title="xeunwa"><span class="header-title-pre">$</span><span id="mobile-header-typeit" class="typeit"></span><span class="header-title-post"> >?</span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -162,7 +148,7 @@
     <li><a href="#webmexico-city-tour">web/Mexico City Tour</a></li>
   </ul>
 </nav></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">TBTL CTF 2024 - web(4x) writeups</h1><div class="post-meta">
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">TBTL CTF 2024</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='https://xeunwa.github.io/authors/xeunwa'>xeunwa</a></span>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>Web</a></span></div>
@@ -648,25 +634,25 @@ flag: <strong>TBTL{4Typ1c41_d4T4B453_u54g3}</strong></p>
         </div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
-            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="https://xeunwa.github.io/tbtlctf-2024/" data-title="TBTL CTF 2024 - web(4x) writeups" data-hashtags="indexedDB,GraphQL,Neo4J,pandas,python,code-review,lfi,php"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Instapaper" data-sharer="instapaper" data-url="https://xeunwa.github.io/tbtlctf-2024/" data-title="TBTL CTF 2024 - web(4x) writeups" data-description="indexedDB, LFI, CSV, Boolean-based Neo4j Injection"><span data-svg-src="/lib/simple-icons/icons/instapaper.min.svg"></span></button></div>
+            <div class="post-info-share"></div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/indexeddb/">IndexedDB</a>,&nbsp;<a href="/tags/graphql/">GraphQL</a>,&nbsp;<a href="/tags/neo4j/">Neo4J</a>,&nbsp;<a href="/tags/pandas/">Pandas</a>,&nbsp;<a href="/tags/python/">Python</a>,&nbsp;<a href="/tags/code-review/">Code Review</a>,&nbsp;<a href="/tags/lfi/">Lfi</a>,&nbsp;<a href="/tags/php/">Php</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/indexeddb/">IndexedDB</a>,&nbsp;<a href="/tags/graphql/">GraphQL</a>,&nbsp;<a href="/tags/neo4j/">Neo4J</a>,&nbsp;<a href="/tags/csv-injection/">Csv-Injection</a>,&nbsp;<a href="/tags/python/">Python</a>,&nbsp;<a href="/tags/code-review/">Code Review</a>,&nbsp;<a href="/tags/lfi/">Lfi</a>,&nbsp;<a href="/tags/php/">Php</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/umdctf-2024/" class="prev" rel="prev" title="UMDCTF 2024 - web(2x) writeups"><i class="fas fa-angle-left fa-fw"></i>UMDCTF 2024 - web(2x) writeups</a>
+    <div class="post-nav"><a href="/umdctf-2024/" class="prev" rel="prev" title="UMDCTF 2024"><i class="fas fa-angle-left fa-fw"></i>UMDCTF 2024</a>
             <a href="/time-traveler/" class="next" rel="next" title="osu!gaming CTF 2024 - osint/time-traveler">osu!gaming CTF 2024 - osint/time-traveler<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
                     Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.131.0">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>

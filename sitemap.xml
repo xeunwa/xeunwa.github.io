@@ -2,7 +2,8 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://xeunwa.github.io/huntress-ctf-2024/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://xeunwa.github.io/hackthenorth-2024/</loc><lastmod>2024-12-09T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://xeunwa.github.io/huntress-ctf-2024/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://xeunwa.github.io/nahamcon-ctf-2024/</loc><lastmod>2024-05-29T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://xeunwa.github.io/time-traveler/</loc><lastmod>2024-03-08T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://xeunwa.github.io/tbtlctf-2024/</loc><lastmod>2024-05-12T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
@@ -13,36 +14,43 @@
             <loc>https://xeunwa.github.io/hacktheboo-2023/</loc><lastmod>2023-10-28T07:12:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://xeunwa.github.io/country-db/</loc><lastmod>2023-11-11T11:57:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://xeunwa.github.io/picoctf-2023/</loc><lastmod>2023-03-29T00:45:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://xeunwa.github.io/authors/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xeunwa.github.io/categories/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xeunwa.github.io/tags/code-review/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xeunwa.github.io/tags/command-injection/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xeunwa.github.io/categories/ctf/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xeunwa.github.io/tags/cve-2020-14343/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xeunwa.github.io/tags/cve-2022-22817/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xeunwa.github.io/tags/file-upload/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xeunwa.github.io/tags/filter-bypass/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xeunwa.github.io/tags/insecure-deserialization/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xeunwa.github.io/posts/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xeunwa.github.io/tags/python/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xeunwa.github.io/categories/scripting/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xeunwa.github.io/tags/sqli/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xeunwa.github.io/tags/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xeunwa.github.io/tags/timing-attack/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xeunwa.github.io/categories/web/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xeunwa.github.io/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xeunwa.github.io/authors/xeunwa/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://xeunwa.github.io/tags/aes/</loc><lastmod>2024-12-09T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://xeunwa.github.io/authors/</loc><lastmod>2024-12-09T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://xeunwa.github.io/categories/</loc><lastmod>2024-12-09T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://xeunwa.github.io/categories/ctf/</loc><lastmod>2024-12-09T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://xeunwa.github.io/tags/geo-osint/</loc><lastmod>2024-12-09T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://xeunwa.github.io/tags/lsb-steganography/</loc><lastmod>2024-12-09T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://xeunwa.github.io/categories/misc/</loc><lastmod>2024-12-09T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://xeunwa.github.io/categories/osint/</loc><lastmod>2024-12-09T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://xeunwa.github.io/tags/osint-leaks/</loc><lastmod>2024-12-09T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://xeunwa.github.io/tags/php/</loc><lastmod>2024-12-09T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://xeunwa.github.io/tags/php/8-1-0-dev/</loc><lastmod>2024-12-09T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://xeunwa.github.io/posts/</loc><lastmod>2024-12-09T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://xeunwa.github.io/tags/</loc><lastmod>2024-12-09T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://xeunwa.github.io/categories/web/</loc><lastmod>2024-12-09T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://xeunwa.github.io/</loc><lastmod>2024-12-09T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://xeunwa.github.io/authors/xeunwa/</loc><lastmod>2024-12-09T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://xeunwa.github.io/tags/code-review/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://xeunwa.github.io/tags/command-injection/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://xeunwa.github.io/tags/cve-2020-14343/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://xeunwa.github.io/tags/cve-2022-22817/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://xeunwa.github.io/tags/file-upload/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://xeunwa.github.io/tags/filter-bypass/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://xeunwa.github.io/tags/insecure-deserialization/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://xeunwa.github.io/tags/python/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://xeunwa.github.io/categories/scripting/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://xeunwa.github.io/tags/sqli/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://xeunwa.github.io/tags/timing-attack/</loc><lastmod>2024-11-03T01:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://xeunwa.github.io/tags/brute-force/</loc><lastmod>2024-05-29T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://xeunwa.github.io/tags/flask/</loc><lastmod>2024-05-29T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://xeunwa.github.io/tags/flask-session/</loc><lastmod>2024-05-29T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://xeunwa.github.io/tags/webdav/</loc><lastmod>2024-05-29T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://xeunwa.github.io/tags/wordpress/</loc><lastmod>2024-05-29T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://xeunwa.github.io/tags/csv-injection/</loc><lastmod>2024-05-12T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://xeunwa.github.io/tags/graphql/</loc><lastmod>2024-05-12T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://xeunwa.github.io/tags/indexeddb/</loc><lastmod>2024-05-12T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://xeunwa.github.io/tags/lfi/</loc><lastmod>2024-05-12T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://xeunwa.github.io/tags/neo4j/</loc><lastmod>2024-05-12T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://xeunwa.github.io/tags/pandas/</loc><lastmod>2024-05-12T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://xeunwa.github.io/tags/php/</loc><lastmod>2024-05-12T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://xeunwa.github.io/tags/api/</loc><lastmod>2024-04-30T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://xeunwa.github.io/tags/business-logic/</loc><lastmod>2024-04-30T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://xeunwa.github.io/tags/go/</loc><lastmod>2024-04-22T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
@@ -52,11 +60,9 @@
             <loc>https://xeunwa.github.io/tags/jail/</loc><lastmod>2024-04-16T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://xeunwa.github.io/tags/javascript/</loc><lastmod>2024-04-16T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://xeunwa.github.io/tags/minecraft/</loc><lastmod>2024-04-16T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://xeunwa.github.io/categories/misc/</loc><lastmod>2024-04-16T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://xeunwa.github.io/categories/rev/</loc><lastmod>2024-04-16T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://xeunwa.github.io/tags/xss/</loc><lastmod>2024-04-16T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://xeunwa.github.io/tags/idor/</loc><lastmod>2024-03-08T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://xeunwa.github.io/categories/osint/</loc><lastmod>2024-03-08T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://xeunwa.github.io/tags/web-archives/</loc><lastmod>2024-03-08T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://xeunwa.github.io/tags/express/</loc><lastmod>2023-12-11T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://xeunwa.github.io/tags/ocr/</loc><lastmod>2023-12-11T02:46:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
