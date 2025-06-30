@@ -7,8 +7,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title>UMassCTF 2024 - xeunwa</title><meta name="Description" content="CMD injection, HTTP, Header injection"><meta property="og:url" content="https://xeunwa.github.io/umass-ctf-2024/">
-  <meta property="og:site_name" content="xeunwa">
+    <title>UMassCTF 2024 - Blogs</title><meta name="Description" content="CMD injection, HTTP, Header injection"><meta property="og:url" content="https://xeunwa.github.io/umass-ctf-2024/">
+  <meta property="og:site_name" content="Blogs">
   <meta property="og:title" content="UMassCTF 2024">
   <meta property="og:description" content="CMD injection, HTTP, Header injection">
   <meta property="og:locale" content="en">
@@ -46,10 +46,10 @@
         },"image": ["https:\/\/xeunwa.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Header Injection, Command Injection, Code Review, Go","wordcount":  1090 ,
         "url": "https:\/\/xeunwa.github.io\/umass-ctf-2024\/","datePublished": "2024-04-22T02:46:00+08:00","dateModified": "2024-04-22T02:46:00+08:00","publisher": {
             "@type": "Organization",
-            "name": "xxxx","logo": "https:\/\/avatars.githubusercontent.com\/u\/72879902?v=4"},"authors": [{
-                        "@type": "Person",
-                        "name": "xeunwa"                    
-                    }],"description": "CMD injection, HTTP, Header injection"
+            "name": "xxxx","logo": "https:\/\/avatars.githubusercontent.com\/u\/72879902?v=4"},"author": {
+                "@type": "Person",
+                "name": "Author"
+            },"description": "CMD injection, HTTP, Header injection"
     }
     </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
 </head>
@@ -58,7 +58,7 @@
         function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
-        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('black' === 'light' || 'black' === 'dark' || 'black' === 'black') setTheme('black'), saveTheme('black'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('light' === 'light' || 'light' === 'dark' || 'light' === 'black') setTheme('light'), saveTheme('light'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
         let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
         getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
         window.switchThemeEventSet = new Set()
@@ -67,7 +67,7 @@
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="xeunwa"><span class="header-title-pre">$</span><span id="desktop-header-typeit" class="typeit"></span><span class="header-title-post"> >?</span></a>
+            <a href="/" title="Blogs"><span class="header-title-pre">$</span><span id="desktop-header-typeit" class="typeit"></span><span class="header-title-post"> >?</span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/categories/ctf/"> Writeups </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/whoami/"> whoami </a><a class="menu-item" href="https://github.com/xeunwa" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -96,7 +96,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="xeunwa"><span class="header-title-pre">$</span><span id="mobile-header-typeit" class="typeit"></span><span class="header-title-post"> >?</span></a>
+                <a href="/" title="Blogs"><span class="header-title-pre">$</span><span id="mobile-header-typeit" class="typeit"></span><span class="header-title-post"> >?</span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -147,7 +147,7 @@
 </nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">UMassCTF 2024</h1><div class="post-meta">
             <div class="post-meta-line">
-                <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='https://xeunwa.github.io/authors/xeunwa'>xeunwa</a></span>
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Author</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>Web</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-04-22">2024-04-22</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-04-22">2024-04-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1090 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
@@ -616,7 +616,7 @@
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
                     Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.131.0">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2025</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>

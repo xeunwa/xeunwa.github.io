@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Tags - Tag - xeunwa</title>
+        <title>Tags - Tag - Blogs</title>
         <link>https://xeunwa.github.io/tags/</link>
-        <description>Tags - Tag - xeunwa</description>
+        <description>Tags - Tag - Blogs</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 09 Dec 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/tags/" rel="self" type="application/rss+xml" /><item>
     <title>AES</title>
     <link>https://xeunwa.github.io/tags/aes/</link>

@@ -1,19 +1,21 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Cryptographic Failures - Tag - xeunwa</title>
+        <title>Cryptographic Failures - Tag - Blogs</title>
         <link>https://xeunwa.github.io/tags/cryptographic-failures/</link>
-        <description>Cryptographic Failures - Tag - xeunwa</description>
+        <description>Cryptographic Failures - Tag - Blogs</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 11 Jun 2023 09:00:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/tags/cryptographic-failures/" rel="self" type="application/rss+xml" /><item>
     <title>picoCTF 2023</title>
     <link>https://xeunwa.github.io/picoctf-2023/</link>
     <pubDate>Wed, 29 Mar 2023 00:45:00 &#43;0800</pubDate><author>
-                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/picoctf-2023/</guid>
+        <name>Author</name>
+    </author><guid>https://xeunwa.github.io/picoctf-2023/</guid>
     <description><![CDATA[<p>Writeups for solved Web challenges @picoCTF2023</p>]]></description>
 </item><item>
     <title>HSCTF10 - web/Very Secure</title>
     <link>https://xeunwa.github.io/very-secure/</link>
     <pubDate>Sun, 11 Jun 2023 09:00:00 &#43;0800</pubDate><author>
-                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/very-secure/</guid>
+        <name>Author</name>
+    </author><guid>https://xeunwa.github.io/very-secure/</guid>
     <description><![CDATA[<p>Write-up for HSCTF10 web challenge - Very Secure</p>]]></description>
 </item></channel>
 </rss>

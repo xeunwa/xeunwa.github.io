@@ -1,13 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Path Traversal - Tag - xeunwa</title>
+        <title>Path Traversal - Tag - Blogs</title>
         <link>https://xeunwa.github.io/tags/path-traversal/</link>
-        <description>Path Traversal - Tag - xeunwa</description>
+        <description>Path Traversal - Tag - Blogs</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 11 Dec 2023 02:46:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/tags/path-traversal/" rel="self" type="application/rss+xml" /><item>
     <title>pingCTF 2023</title>
     <link>https://xeunwa.github.io/pingctf-2023/</link>
     <pubDate>Mon, 11 Dec 2023 02:46:00 &#43;0800</pubDate><author>
-                        <name>xeunwa</name><uri>https://xeunwa.example.com</uri><email>xeunwa@example.com</email></author><guid>https://xeunwa.github.io/pingctf-2023/</guid>
+        <name>Author</name>
+    </author><guid>https://xeunwa.github.io/pingctf-2023/</guid>
     <description><![CDATA[<p>Raw solutions for solved pingCTF 2023 Web challenges</p>]]></description>
 </item></channel>
 </rss>
