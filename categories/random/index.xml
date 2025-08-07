@@ -1,0 +1,24 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Random - Category - ex1a&#39;&#39;s-- Blogs</title>
+        <link>http://localhost:1313/categories/random/</link>
+        <description>Random - Category - ex1a&#39;&#39;s-- Blogs</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 01 Jul 2025 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/random/" rel="self" type="application/rss+xml" /><item>
+    <title>Pentest (Tricks Only)</title>
+    <link>http://localhost:1313/whatis/</link>
+    <pubDate>Tue, 01 Jul 2025 00:00:00 &#43;0800</pubDate><author>
+        <name></name>
+    </author><guid>http://localhost:1313/whatis/</guid>
+    <description><![CDATA[<p><figure><a class="lightgallery" href="/whatis/Mesmerizer.jpg" title="alt text" data-thumbnail="/whatis/Mesmerizer.jpg">
+        <img
+            
+            loading="lazy"
+            src="/whatis/Mesmerizer.jpg"
+            srcset="/whatis/Mesmerizer.jpg, /whatis/Mesmerizer.jpg 1.5x, /whatis/Mesmerizer.jpg 2x"
+            sizes="auto"
+            alt="alt text" height="720"  width="1280" >
+    </a></figure></p>
+<p>Pentest Tricks Only</p>
+<!-- I've been in pentest field (mostly web) for more than 2 years now, and to be honest it is really boring!. But i've come to enjoy it recently.  -->]]></description>
+</item></channel>
+</rss>

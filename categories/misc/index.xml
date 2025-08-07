@@ -1,13 +1,13 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Misc - Category - Blogs</title>
+        <title>Misc - Category - ex1a&#39;&#39;s-- Blogs</title>
         <link>https://xeunwa.github.io/categories/misc/</link>
-        <description>Misc - Category - Blogs</description>
+        <description>Misc - Category - ex1a&#39;&#39;s-- Blogs</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 09 Dec 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/categories/misc/" rel="self" type="application/rss+xml" /><item>
     <title>HacktheNorth.ph / TCon7CTF</title>
     <link>https://xeunwa.github.io/hackthenorth-2024/</link>
     <pubDate>Mon, 09 Dec 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Author</name>
+        <name></name>
     </author><guid>https://xeunwa.github.io/hackthenorth-2024/</guid>
     <description><![CDATA[<blockquote>
 <p>We won the CTF at the largest ICT and Hacker Conference in Northern Philippines!</p>
@@ -17,7 +17,7 @@
     <title>b01lers CTF 2024</title>
     <link>https://xeunwa.github.io/b01lers-2024/</link>
     <pubDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</pubDate><author>
-        <name>Author</name>
+        <name></name>
     </author><guid>https://xeunwa.github.io/b01lers-2024/</guid>
     <description><![CDATA[<p>Writeups for solved <a href="https://ctftime.org/event/2250" target="_blank" rel="noopener noreferrer">b01lers CTF 2024</a> challenges</p>
 <p><strong>points</strong>: 2366 <strong>rank</strong>: 61/393</p>]]></description>

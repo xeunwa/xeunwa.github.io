@@ -1,13 +1,13 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Web Archives - Tag - Blogs</title>
+        <title>Web Archives - Tag - ex1a&#39;&#39;s-- Blogs</title>
         <link>https://xeunwa.github.io/tags/web-archives/</link>
-        <description>Web Archives - Tag - Blogs</description>
+        <description>Web Archives - Tag - ex1a&#39;&#39;s-- Blogs</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 08 Mar 2024 02:46:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/tags/web-archives/" rel="self" type="application/rss+xml" /><item>
     <title>osu!gaming CTF 2024 - osint/time-traveler</title>
     <link>https://xeunwa.github.io/time-traveler/</link>
     <pubDate>Fri, 08 Mar 2024 02:46:00 &#43;0800</pubDate><author>
-        <name>Author</name>
+        <name></name>
     </author><guid>https://xeunwa.github.io/time-traveler/</guid>
     <description><![CDATA[<p><strong>Accidental solve</strong>, I was initially solving web/when-you-dont-see-it challenge when I solved this, I even complained in discord saying their flag doesn&rsquo;t work, not knowing it is for this challenge lol.</p>]]></description>
 </item></channel>

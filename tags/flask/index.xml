@@ -1,34 +1,34 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Flask - Tag - Blogs</title>
+        <title>Flask - Tag - ex1a&#39;&#39;s-- Blogs</title>
         <link>https://xeunwa.github.io/tags/flask/</link>
-        <description>Flask - Tag - Blogs</description>
+        <description>Flask - Tag - ex1a&#39;&#39;s-- Blogs</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 29 May 2024 02:46:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/tags/flask/" rel="self" type="application/rss+xml" /><item>
     <title>NahamCon CTF 2024</title>
     <link>https://xeunwa.github.io/nahamcon-ctf-2024/</link>
     <pubDate>Wed, 29 May 2024 02:46:00 &#43;0800</pubDate><author>
-        <name>Author</name>
+        <name></name>
     </author><guid>https://xeunwa.github.io/nahamcon-ctf-2024/</guid>
     <description><![CDATA[<p>Writeups for some web and scripting challenges including the wordpress whitebox challenges</p>]]></description>
-</item><item>
-    <title>Hack the Boo 2023</title>
-    <link>https://xeunwa.github.io/hacktheboo-2023/</link>
-    <pubDate>Sat, 28 Oct 2023 07:12:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://xeunwa.github.io/hacktheboo-2023/</guid>
-    <description><![CDATA[<p>Write-up for Hack the Boo 2023 web challenges</p>]]></description>
 </item><item>
     <title>cakeCTF 2023 - web/CountryDB</title>
     <link>https://xeunwa.github.io/country-db/</link>
     <pubDate>Sat, 11 Nov 2023 11:57:00 &#43;0800</pubDate><author>
-        <name>Author</name>
+        <name></name>
     </author><guid>https://xeunwa.github.io/country-db/</guid>
     <description><![CDATA[<p>Write-up for CakeCTF Web challenge - CountryDB</p>]]></description>
+</item><item>
+    <title>Hack the Boo 2023</title>
+    <link>https://xeunwa.github.io/hacktheboo-2023/</link>
+    <pubDate>Sat, 28 Oct 2023 07:12:00 &#43;0800</pubDate><author>
+        <name></name>
+    </author><guid>https://xeunwa.github.io/hacktheboo-2023/</guid>
+    <description><![CDATA[<p>Write-up for Hack the Boo 2023 web challenges</p>]]></description>
 </item><item>
     <title>HSCTF10 - web/Very Secure</title>
     <link>https://xeunwa.github.io/very-secure/</link>
     <pubDate>Sun, 11 Jun 2023 09:00:00 &#43;0800</pubDate><author>
-        <name>Author</name>
+        <name></name>
     </author><guid>https://xeunwa.github.io/very-secure/</guid>
     <description><![CDATA[<p>Write-up for HSCTF10 web challenge - Very Secure</p>]]></description>
 </item></channel>

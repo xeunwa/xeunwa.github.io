@@ -1,13 +1,13 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Express - Tag - Blogs</title>
+        <title>Express - Tag - ex1a&#39;&#39;s-- Blogs</title>
         <link>https://xeunwa.github.io/tags/express/</link>
-        <description>Express - Tag - Blogs</description>
+        <description>Express - Tag - ex1a&#39;&#39;s-- Blogs</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 11 Dec 2023 02:46:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/tags/express/" rel="self" type="application/rss+xml" /><item>
     <title>pingCTF 2023</title>
     <link>https://xeunwa.github.io/pingctf-2023/</link>
     <pubDate>Mon, 11 Dec 2023 02:46:00 &#43;0800</pubDate><author>
-        <name>Author</name>
+        <name></name>
     </author><guid>https://xeunwa.github.io/pingctf-2023/</guid>
     <description><![CDATA[<p>Raw solutions for solved pingCTF 2023 Web challenges</p>]]></description>
 </item></channel>

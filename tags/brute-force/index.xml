@@ -1,20 +1,20 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Brute-Force - Tag - Blogs</title>
+        <title>Brute-Force - Tag - ex1a&#39;&#39;s-- Blogs</title>
         <link>https://xeunwa.github.io/tags/brute-force/</link>
-        <description>Brute-Force - Tag - Blogs</description>
+        <description>Brute-Force - Tag - ex1a&#39;&#39;s-- Blogs</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 29 May 2024 02:46:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/tags/brute-force/" rel="self" type="application/rss+xml" /><item>
     <title>NahamCon CTF 2024</title>
     <link>https://xeunwa.github.io/nahamcon-ctf-2024/</link>
     <pubDate>Wed, 29 May 2024 02:46:00 &#43;0800</pubDate><author>
-        <name>Author</name>
+        <name></name>
     </author><guid>https://xeunwa.github.io/nahamcon-ctf-2024/</guid>
     <description><![CDATA[<p>Writeups for some web and scripting challenges including the wordpress whitebox challenges</p>]]></description>
 </item><item>
     <title>HSCTF10 - web/Very Secure</title>
     <link>https://xeunwa.github.io/very-secure/</link>
     <pubDate>Sun, 11 Jun 2023 09:00:00 &#43;0800</pubDate><author>
-        <name>Author</name>
+        <name></name>
     </author><guid>https://xeunwa.github.io/very-secure/</guid>
     <description><![CDATA[<p>Write-up for HSCTF10 web challenge - Very Secure</p>]]></description>
 </item></channel>

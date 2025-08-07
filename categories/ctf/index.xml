@@ -1,13 +1,13 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>CTF - Category - Blogs</title>
+        <title>CTF - Category - ex1a&#39;&#39;s-- Blogs</title>
         <link>https://xeunwa.github.io/categories/ctf/</link>
-        <description>CTF - Category - Blogs</description>
+        <description>CTF - Category - ex1a&#39;&#39;s-- Blogs</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 09 Dec 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/categories/ctf/" rel="self" type="application/rss+xml" /><item>
     <title>HacktheNorth.ph / TCon7CTF</title>
     <link>https://xeunwa.github.io/hackthenorth-2024/</link>
     <pubDate>Mon, 09 Dec 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Author</name>
+        <name></name>
     </author><guid>https://xeunwa.github.io/hackthenorth-2024/</guid>
     <description><![CDATA[<blockquote>
 <p>We won the CTF at the largest ICT and Hacker Conference in Northern Philippines!</p>
@@ -17,28 +17,21 @@
     <title>Huntress CTF 2024</title>
     <link>https://xeunwa.github.io/huntress-ctf-2024/</link>
     <pubDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</pubDate><author>
-        <name>Author</name>
+        <name></name>
     </author><guid>https://xeunwa.github.io/huntress-ctf-2024/</guid>
     <description><![CDATA[<p>Writeups for all <strong>web(6/6)</strong> and <strong>scripting(2/2)</strong> challenges. + <strong>misc/time-will-tell</strong></p>]]></description>
 </item><item>
     <title>NahamCon CTF 2024</title>
     <link>https://xeunwa.github.io/nahamcon-ctf-2024/</link>
     <pubDate>Wed, 29 May 2024 02:46:00 &#43;0800</pubDate><author>
-        <name>Author</name>
+        <name></name>
     </author><guid>https://xeunwa.github.io/nahamcon-ctf-2024/</guid>
     <description><![CDATA[<p>Writeups for some web and scripting challenges including the wordpress whitebox challenges</p>]]></description>
-</item><item>
-    <title>osu!gaming CTF 2024 - osint/time-traveler</title>
-    <link>https://xeunwa.github.io/time-traveler/</link>
-    <pubDate>Fri, 08 Mar 2024 02:46:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://xeunwa.github.io/time-traveler/</guid>
-    <description><![CDATA[<p><strong>Accidental solve</strong>, I was initially solving web/when-you-dont-see-it challenge when I solved this, I even complained in discord saying their flag doesn&rsquo;t work, not knowing it is for this challenge lol.</p>]]></description>
 </item><item>
     <title>TBTL CTF 2024</title>
     <link>https://xeunwa.github.io/tbtlctf-2024/</link>
     <pubDate>Sun, 12 May 2024 02:46:00 &#43;0800</pubDate><author>
-        <name>Author</name>
+        <name></name>
     </author><guid>https://xeunwa.github.io/tbtlctf-2024/</guid>
     <description><![CDATA[<p>Writeups for solved <a href="https://ctftime.org/event/2324" target="_blank" rel="noopener noreferrer">TBTL CTF 2024</a> challenges</p>
 <p>Solved 4/4 web challenges which is nice</p>]]></description>
@@ -46,37 +39,44 @@
     <title>UMDCTF 2024</title>
     <link>https://xeunwa.github.io/umdctf-2024/</link>
     <pubDate>Tue, 30 Apr 2024 02:46:00 &#43;0800</pubDate><author>
-        <name>Author</name>
+        <name></name>
     </author><guid>https://xeunwa.github.io/umdctf-2024/</guid>
     <description><![CDATA[<p>Writeups for solved <a href="https://ctftime.org/event/2323" target="_blank" rel="noopener noreferrer">UMDCTF 2024</a> web challenges (2/4)</p>]]></description>
 </item><item>
     <title>UMassCTF 2024</title>
     <link>https://xeunwa.github.io/umass-ctf-2024/</link>
     <pubDate>Mon, 22 Apr 2024 02:46:00 &#43;0800</pubDate><author>
-        <name>Author</name>
+        <name></name>
     </author><guid>https://xeunwa.github.io/umass-ctf-2024/</guid>
     <description><![CDATA[<p>Writeups for solved <a href="https://ctftime.org/event/2287" target="_blank" rel="noopener noreferrer">UMassCTF 2024</a> web challenges (3/5)</p>]]></description>
 </item><item>
     <title>b01lers CTF 2024</title>
     <link>https://xeunwa.github.io/b01lers-2024/</link>
     <pubDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</pubDate><author>
-        <name>Author</name>
+        <name></name>
     </author><guid>https://xeunwa.github.io/b01lers-2024/</guid>
     <description><![CDATA[<p>Writeups for solved <a href="https://ctftime.org/event/2250" target="_blank" rel="noopener noreferrer">b01lers CTF 2024</a> challenges</p>
 <p><strong>points</strong>: 2366 <strong>rank</strong>: 61/393</p>]]></description>
 </item><item>
+    <title>osu!gaming CTF 2024 - osint/time-traveler</title>
+    <link>https://xeunwa.github.io/time-traveler/</link>
+    <pubDate>Fri, 08 Mar 2024 02:46:00 &#43;0800</pubDate><author>
+        <name></name>
+    </author><guid>https://xeunwa.github.io/time-traveler/</guid>
+    <description><![CDATA[<p><strong>Accidental solve</strong>, I was initially solving web/when-you-dont-see-it challenge when I solved this, I even complained in discord saying their flag doesn&rsquo;t work, not knowing it is for this challenge lol.</p>]]></description>
+</item><item>
     <title>pingCTF 2023</title>
     <link>https://xeunwa.github.io/pingctf-2023/</link>
     <pubDate>Mon, 11 Dec 2023 02:46:00 &#43;0800</pubDate><author>
-        <name>Author</name>
+        <name></name>
     </author><guid>https://xeunwa.github.io/pingctf-2023/</guid>
     <description><![CDATA[<p>Raw solutions for solved pingCTF 2023 Web challenges</p>]]></description>
 </item><item>
-    <title>Hack the Boo 2023</title>
-    <link>https://xeunwa.github.io/hacktheboo-2023/</link>
-    <pubDate>Sat, 28 Oct 2023 07:12:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://xeunwa.github.io/hacktheboo-2023/</guid>
-    <description><![CDATA[<p>Write-up for Hack the Boo 2023 web challenges</p>]]></description>
+    <title>cakeCTF 2023 - web/CountryDB</title>
+    <link>https://xeunwa.github.io/country-db/</link>
+    <pubDate>Sat, 11 Nov 2023 11:57:00 &#43;0800</pubDate><author>
+        <name></name>
+    </author><guid>https://xeunwa.github.io/country-db/</guid>
+    <description><![CDATA[<p>Write-up for CakeCTF Web challenge - CountryDB</p>]]></description>
 </item></channel>
 </rss>

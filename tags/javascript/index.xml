@@ -1,13 +1,13 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>JavaScript - Tag - Blogs</title>
+        <title>JavaScript - Tag - ex1a&#39;&#39;s-- Blogs</title>
         <link>https://xeunwa.github.io/tags/javascript/</link>
-        <description>JavaScript - Tag - Blogs</description>
+        <description>JavaScript - Tag - ex1a&#39;&#39;s-- Blogs</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/tags/javascript/" rel="self" type="application/rss+xml" /><item>
     <title>b01lers CTF 2024</title>
     <link>https://xeunwa.github.io/b01lers-2024/</link>
     <pubDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</pubDate><author>
-        <name>Author</name>
+        <name></name>
     </author><guid>https://xeunwa.github.io/b01lers-2024/</guid>
     <description><![CDATA[<p>Writeups for solved <a href="https://ctftime.org/event/2250" target="_blank" rel="noopener noreferrer">b01lers CTF 2024</a> challenges</p>
 <p><strong>points</strong>: 2366 <strong>rank</strong>: 61/393</p>]]></description>
@@ -15,7 +15,7 @@
     <title>pingCTF 2023</title>
     <link>https://xeunwa.github.io/pingctf-2023/</link>
     <pubDate>Mon, 11 Dec 2023 02:46:00 &#43;0800</pubDate><author>
-        <name>Author</name>
+        <name></name>
     </author><guid>https://xeunwa.github.io/pingctf-2023/</guid>
     <description><![CDATA[<p>Raw solutions for solved pingCTF 2023 Web challenges</p>]]></description>
 </item></channel>

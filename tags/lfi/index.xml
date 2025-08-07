@@ -1,13 +1,13 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Lfi - Tag - Blogs</title>
+        <title>Lfi - Tag - ex1a&#39;&#39;s-- Blogs</title>
         <link>https://xeunwa.github.io/tags/lfi/</link>
-        <description>Lfi - Tag - Blogs</description>
+        <description>Lfi - Tag - ex1a&#39;&#39;s-- Blogs</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 12 May 2024 02:46:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/tags/lfi/" rel="self" type="application/rss+xml" /><item>
     <title>TBTL CTF 2024</title>
     <link>https://xeunwa.github.io/tbtlctf-2024/</link>
     <pubDate>Sun, 12 May 2024 02:46:00 &#43;0800</pubDate><author>
-        <name>Author</name>
+        <name></name>
     </author><guid>https://xeunwa.github.io/tbtlctf-2024/</guid>
     <description><![CDATA[<p>Writeups for solved <a href="https://ctftime.org/event/2324" target="_blank" rel="noopener noreferrer">TBTL CTF 2024</a> challenges</p>
 <p>Solved 4/4 web challenges which is nice</p>]]></description>
@@ -15,7 +15,7 @@
     <title>Hack the Boo 2023</title>
     <link>https://xeunwa.github.io/hacktheboo-2023/</link>
     <pubDate>Sat, 28 Oct 2023 07:12:00 &#43;0800</pubDate><author>
-        <name>Author</name>
+        <name></name>
     </author><guid>https://xeunwa.github.io/hacktheboo-2023/</guid>
     <description><![CDATA[<p>Write-up for Hack the Boo 2023 web challenges</p>]]></description>
 </item></channel>

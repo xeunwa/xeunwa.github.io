@@ -1,20 +1,20 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Python - Tag - Blogs</title>
+        <title>Python - Tag - ex1a&#39;&#39;s-- Blogs</title>
         <link>https://xeunwa.github.io/tags/python/</link>
-        <description>Python - Tag - Blogs</description>
+        <description>Python - Tag - ex1a&#39;&#39;s-- Blogs</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</lastBuildDate><atom:link href="https://xeunwa.github.io/tags/python/" rel="self" type="application/rss+xml" /><item>
     <title>Huntress CTF 2024</title>
     <link>https://xeunwa.github.io/huntress-ctf-2024/</link>
     <pubDate>Sun, 03 Nov 2024 01:00:00 &#43;0800</pubDate><author>
-        <name>Author</name>
+        <name></name>
     </author><guid>https://xeunwa.github.io/huntress-ctf-2024/</guid>
     <description><![CDATA[<p>Writeups for all <strong>web(6/6)</strong> and <strong>scripting(2/2)</strong> challenges. + <strong>misc/time-will-tell</strong></p>]]></description>
 </item><item>
     <title>TBTL CTF 2024</title>
     <link>https://xeunwa.github.io/tbtlctf-2024/</link>
     <pubDate>Sun, 12 May 2024 02:46:00 &#43;0800</pubDate><author>
-        <name>Author</name>
+        <name></name>
     </author><guid>https://xeunwa.github.io/tbtlctf-2024/</guid>
     <description><![CDATA[<p>Writeups for solved <a href="https://ctftime.org/event/2324" target="_blank" rel="noopener noreferrer">TBTL CTF 2024</a> challenges</p>
 <p>Solved 4/4 web challenges which is nice</p>]]></description>
@@ -22,29 +22,29 @@
     <title>b01lers CTF 2024</title>
     <link>https://xeunwa.github.io/b01lers-2024/</link>
     <pubDate>Tue, 16 Apr 2024 02:46:00 &#43;0800</pubDate><author>
-        <name>Author</name>
+        <name></name>
     </author><guid>https://xeunwa.github.io/b01lers-2024/</guid>
     <description><![CDATA[<p>Writeups for solved <a href="https://ctftime.org/event/2250" target="_blank" rel="noopener noreferrer">b01lers CTF 2024</a> challenges</p>
 <p><strong>points</strong>: 2366 <strong>rank</strong>: 61/393</p>]]></description>
 </item><item>
-    <title>Hack the Boo 2023</title>
-    <link>https://xeunwa.github.io/hacktheboo-2023/</link>
-    <pubDate>Sat, 28 Oct 2023 07:12:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://xeunwa.github.io/hacktheboo-2023/</guid>
-    <description><![CDATA[<p>Write-up for Hack the Boo 2023 web challenges</p>]]></description>
-</item><item>
     <title>cakeCTF 2023 - web/CountryDB</title>
     <link>https://xeunwa.github.io/country-db/</link>
     <pubDate>Sat, 11 Nov 2023 11:57:00 &#43;0800</pubDate><author>
-        <name>Author</name>
+        <name></name>
     </author><guid>https://xeunwa.github.io/country-db/</guid>
     <description><![CDATA[<p>Write-up for CakeCTF Web challenge - CountryDB</p>]]></description>
+</item><item>
+    <title>Hack the Boo 2023</title>
+    <link>https://xeunwa.github.io/hacktheboo-2023/</link>
+    <pubDate>Sat, 28 Oct 2023 07:12:00 &#43;0800</pubDate><author>
+        <name></name>
+    </author><guid>https://xeunwa.github.io/hacktheboo-2023/</guid>
+    <description><![CDATA[<p>Write-up for Hack the Boo 2023 web challenges</p>]]></description>
 </item><item>
     <title>HSCTF10 - web/Very Secure</title>
     <link>https://xeunwa.github.io/very-secure/</link>
     <pubDate>Sun, 11 Jun 2023 09:00:00 &#43;0800</pubDate><author>
-        <name>Author</name>
+        <name></name>
     </author><guid>https://xeunwa.github.io/very-secure/</guid>
     <description><![CDATA[<p>Write-up for HSCTF10 web challenge - Very Secure</p>]]></description>
 </item></channel>
